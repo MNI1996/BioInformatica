@@ -1,0 +1,36 @@
+
+RETO I: Acidos nucleicos (principalmente ADN)
+
+RETO II: float (forma de identificacion standar de los aminoacidos por su estructura) a discutir (peor caso string)
+
+RETO III: lista de listas de listas donde cada casilla es parte de la cadena que a su vez puede tener sub cadenas a discutir (peor caso float)
+
+RETO IV: descubrimiento del modelo de la estructura del ADN , ARN, virus,carbón y grafito.
+
+RETO V: ingresa proteina 
+	->separo y listo los aminoacidos por su esctructura
+		->analizo los R de los aminoacidos (comparandolos con la tabla )
+			-> lo reduzco a un resultado simple (proporciones de cada estructura)
+				-> determino que estructura tomas segun dicho resultado
+
+
+	clasificar(proteina)
+		{	// proteina como lista de aminoacidos
+			aminoacidos=proteina
+			lsres=[]
+			foreach aminoacido:aminoacidos
+				switch(aminoacido)
+					case condH(aminoacido): res="H"
+					case condB (aminoacido): res="B"
+					default  res="L"
+				lsres.add(res)
+			console log(lsres)
+
+		}
+
+RETO VI: El ADN es lo que diferencia a los individuos de la misma especie
+analizar las propiedades del input y comparar con un muestreo si hay coincidencia. ningun muestreo puede
+dar una coincidencia 100% lo que nos da a entender que la unica cadena con la que podemos tener 100% de 
+coincidencia es con la propia
+hombre(cromosoma XY)
+mujer(cromosoma XX)
