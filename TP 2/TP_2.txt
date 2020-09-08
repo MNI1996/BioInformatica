@@ -1,0 +1,80 @@
+TRABAJO PRACTICO 2
+
+1) ¿Por qué una célula querría destruir sus propias proteínas?
+	La ubiquitina es una proteína que "marca" a otra que ya cumplió su función para que luego otra la "rompa" en aminoacidos para ser reutilizados en otras proteínas
+
+2) ¿Qué información nos provee esta página? (www.rcsb.org)
+	COPIAR LA RESPUESTA DEL PAPEL
+	
+
+3) ¿Cómo se determinó la estructura de esta proteína?
+	Reconstrucción del modelo através del bombardeo de RayosX y cálculos matemáticos que dieron la representación del mismo.
+	Es decir, la estructura se la saca por inferencia por el proceso de cristalización donde se bombardea a la proteína con átomos hasta que en un momento "rebotan" produciendo la refracción que se mapea y se reconstruye el modelo.
+
+4) A la izquierda vemos una representación de la estructura de ubiquitina. ¿Qué significan las cintas, las flechas y las regiones angostas?
+	cintas: estructura secundaria de las alfa hélices
+	flechas: estructura secundaria de las beta plegadas
+	regiones angostas: estructura secundaria de los loops
+
+5) ¿Representa esa imagen a la realidad del sistema biológico?
+	No, porque es un modelo teórico
+
+6) La estructura 1UBQ fue “refinada a una resolución de 1.8 Angstroms”.Éste es el error asociado al experimento: mientras mayor es la
+resolución, menor es la certeza al determinar la posición de cada átomo.¿Cuál es la utilidad y los condicionamientos de usar un modelo
+científico que sabemos inexacto?
+	FALTAAAAAAAAAAAAAAAA
+
+
+7) En la pantalla principal vemos una representación de la estructura de ubiquitina. ¿Qué significan las cintas, las flechas y las regiones angostas?
+	Idem 4
+
+8) ¿Qué diferencias y similitudes notamos respecto de la representación inicial?
+	Al rotar la imagen podemos observar la proteína en un ángulo de 360°, por lo que podemos verla desde distintos ángulos y ver su estructura por completo. De esta manera podemos observar las alfa hélices, por ejemplo, a lo largo de su "recorrido".
+
+9) En el menú de la izquierda hay opciones de distintos tipos de representación y formas de colorear la estructura tridimensional. ¿Para qué podría ser útil visualizar lo mismo de distintas maneras?
+	Las distintas representaciones nos muestra la proteína de diferentes formas que nos permite sacar concluisones acorde a lo que se busca investigar
+
+10) ¿Qué información esperaría encontrar como resultado un experimento destinado a determinar la estructura terciaria de una molécula
+biológica?
+	Esperaría inferir su  modelo
+
+11) Podemos explorar el contenido del archivo que acabamos de descargar si lo observamos con un editor de texto. Haciendo clic con el botón derecho del mouse sobre el archivo descargado, usemos la opción ​ Abrir con y seleccionemos el ​Bloc de Notas u otro editor de texto. ¿En qué consiste un archivo PDB?
+	Es un archivo que me da datos de la proteína como:
+		datos de la publicación
+		cómo se hizo el experimento
+		estructura primaria de la proteína
+		posición en el espacio
+		el índice de refracción
+		elemento químico 
+
+12) Desplacémonos por el archivo hasta encontrar las líneas que comienzan con la palabra ATOM. ¿Qué tipo de información brinda esta sección?
+		orden
+		elemento químico con su orden en la proteína
+		aminoácido
+		nro del R del aminiácido
+		posición en el espacio
+		el índice de refracción
+		elemento químico 
+
+13)
+	13-1) ¿Podríamos extraer de este archivo información sobre la estructura primaria de la proteína en cuestión? 
+		si porque  me da los aminoácidos que la componen con su posición
+
+	13-2) ¿Cómo se presenta dicha información y qué significa la representación? 
+		La información se ordena en columnas, que representan toda la información necesaria para ubicar los aminoácidos dentro de la proteína
+
+	13-3) Desde el punto de vista computacional:¿de qué tipo de dato se trata esta información?
+		?????????????????????????????????????
+
+14) ¿Considera que el formato PDB es útil para presentar los resultados del experimento?
+	Consideramos que es útil porque están todos los datos necesarios para conocer la proteína como su representación
+
+15) Observamos que la información respeta cierta estructura interna. ¿Cuáles son los beneficios y las limitaciones de imponer una estructura para comunicar los resultados de un experimento?
+	Presentando de esta manera los datos obtenidos se logra llegar a un estandard que puede entender otro científico. Pero si no lo lee un científico, le es dificultosa su lectura dado que no conoce los códigos de la primer columna y de las sucesivas como ocurre con ATOM
+
+16) Hemos visto que las proteínas tienen estructura tridimensional y hemos podido observar algunas características de las mismas. ¿Será igual con los ácidos nucléicos?
+	???????????????????????????????????????
+
+17) Rosalind Franklin es una científica muy relevante, que tuvo menos reconocimiento del merecido. Contanos sobre los procedimientos que
+puso a punto Rosalind.
+	

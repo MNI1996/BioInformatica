@@ -17,11 +17,13 @@ RETO V: ingresa proteina
 	clasificar(proteina)
 		{	// proteina como lista de aminoacidos
 			aminoacidos=proteina
+			listCondH = [Glu, Ala, Leu, met, Gln Lys, Arg, His]
+			listCondB = [Val, Ile, Tyr, Cys, Trp, Phe, Thr]
 			lsres=[]
 			foreach aminoacido:aminoacidos
 				switch(aminoacido)
-					case condH(aminoacido): res="H"
-					case condB (aminoacido): res="B"
+					case listCondH.contains(aminoacido): res="H"
+					case listCondB.contains(aminoacido): res="B"
 					default  res="L"
 				lsres.add(res)
 			console log(lsres)
