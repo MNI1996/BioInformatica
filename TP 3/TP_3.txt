@@ -1,0 +1,72 @@
+RETO I: Enumerá las diferencias que existen entre una célula procariota y eucariota
+Eucariotas:
+	Gran tamaño
+	Poseen Núcleo
+	Cromosomas lineales
+	Membrana nuclear con el
+	complejo del poro nuclear
+	Transcripción y traducción
+	ocurren de manera separada
+	Sistema de endomembrana y
+	otras organelas (lisosomas,
+	peroxisomas, mitocondrias,
+	cloroplastos, vacuolas)
+
+Procariotas:
+	Mucho más pequeñas
+	No poseen núcleo
+	Cromosomas circulares
+	Ausencia de una membrana
+	que defina el espacio
+	Transcripción y traducción
+	ocurren de manera simultánea
+
+
+RETO II: Dado el código genético como se muestra en la tabla:
+Crea un programa sencillo en algún lenguaje de programación que conozcas que imprima una cadena de ARN codificante para el siguiente péptido (cadena corta de aminoácidos).
+
+	Sec1: ‘ATVEKGGKHKTGPNEKGKKIFVQKCSQCHTVLHGLFGRKTGQA'
+
+	def ARNComp(self, Sec1):
+		lsComp = []
+        codones:[(H,CAU), (D,GAU), (R,CGU), (F,UUU), (A,GCU), (C,UGU), (G,GGU), (Q,CAA), (E,GAA), (K,AAA), (L,UUA), (M,AUG), (N,AAU), 
+        (S,AGU), (Y,UAU), (T,ACU), (I,AUU), (P,CCU), (V,GUU))]  
+    
+		for i in Sec1:
+			lscomp.concat(codones.get(i))
+		return lsComp
+
+RETO III: En muchos de los genes codificados en el ADN existe un motivo recurrente ubicado antes de la secuencia codificante del gen que direcciona la unión de la ARN Polimerasa II, la proteína encargada de copiar el ADN a un ARN mensajero. Ésta secuencia denominada caja TATA (consistente en una secuencia de nucleótidos 'TATAAA') se encuentra presente en lo que se denomina región promotora de diversos genes, en organismos de todos los reinos ​ (Smale and Kadonaga 2003; Lifton et al. 1978)​ .
+
+👉 ​ Crea un programa sencillo en algún lenguaje de programación que conozcas que permita identificar las regiones promotoras de un gen, en una secuencia dada de ADN, considerando que tal región comienza y termina con la caja TATA.
+
+	def cajaTATA(input):
+	        x=input.split("TATAAA")
+	        print (x)
+
+
+RETO VI: Existen numerosas herramientas muy fáciles de usar que te permiten crear videojuegos, como por ejemplo ​ Pilas Engine​ , y no hay mejor modo de aprender que jugando!
+
+👉 Diseñá un juego de mesa o un videojuego (hecho con la herramienta que más te guste) temático sobre expresión génica, con sus reglas y resúmen. Tené en cuenta que lo vas a tener que compartir con la clase. ¡El cielo es límite, a divertirse!
+
+
+S I N T E T Í Z A M E
+
+Barajas: 64 cartas (codones), 16(proteinas), 20(aminoácidos)
+Máximo:6 personas
+
+INICIO
+Cada jugador inicia con: 
+	* 1 carta proteina, 
+	* 7 cartas codon y 
+	* 3 cartas aminoácido
+
+OBJETIVO
+Armar la cadena de codones que conforman la carta proteina recibida.
+    
+JUEGO
+Se reparten las cartas y en cada ronda el jugador levanta una carta y se fija si le es útil, en caso contrario la tira al pozo de aminoacidos y codones, caso contrario pasa el turno.
+
+Las cartas aminoácidos sirven para reemplazar algún codón por su aminoácido que se encuentre en la proteina recibida.
+
+Gana el jugador que haya completado su proteina (modificada o no). Ante un empate, vale más la mano que no utilizó las cartas aminoacido para formar su proteína
