@@ -7,19 +7,20 @@ Eucariotas:
 	complejo del poro nuclear
 	Transcripción y traducción
 	ocurren de manera separada
-	Sistema de endomembrana y
-	otras organelas (lisosomas,
-	peroxisomas, mitocondrias,
-	cloroplastos, vacuolas)
+	Sistema de endomembrana y otras organelas (lisosomas, peroxisomas, mitocondrias, cloroplastos, vacuolas)
+	Reproducción sexual y asexual.
+	DivisIón por mitosis
+	Complejos proteicos (tubulina, actina)
+	Citoesqueleto
 
 Procariotas:
 	Mucho más pequeñas
 	No poseen núcleo
 	Cromosomas circulares
-	Ausencia de una membrana
-	que defina el espacio
-	Transcripción y traducción
-	ocurren de manera simultánea
+	Ausencia de una membrana que defina el espacio
+	Transcripción y traducción ocurren de manera simultánea
+	Reproducción asexual.
+	División por fisión binaria	
 
 
 RETO II: Dado el código genético como se muestra en la tabla:
