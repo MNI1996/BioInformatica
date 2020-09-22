@@ -43,19 +43,19 @@ A cada jugador se le reparten: :
 
   Si le es útil la suma a las cartas que tiene en la mano; en caso contrario, la tira a un pozo al lado del pozo existente, formando un nuevo pozo del cual no se extraen las cartas para seguir el juego.
 
-###5. 
+### 5. 
 
   Si se acaban las cartas del primer pozo, se mezclan las cartas que fueron descartando los jugadores, formando nuevamente el pozo para que los participantes puedan extarer una cuando le toque el turno en la ronda.
 
-###6. 
+### 6. 
 
   Si para formar la protína de su juego, necesite un codón y no lo tiene entre sus cartas, puede usar el aminoácido que representa dicho codón.
 
-###7-) 
+### 7. 
 
   Gana el jugador que haya completado su proteina en primer lugar. 
 
-###8-) 
+### 8. 
 
   Ante un empate, vale más la proteína que no utilizó las cartas aminoacido para formarla.
 
