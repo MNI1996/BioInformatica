@@ -32,7 +32,7 @@ Crea un programa sencillo en algún lenguaje de programación que conozcas que i
 		lsComp = []
         codones:[(H,CAU), (D,GAU), (R,CGU), (F,UUU), (A,GCU), (C,UGU), (G,GGU), (Q,CAA), (E,GAA), (K,AAA), (L,UUA), (M,AUG), (N,AAU), 
         (S,AGU), (Y,UAU), (T,ACU), (I,AUU), (P,CCU), (V,GUU))]  
-    
+
 		for i in Sec1:
 			lscomp.concat(codones.get(i))
 		return lsComp
@@ -50,6 +50,10 @@ RETO VI: Existen numerosas herramientas muy fáciles de usar que te permiten cre
 
 👉 Diseñá un juego de mesa o un videojuego (hecho con la herramienta que más te guste) temático sobre expresión génica, con sus reglas y resúmen. Tené en cuenta que lo vas a tener que compartir con la clase. ¡El cielo es límite, a divertirse!
 
+//colocar la estructura de una proteina
+//corregir terminología desde el punto de vista biológico (codón sintetiza un aminoácido)
+//crear un readme "bello"
+//más detalladas las instrucciones inicial del juego 
 
 P L I E G A M E
 
@@ -64,13 +68,26 @@ A cada jugador se le reparten: :
 
 OBJETIVO
 Armar la cadena de codones que conforman la carta proteina recibida.
-    
+
 JUEGO
 1-) Se le repartan las cartas a cada jugador.
+
 2-) Se coloca en el medio de la mesa un mazo con las cartas Codones y Aminoácidos restantes mezcladas.
-3-) Al Comienzo de cada ronda, cada jugador levanta una carta.
-4-) Si le es útil la suma a las cartas que tiene en la mano; en caso contrario, la tira a un pozo al lado del pozo existente, formando un nuevo pozo del cual no se extraen las cartas para seguir el juego.
-5-) Si se acaban las cartas del primer pozo, se mezclan las cartas que fueron descartando los jugadores, formando nuevamente el pozo para que los participantes puedan extarer una cuando le toque el turno en la ronda.
-6-) Si para formar la protína de su juego, necesite un codón y no lo tiene entre sus cartas, puede usar el aminoácido que representa dicho codón.
-7-) Gana el jugador que haya completado su proteina en primer lugar. 
-8-) Ante un empate, vale más la proteína que no utilizó las cartas aminoacido para formarla.
+
+3-) Desarrollo del turno
+
+4-) Un jugador levanta una carta del mazo y decide si:
+  4-1) se la queda y arroja otra en las pila de descartadas
+  4-2) la arroja a la pila de descartadas y pasa el turno 
+
+5-) Si se acaban las cartas del primer pozo, se mezclan las cartas que fueron descartando los jugadores, formando nuevamente 
+	el pozo para que los participantes puedan extarer una cuando le toque el turno en la ronda.
+
+6-) Si para formar la protína de su juego, necesite un codón y no lo tiene entre sus cartas, puede usar el aminoácido correspondiente
+	a dicho codón.
+
+7-) El juego termina cuando algún participante arroja la carta codón correspondiente a STOP (UAA, UAG y UGA)
+
+8-) Gana el jugador que haya completado su proteina en primer lugar. 
+
+9-) Ante un empate, gana el jugador que formó su proteína sin utilizar las cartas aminoácidos. 
