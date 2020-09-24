@@ -9,8 +9,7 @@
   
   20(aminoácidos)
   
- 
-  
+   
 
 ## Objetivo
 
@@ -35,29 +34,41 @@ A cada jugador se le reparten: :
 
   Se coloca en el medio de la mesa un mazo con las cartas Codones y Aminoácidos restantes mezcladas.
 
-### 3. 
+### 3: Desarrollo de los turnos
 
-  Al Comienzo de cada ronda, cada jugador levanta una carta.
+#### I Un jugador levanta una carta del mazo y decide si:
+   
+   Se la queda y arroja otra en las pila de descartadas
+   
+   La arroja a la pila de descartadas y pasa el turno 
 
-### 4. 
-
-  Si le es útil la suma a las cartas que tiene en la mano; en caso contrario, la tira a un pozo al lado del pozo existente, formando un nuevo pozo del cual no se extraen las cartas para seguir el juego.
-
-### 5. 
-
-  Si se acaban las cartas del primer pozo, se mezclan las cartas que fueron descartando los jugadores, formando nuevamente el pozo para que los participantes puedan extarer una cuando le toque el turno en la ronda.
+### 5.
+   
+   Si se acaban las cartas del primer pozo, se mezclan las cartas que fueron descartando los jugadores, formando nuevamente 
+   el pozo para que los participantes puedan extarer una cuando le toque el turno en la ronda.
 
 ### 6. 
-
-  Si para formar la protína de su juego, necesite un codón y no lo tiene entre sus cartas, puede usar el aminoácido que representa dicho codón.
+   Si para formar la protína de su juego, necesite un codón y no lo tiene entre sus cartas, puede usar el aminoácido correspondiente
+   a dicho codón.
 
 ### 7. 
-
-  Gana el jugador que haya completado su proteina en primer lugar. 
+   El juego termina cuando algún participante arroja la carta codón correspondiente a STOP (UAA, UAG y UGA)
 
 ### 8. 
+   Gana el jugador que haya completado su proteina en primer lugar. 
 
-  Ante un empate, vale más la proteína que no utilizó las cartas aminoacido para formarla.
+### 9. 
 
+   Ante un empate, gana el jugador que formó su proteína sin utilizar las cartas aminoácidos. 
+   
+   
+   
+# Crea tus Cartas
+ 
+ En la carpeta TP 3 encontraran los archivos Carta y los archivos Tamplate; los archivos carta son un modelo de como tendria que ser la carta (si les es posible editarla carta mejor) en caso de que no puedan usar los archivos carta para crear sus mazos usen los template
+ 
 
-
+ 
+ 
+ 
+   
