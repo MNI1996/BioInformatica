@@ -3,11 +3,11 @@
 
 ## Mazo : 100 Cartas
 
-  64 cartas (codones) 
+  64 cartas codones
   
-  16(proteinas) 
+  16 cartas proteinas
   
-  20(aminoácidos)
+  20 cartas aminoácidos
   
    
 
@@ -39,9 +39,9 @@ A cada jugador se le reparten: :
 ### 3. 
   Un jugador levanta una carta del mazo y decide si:
    
-   	- Se la queda y arroja otra en las pila de descartadas
+   	* Se la queda y arroja otra en las pila de descartadas
    
-   	- La arroja a la pila de descartadas y pasa el turno 
+   	* La arroja a la pila de descartadas y pasa el turno 
 
 ### 4.
    
