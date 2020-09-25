@@ -34,9 +34,9 @@ A cada jugador se le reparten: :
 
   Se coloca en el medio de la mesa un mazo con las cartas Codones y Aminoácidos restantes mezcladas.
 
-### 3. Desarrollo de los turnos
+## Desarrollo de los turnos
 
-#### 3-1. Un jugador levanta una carta del mazo y decide si:
+### 3. Un jugador levanta una carta del mazo y decide si:
    
    Se la queda y arroja otra en las pila de descartadas
    
