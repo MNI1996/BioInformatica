@@ -34,39 +34,34 @@ A cada jugador se le reparten: :
 
   Se coloca en el medio de la mesa un mazo con las cartas Codones y Aminoácidos restantes mezcladas.
 
-### 3: Desarrollo de los turnos
+### 3. Desarrollo de los turnos
 
-#### I Un jugador levanta una carta del mazo y decide si:
+#### 3-1. Un jugador levanta una carta del mazo y decide si:
    
    Se la queda y arroja otra en las pila de descartadas
    
    La arroja a la pila de descartadas y pasa el turno 
 
-### 5.
+### 4.
    
    Si se acaban las cartas del primer pozo, se mezclan las cartas que fueron descartando los jugadores, formando nuevamente 
    el pozo para que los participantes puedan extarer una cuando le toque el turno en la ronda.
 
-### 6. 
-   Si para formar la protína de su juego, necesite un codón y no lo tiene entre sus cartas, puede usar el aminoácido correspondiente
-   a dicho codón.
+### 5. 
+   Si para formar la protína de su juego, necesite un codón y no lo tiene entre sus cartas, puede usar el aminoácido correspondiente a dicho codón.
 
-### 7. 
+### 6. 
    El juego termina cuando algún participante arroja la carta codón correspondiente a STOP (UAA, UAG y UGA)
 
-### 8. 
+### 7. 
    Gana el jugador que haya completado su proteina en primer lugar. 
 
-### 9. 
-
+### 8. 
    Ante un empate, gana el jugador que formó su proteína sin utilizar las cartas aminoácidos. 
    
    
    
-# Crea tus Cartas
- 
- En la carpeta TP 3 encontraran los archivos Carta y los archivos Tamplate; los archivos carta son un modelo de como tendria que ser la carta (si les es posible editarla carta mejor) en caso de que no puedan usar los archivos carta para crear sus mazos usen los template
- 
+
 
  
  
