@@ -36,11 +36,12 @@ A cada jugador se le reparten: :
 
 ## Desarrollo de los turnos
 
-### 3. Un jugador levanta una carta del mazo y decide si:
+### 3. 
+  Un jugador levanta una carta del mazo y decide si:
    
-   Se la queda y arroja otra en las pila de descartadas
+   	- Se la queda y arroja otra en las pila de descartadas
    
-   La arroja a la pila de descartadas y pasa el turno 
+   	- La arroja a la pila de descartadas y pasa el turno 
 
 ### 4.
    
