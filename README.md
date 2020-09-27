@@ -4,11 +4,11 @@
 ## Mazo 
 El mazo consta de 100 cartas divididas en tres tipos: *Codones*, *Proteína* y *Aminoácido*.
 
-  - 64 cartas *codones*
+  - 64 cartas *Codón*
   
-  - 16 cartas *proteínas*
+  - 16 cartas *Proteína*
   
-  - 20 cartas *aminoácidos*
+  - 20 cartas *Aminoácido*
   
    
 
