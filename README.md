@@ -1,19 +1,65 @@
-# Juego: Pliegame ( Máximo de jugadores: 6 personas)
+# Juego: PLIEGAME ( Máximo de jugadores: 6 personas)
 
 
-## Mazo : 100 Cartas
+## Mazo 
+El mazo consta de 100 cartas divididas en tres tipos: *Codones*, *Proteína* y *Aminoácido*.
 
-  64 cartas codones
+  - 64 cartas *codones*
   
-  16 cartas proteinas
+  - 16 cartas *proteinas*
   
-  20 cartas aminoácidos
+  - 20 cartas *aminoácidos*
   
    
 
 ## Objetivo
 
-Armar con las cartas Codon y Aminoacido la secuencia marcada en la carta Proteina
+Armar con las cartas Codon y Aminoácido la secuencia marcada en la carta Proteina.
+
+
+## **Reglamento**
+
+## Cartas Proteínas
+
+Se va a jugar con la proteína **hemoglobina** del Homo Sapiens. En cada carta proteína muestra un péptido de diez aminoácidos consecutivos de la estructura de la misma. 
+A continuación se muestra la cadena de aminoácidos que conforman la proteína agrupados en péptidos de 10 aminoácidos cada uno, con la salvedad que el grupo último consta de 9.
+
+	1          2          3          4          5
+	MKWVTFISLL FLFSSAYSRG VFRRDAHKSE VAHRFKDLGE ENFKALVLIA 
+	6          7          8          9          1 
+	FAQYLQQCPF EDHVKLVNEV TEFAKTCVAD ESAENCDKSL HTLFGDKLCT 
+	11         12         13         14         15 
+	VATLRETYGE MADCCAKQEP ERNECFLQHK DDNPNLPRLV RPEVDVMCTA 
+	16         17         18         19         20
+	FHDNEETFLK KYLYEIARRH PYFYAPELLF FAKRYKAAFT ECCQAADKAA 
+	21         22         23         24         25 
+	CLLPKLDELR DEGKASSAKQ RLKCASLQKF GERAFKAWAV ARLSQRFPKA 
+	26         27         28         29         30 
+	EFAEVSKLVT DLTKVHTECC HGDLLECADD RADLAKYICE NQDSISSKLK 
+	31         32         33         34         35
+	ECCEKPLLEK SHCIAEVEND EMPADLPSLA ADFVESKDVC KNYAEAKDVF 
+	36         37         38         39         40
+	LGMFLYEYAR RHPDYSVVLL LRLAKTYETT LEKCCAAADP HECYAKVFDE 
+	41         42         43         44         45
+	FKPLVEEPQN LIKQNCELFE QLGEYKFQNA LLVRYTKKVP QVSTPTLVEV 
+	46         47         48         49         50 
+	SRNLGKVGSK CCKHPEAKRM PCAEDYLSVV LNQLCVLHEK TPVSDRVTKC 
+	51         52         53         54         55 
+	CTESLVNRRP CFSALEVDET YVPKEFNAET FTFHADICTL SEKERQIKKQ 
+	56         57         58         59         60
+	TALVELVKHK PKATKEQLKA VMDDFAAFVE KCCKADDKET CFAEEGKKLV 
+        61
+	AASQAALGL 
+	
+En este juego se toman los 16 primeros péptidos.
+
+En el margen superior derecho, se indica el número de péptido considerando la agrupación anterior, y el total de péptidos tomados; en este juego son 16. Por ejemplo, la carta que tiene indicado en su margen superior derecho ***2/16*** significa que tiene que formar el péptido **FLFSSAYSRG** de la proteina, que representa el *segundo* de los *16* cosiderados.
+
+Con esta explicación queda claro que,  a pesar, que la carta se llama *PROTEÍNA*, sólo representa un péptido arbitrario, dado que la cadena de aminoácidos que la forman es demasiada extensa para el objetivo del juego.
+
+Las cartas *AMINOÁCIDO* tienen asignado un puntaje que corresponde al 10% de su peso molecular, con un redondeo a número entero.
+Esto permite que se pueda jugar de dos maneras diferentes con las mismas cartas y el mismo objetivo.
+
 
 
 ## Inicio
@@ -24,6 +70,21 @@ A cada jugador se le reparten: :
 	* 7 cartas codon  
   
 	* 3 cartas aminoácido
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Paso a paso 
 ### 1.
