@@ -19,7 +19,7 @@ Armar con las cartas Codon y Aminoácido, si es necesario, la secuencia marcada 
 
 ## Reglamento
 
-## Cartas Proteínas
+## Cartas Proteína
 
 Se va a jugar con la proteína **hemoglobina** del Homo Sapiens. En cada carta proteína muestra un péptido de diez aminoácidos consecutivos de la estructura de la misma. 
 A continuación se muestra la cadena de aminoácidos que conforman la proteína agrupados en péptidos de 10 aminoácidos cada uno, con la salvedad que el grupo último consta de 9.
