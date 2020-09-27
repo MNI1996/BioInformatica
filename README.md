@@ -17,7 +17,7 @@ El mazo consta de 100 cartas divididas en tres tipos: *Codones*, *Proteína* y *
 Armar con las cartas Codon y Aminoácido, si es necesario, la secuencia marcada en la carta Proteina.
 
 
-## **Reglamento**
+## Reglamento
 
 ## Cartas Proteínas
 
@@ -63,7 +63,7 @@ Las cartas *AMINOÁCIDO* tienen asignado un puntaje que corresponde al 10% de su
 Esto permite que se pueda jugar de dos maneras diferentes con las mismas cartas y mismo objetivo.
 
 
-##***JUEGO***
+## *JUEGO*
 
 ## Inicio
 A cada jugador se le reparten: : 
