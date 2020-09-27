@@ -1,4 +1,4 @@
-# Juego: PLIEGAME ( Máximo de jugadores: 6 personas)
+# Juego: P L I E G A M E ( Máximo de jugadores: 6 personas)
 
 
 ## Mazo 
@@ -6,7 +6,7 @@ El mazo consta de 100 cartas divididas en tres tipos: *Codones*, *Proteína* y *
 
   - 64 cartas *codones*
   
-  - 16 cartas *proteinas*
+  - 16 cartas *proteínas*
   
   - 20 cartas *aminoácidos*
   
@@ -14,7 +14,7 @@ El mazo consta de 100 cartas divididas en tres tipos: *Codones*, *Proteína* y *
 
 ## Objetivo
 
-Armar con las cartas Codon y Aminoácido la secuencia marcada en la carta Proteina.
+Armar con las cartas Codon y Aminoácido, si es necesario, la secuencia marcada en la carta Proteina.
 
 
 ## **Reglamento**
@@ -57,63 +57,54 @@ En el margen superior derecho, se indica el número de péptido considerando la 
 
 Con esta explicación queda claro que,  a pesar, que la carta se llama *PROTEÍNA*, sólo representa un péptido arbitrario, dado que la cadena de aminoácidos que la forman es demasiada extensa para el objetivo del juego.
 
+## Cartas Aminoácido
+
 Las cartas *AMINOÁCIDO* tienen asignado un puntaje que corresponde al 10% de su peso molecular, con un redondeo a número entero.
-Esto permite que se pueda jugar de dos maneras diferentes con las mismas cartas y el mismo objetivo.
+Esto permite que se pueda jugar de dos maneras diferentes con las mismas cartas y mismo objetivo.
 
 
+##***JUEGO***
 
 ## Inicio
 A cada jugador se le reparten: : 
 
-	* 1 carta proteina
+	* 1 carta proteína
   
 	* 7 cartas codon  
   
 	* 3 cartas aminoácido
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Paso a paso 
-### 1.
+
+## Juego sin cosiderar los puntos de las cartas Codón
+
+### 	1.
  
  Se le repartan las cartas a cada jugador.
 
-### 2. 
+### 	2. 
 
   Se coloca en el medio de la mesa un mazo con las cartas Codones y Aminoácidos restantes mezcladas.
-
-## Desarrollo de los turnos
 
 ### 3. 
   Un jugador levanta una carta del mazo y decide si:
    
-   	* Se la queda y arroja otra en las pila de descartadas
+   3-1) Se la queda por necesitarla y arroja otra en una nueva pila al lado del mazo con codones y aminoácidos, 
+	      que se llamará "pila de cartas descartadas".
    
-   	* La arroja a la pila de descartadas y pasa el turno 
+   3-2) La arroja a la pila de descartadas y pasa el turno. 
 
 ### 4.
-   
    Si se acaban las cartas del primer pozo, se mezclan las cartas que fueron descartando los jugadores, formando nuevamente 
    el pozo para que los participantes puedan extarer una cuando le toque el turno en la ronda.
 
 ### 5. 
-   Si para formar la protína de su juego, necesite un codón y no lo tiene entre sus cartas, puede usar el aminoácido correspondiente a dicho codón.
+   Si para formar la protína de su juego, necesite un codón y no lo tiene entre sus cartas, puede usar el aminoácido
+   correspondiente a dicho codón.
 
 ### 6. 
-   El juego termina cuando algún participante arroja la carta codón correspondiente a STOP (UAA, UAG y UGA)
+   El juego termina cuando algún participante arroja la carta codón correspondiente a STOP que le corresponden los codones 
+   UAA, UAG y UGA.
 
 ### 7. 
    Gana el jugador que haya completado su proteina en primer lugar. 
@@ -121,6 +112,26 @@ A cada jugador se le reparten: :
 ### 8. 
    Ante un empate, gana el jugador que formó su proteína sin utilizar las cartas aminoácidos. 
    
+
+## Juego cosiderarando los puntos de las cartas Codón  
+
+Se repiten los pasos **1**, **2**, **3**, **4**, **5** y **6** 
+
+### 7.
+   Gana el jugador que  acumuló más puntos considerando:
+   	
+   7-1) Si no tiene cartas en sus manos, suma 10 puntos.
+   
+   7-2) Si tiene cartas en su mano, al total de los puntos de las cartas que formaron la proteína se le resta la suma 
+        de los puntos de las cartas que tiene en su poder.
+	
+   7-3) Las cartas *Aminoácido* no suman puntos en la proteína formada.
+   
+   7-4) Si entre las cartas no utilizadas para la formación de la proteína, tiene una *Aminoácido* resta 20 puntos al puntaje
+        acumulado con las cartas que forman la proteína.
+   
+
+
    
    
 
