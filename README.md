@@ -57,7 +57,7 @@ A continuación se muestra la cadena de aminoácidos que conforman la proteína 
 	
 En este juego se toman los 16 primeros péptidos.
 
-En el margen superior derecho, se indica el número de péptido considerando la agrupación anterior, y el total de péptidos tomados; en este juego son 16. Por ejemplo, la carta que tiene indicado en su margen superior derecho ***2/16*** significa que tiene que formar el péptido **FLFSSAYSRG** de la proteina, que representa el *segundo* de los *16* cosiderados.
+En el margen superior derecho, se indica el número de péptido considerando la agrupación anterior, y el total de péptidos tomados; en este juego son 16. Por ejemplo, la carta que tiene indicado en su margen superior derecho ***2/16*** significa que tiene que formar el péptido **FLFSSAYSRG** de la proteina, que representa el _segundo_ de los *16* cosiderados.
 
 Con esta explicación queda claro que,  a pesar, que la carta se llama *PROTEÍNA*, sólo representa un péptido arbitrario, dado que la cadena de aminoácidos que la forman es demasiada extensa para el objetivo del juego.
 
