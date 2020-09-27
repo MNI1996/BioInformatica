@@ -1,4 +1,8 @@
-# Juego: P L I E G A M E ( Máximo de jugadores: 6 personas)
+## Indicaciones del juego
+
+# P L I E G A M E 
+
+El juego está pensado para un máximo de 6 jugadores y 2 como mínimo.
 
 
 ## Mazo 
