@@ -50,24 +50,6 @@ organismos son los citocromos c más parecidos? ¿Cómo se explica?
 
 
 
-tp 5
-
-
-reto 1
-
-en el mejor caso tendrias 3 aciertos de 7 comparaciones mientras que en el peor tendrias 2
-
-reto 2/3
-
-identidad: % de coincidencias en el alineamiento
-penalidad: - % de gaps 
-
-
-reto 4
-
-indicadores Superiores: % de coincidencias , que indican la identidad para penalidad 0
-indicadores Lateral Derecho: 
-indicadores Inferiores:
 
 
 

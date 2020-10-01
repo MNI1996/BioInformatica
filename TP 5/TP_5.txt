@@ -1,0 +1,29 @@
+
+tp 5
+
+
+👇 RETO I: Intentemos, entonces alinear estas dos palabras, para comprender mejor el problema. Alineá en la ​ tabla interactiva las
+palabras "BANANA" y "MANZANA". ¡Tomá nota de tus observaciones y de las conclusiones que se desprendan de estas observaciones!
+
+    En el mejor caso tendrias 3 aciertos de 7 comparaciones mientras que en el peor tendria 2
+
+👇 RETO II: En la siguiente ​ tabla interactiva distintos alineamientos para las palabras "ANA" y "ANANA". Verás que en el 
+margen superior derecho aparece un valor de identidad calculado para cada alineamiento que intentes.
+
+👇 RETO III: Probá en ​ tabla interactiva distintos alineamientos para las palabras "ANA" y "ANANA". Verás que en el margen 
+superior derecho aparece un valor de identidad calculado para cada alineamiento que intentes y un botón para cambiar la 
+penalidad que se le otorga a dicho para el cálculo de identidad.
+
+    Identidad: La identidad representa el porcentaje de coincidencias en el alineamiento
+    Penalidad: La penalidad resta al valor de identidad el porcentaje que hay de gaps 
+
+👇 RETO IV: Probá en la ​ tabla interactiva distintos alineamientos para las secuencias nucleotídicas. Podrás ver las 
+traducciones para cada secuencia. Probá varias combinaciones, tomá nota de las observaciones y de las conclusiones que 
+se desprendan de estas.
+
+    Indicadores Superiores: Indican el porcentaje de coincidencias, que indican la identidad para penalidad 0
+    Indicadores Lateral Derecho: (Indican la identidad que refleja el porcentaje de aciertos cuando la penalidad es 0)
+    Indicadores Inferiores: (La cantidad de aciertos - 1 indica el porcentaje que se le resta a la identidad a medida que 
+                            aumenta la penalidad)
+
+
