@@ -1,0 +1,26 @@
+RETO I: Detalla las tácticas y/o metodologías que deberían utilizarse para darles
+una respuesta a los padres del niño.
+a) Dadas las secuencias de Mosca, humano y Moscahumano ¿Qué criterios se les
+ocurren para comparar las secuencias? ¿Qué resultados obtienen del análisis
+anterior?
+
+    buscaría secuencias homólogas entre el código de la mosca con el humano, para luego compararla con 
+    la del Moscahumano, considerando que esa secuencia análoga es de la clase ortóloga.
+
+    pensamos que si se encuentra una secuencia análoga, se podría explicar la mutación genética que sufrió 
+    el pobre chico con cabeza de mosca de fruta.
+
+b) ¿Qué resultado esperaría obtener si utilizara el resto de las secuencias en el
+análisis? ¿Por qué?
+
+
+
+    NP_001285984.1_cytochrome_c_proximal,_isoform_B_[Drosophila_melanogaster]      MGVPAGDVEKGKKLFVQRCAQCHTVEAGGKHKVGPNLHGLIGRKTGQAAGFAYTDANKAK	60
+bartmosca                                                                      --MGSGDAENGKKIFVQKCAQCHTYEVGGKHKTGPNLHGLFGRKTGQAPGYSYTAANKNK	    58
+NP_061820.1_cytochrome_c_[Homo_sapiens]                                        ----MGDVEKGKKIFIMKCSQCHTVEKGGKHKTGPNLHGLFGRKTGQAPGYSYTAANKNK	    56
+                                                                                    **.*:***:*: :*:**** * *****.*******:******* *::** *** *
+
+NP_001285984.1_cytochrome_c_proximal,_isoform_B_[Drosophila_melanogaster]      GITWNEDTLFEYLENPKKYIPGTKMIFAGLKKPNERGDLIAYLKSATK-	108
+bartmosca                                                                      GIIWGEDTLMEYLENPKKYIPGTKMIFVGIKKKEERADLIAYLKKATNE	107
+NP_061820.1_cytochrome_c_[Homo_sapiens]                                        GIIWGEDTLMEYLENPKKYIPGTKMIFVGIKKKEERADLIAYLKKATNE	105
+                                                                               ** *.****:*****************.*:** :**.*******.**: 
