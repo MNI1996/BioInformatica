@@ -1,0 +1,86 @@
+Actividades
+
+1. ¿Cómo describís la estructura de esta proteína?
+Las estructuras de las proteínas pueden ser muy diversas. Se las puede clasificar por su contenido en
+estructuras secundarias y según su cantidad de dominios. ¿Cómo podrías describir la estructura de esta
+proteína? Realizá la misma descripción pero para la proteína 1THJ, 3OGB,
+
+	1THJ: Tiene una estructura secundaria con alfa-hélices, beta-plegadas y loops.
+		  Se le ecuentran dos túneles bien definidos y un bolsillo 
+
+	3OGB: 
+
+4. Estudiá la proteína 2CPE. 
+	a-) ¿Qué tipo de proteína es? 
+
+			PDB: Solution structure of the RNA recognition motif of Ewing Sarcoma(EWS) protein 
+
+	b-) ¿Cómo la describirías? Utilizá el comando “setall_states, on” para ver todos los estados conformacionales 
+	    estimados para esa estructura. 
+
+		 - Consta de 2 alfa-hélices, 4 beta-plegadas y 7 loops.
+		 - No se visualizan túneles
+		 - Se observa algún bolsillo
+
+
+	c-) Compará el espacio conformacional de la 2CPE con la de la estructura de la mioglobina (1MYF). 
+
+		La mioglobina tiene un espacio HEM, que la 2CPE no contiene. 
+		Además la mioglobina no tiene estructura beta-plegada, sólo 7 alfa-hélices y 8 loops
+
+	d-) Utilizando el modo secuencia, seleccioná la HIS64. Mostrala en formato stick o lines. ¿Qué función podría llegar a tener?
+
+		???????????????  Se ve que es un alfa-hélice que no se vincula con ningún otro aminoácido
+
+	e-) ¿Y la HIS93? 
+
+		Une la HEM con la proteína
+
+
+👇 RETO I: Estas estructuras difieren de las estructuras sobre las que venimos trabajando en su determinación. 
+		   Como habrás notado estas fueron obtenidas mediante la técnica de MNR, ¿Pero en qué consiste esta técnica?
+
+		   La técnica MNR genera un fuerte campo magnético alrededor de una molécula. Este campo produce que el núcleo
+		   de algunos átomos actúe como un imán. Este campo magnético, al ser muy fuerte, permite el estudio más detallado 
+		   de estructuras más complejas ayudando a responder preguntas vitales de hoy.
+		   En realidad le aplica una onda de radiofrecuencia de amplio espectro que logra hacer "vibrar" los átomos, y así,
+		   poder estimar su estructura volumétrica.
+
+
+👇 RETO II: Investigá en qué consisten las interacciones puentes de hidrógeno, π-π y π-catión y qué aminoácidos podrían 
+	        intervenir en dichas interacciones.
+
+	        Comencemos definiendo qué es un "Puente de Hidrogeno"
+
+				El concepto refiere a una clase de enlace que se produce a partir de la atracción existente en un átomo de hidrógeno y 
+				un átomo de oxígeno, flúor o nitrógeno con carga negativa. Dicha atracción, por su parte, se conoce como interacción 
+				dipolo-dipolo y vincula el polo positivo de una molécula con el polo negativo de otra.
+
+			Interacción π-π
+				En química, los efectos π o las interacciones π son un tipo de interacción no covalente que involucra sistemas π. Al 
+				igual que en una interacción electrostática donde una región de carga negativa interactúa con una carga positiva, el 
+				sistema π rico en electrones puede interactuar con un metal (catiónico o neutro), un anión, otra molécula e incluso 
+				otro sistema π. Las interacciones no covalentes que involucran sistemas π son fundamentales para eventos biológicos 
+				como el reconocimiento proteína-ligando. 
+
+
+			Interaccion Cation-π
+
+				Las interacciones catión-π más estudiadas implican la unión entre un sistema π aromático (propiedad de las estructuras 
+				cíclicas) y un catión de metal alcalino o nitrógeno Interacción catión-π
+
+
+6. Identificación de interacciones π-π y π-catión Estudiaremos más de cerca estas interacciones, utilizando la proteína miohemeritrina 
+(hacé fetch del PDB 1A7E). Una vez que la proteína se cargó:
+	- Ocultá las moléculas de agua ( H → waters ) ,
+	- Seleccioná los residuos aromáticos (PHE/F, TYR/Y, TRP/W) manualmente en la barra de secuencia o mediante el siguiente comando: 
+		select aro, resn PHE+TYR+TRP .
+	- Una vez seleccionados los residuos aromáticos, mostralos como bolas y palitos ( A → preset → balls and sticks ) y localizá 
+		anillos aromáticos que participen de interacciones π-π. 
+	- Una vez identificadas medí la distancia entre los anillos, para ello, en el panel de medidas (measurements) seleccioná 
+		Measurement mode → distance to rings.
+		Usando las estructuras 1A7E y la 1EJ1 y los protocolos descriptos en la parte anterior, explorá la proteína en busca de interacciones 
+		π-catión. Para ello seleccioná los aminoácidos con carga positiva y mostralos como bolas y palitos. Medí la distancia entre los grupos intervinientes. Chequeá tus resultados utilizando el siguiente servidor: http://capture.caltech.edu/ (Capture program).
+
+
+F, Y y W forman los residuos aromáticos 1A7E
