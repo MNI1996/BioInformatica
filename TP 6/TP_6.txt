@@ -1,26 +1,59 @@
-RETO I: Detalla las tácticas y/o metodologías que deberían utilizarse para darles
-una respuesta a los padres del niño.
-a) Dadas las secuencias de Mosca, humano y Moscahumano ¿Qué criterios se les
-ocurren para comparar las secuencias? ¿Qué resultados obtienen del análisis
-anterior?
-
-    buscaría secuencias homólogas entre el código de la mosca con el humano, para luego compararla con 
-    la del Moscahumano, considerando que esa secuencia análoga es de la clase ortóloga.
-
-    pensamos que si se encuentra una secuencia análoga, se podría explicar la mutación genética que sufrió 
-    el pobre chico con cabeza de mosca de fruta.
-
-b) ¿Qué resultado esperaría obtener si utilizara el resto de las secuencias en el
-análisis? ¿Por qué?
+tp_6
 
 
+👇 RETO I: Detalla las tácticas y/o metodologías que deberían utilizarse para darles una respuesta a los padres del niño.
+	a) Dadas las secuencias de Mosca, humano y Moscahumano ¿Qué criterios se les ocurren para comparar las secuencias? ¿Qué
+		resultados obtienen del análisis anterior?
 
-    NP_001285984.1_cytochrome_c_proximal,_isoform_B_[Drosophila_melanogaster]      MGVPAGDVEKGKKLFVQRCAQCHTVEAGGKHKVGPNLHGLIGRKTGQAAGFAYTDANKAK	60
-bartmosca                                                                      --MGSGDAENGKKIFVQKCAQCHTYEVGGKHKTGPNLHGLFGRKTGQAPGYSYTAANKNK	    58
-NP_061820.1_cytochrome_c_[Homo_sapiens]                                        ----MGDVEKGKKIFIMKCSQCHTVEKGGKHKTGPNLHGLFGRKTGQAPGYSYTAANKNK	    56
-                                                                                    **.*:***:*: :*:**** * *****.*******:******* *::** *** *
+    	Al aumentar el nro de muestras a comparar, incrementaria la precision del arbol filogenetico pensamos que si se 
+    	encuentra una secuencia análoga, se podría explicar la mutación genética que sufrió el pobre chico con cabeza de mosca 
+    	de fruta.
 
-NP_001285984.1_cytochrome_c_proximal,_isoform_B_[Drosophila_melanogaster]      GITWNEDTLFEYLENPKKYIPGTKMIFAGLKKPNERGDLIAYLKSATK-	108
-bartmosca                                                                      GIIWGEDTLMEYLENPKKYIPGTKMIFVGIKKKEERADLIAYLKKATNE	107
-NP_061820.1_cytochrome_c_[Homo_sapiens]                                        GIIWGEDTLMEYLENPKKYIPGTKMIFVGIKKKEERADLIAYLKKATNE	105
-                                                                               ** *.****:*****************.*:** :**.*******.**: 
+	b) ¿Qué resultado esperaría obtener si utilizara el resto de las secuencias en el análisis? ¿Por qué?
+
+		Se esperaria que el resultado sea mas preciso pero que no varie demasiado respecto del anterior, ya que de alguna forma 
+		tanto la mosca como el humano se desprenden del mismo clado 
+
+
+
+👇 RETO II: Como vimos anteriormente existen algunos softwares optimizados para confeccionar alineamientos de secuencias. En particular 
+			hemos trabajado con Clustal (Larkin et al. 2007). Confecciona los alineamientos para los del punto Ia y Ib análisis.
+
+		NP_001285984.1_cytochrome_c_proximal,_isoform_B_[Drosophila_melanogaster]      MGVPAGDVEKGKKLFVQRCAQCHTVEAGGKHKVGPNLHGLIGRKTGQAAGFAYTDANKAK	    60
+		bartmosca                                                                      --MGSGDAENGKKIFVQKCAQCHTYEVGGKHKTGPNLHGLFGRKTGQAPGYSYTAANKNK	    58
+		NP_061820.1_cytochrome_c_[Homo_sapiens]                                        ----MGDVEKGKKIFIMKCSQCHTVEKGGKHKTGPNLHGLFGRKTGQAPGYSYTAANKNK	    56
+        	                                                                        	   **.*:***:*: :*:**** * *****.*******:******* *::** *** *
+
+		NP_001285984.1_cytochrome_c_proximal,_isoform_B_[Drosophila_melanogaster]      GITWNEDTLFEYLENPKKYIPGTKMIFAGLKKPNERGDLIAYLKSATK-	108
+		bartmosca                                                                      GIIWGEDTLMEYLENPKKYIPGTKMIFVGIKKKEERADLIAYLKKATNE	107
+		NP_061820.1_cytochrome_c_[Homo_sapiens]                                        GIIWGEDTLMEYLENPKKYIPGTKMIFVGIKKKEERADLIAYLKKATNE	105
+	   			                                                                         ** *.****:*****************.*:** :**.*******.**: 
+ 
+
+👇 RETO III: Mediante el uso del servidor de IQtree (Trifinopoulos et al. 2016), confecciona los árboles filogenéticos para los alineamientos 
+				obtenidos en el punto II.
+		a) Como vemos, el servidor nos permite elegir el modelo de sustitución ¿A qué se refiere?
+			
+			Se refiere al modelo que usara IQtree al momento de procesar la informacion y el valor que tendra cada tasa de sustitucion 
+
+
+		b) 
+			b-1) ¿Qué es el Bootstrap? 
+
+				Boostrap: Es generar un nuevo alineamiento de igual longitud que el original, pero teniendo posiciones ordenadas al azar con repeticiones.
+
+			b-2) ¿De qué manera nos habla de la calidad de nuestro árbol?
+
+				Se generan varios boostrap, y se comparan sus árboles filogenéticos obteniendo el porcentaje de repeticiones en las biparticiones. El de mayor porcentaje, es el más óptimo con los boostraps considerados
+
+			b-3)  ¿Cómo influye el número de Bootstraps en el resultado?
+
+				A mayor cantidad de Bootstrap generados, más filedigno va a ser el resultado obtenido
+
+
+		c) Interpreten los resultados obtenidos, mediante la visualización de los árboles con la herramienta FigTree . 
+
+			c-1) ¿Es necesario realizar algún paso extra, previo a la interpretación del árbol? ¿Por qué? 
+
+
+			c-2) Podes instalarlo descargándolo desde:http://tree.bio.ed.ac.uk/software/figtree/
