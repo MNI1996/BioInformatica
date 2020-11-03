@@ -1,0 +1,122 @@
+
+tp 5
+
+
+👇 RETO I: Intentemos, entonces alinear estas dos palabras, para comprender mejor el problema. Alineá en 
+           la ​ tabla interactiva las palabras "BANANA" y "MANZANA". ¡Tomá nota de tus observaciones y de 
+           las conclusiones que se desprendan de estas observaciones!
+
+    En el mejor caso tendrias 3 aciertos de 7 comparaciones mientras que en el peor tendria 2
+
+👇 RETO II: En la siguiente ​ tabla interactiva distintos alineamientos para las palabras "ANA" y "ANANA". 
+            Verás que en el margen superior derecho aparece un valor de identidad calculado para cada 
+            alineamiento que intentes.
+
+👇 RETO III: Probá en ​ tabla interactiva distintos alineamientos para las palabras "ANA" y "ANANA". 
+             Verás que en el margen superior derecho aparece un valor de identidad calculado para cada 
+             alineamiento que intentes y un botón para cambiar la penalidad que se le otorga a dicho 
+             para el cálculo de identidad.
+
+    Identidad: La identidad representa el porcentaje de coincidencias en el alineamiento
+    Penalidad: La penalidad resta al valor de identidad el porcentaje que hay de gaps 
+
+👇 RETO IV: Probá en la ​ tabla interactiva distintos alineamientos para las secuencias nucleotídicas. 
+            Podrás ver las traducciones para cada secuencia. Probá varias combinaciones, tomá nota de 
+            las observaciones y de las conclusiones que se desprendan de estas.
+
+    Indicadores Superiores: Indican el porcentaje de coincidencias, que indican la identidad para penalidad 0
+    Indicadores Lateral Derecho: (Indican la identidad que refleja el porcentaje de aciertos cuando la penalidad es 0)
+    Indicadores Inferiores: (La cantidad de aciertos - 1 indica el porcentaje que se le resta a la identidad a medida que 
+                            aumenta la penalidad)
+
+👇 RETO V: Estuvimos viendo que el alineamiento de secuencias no es trivial y requiere contemplar los 
+           múltiples caminos posibles, teniendo en cuenta al mismo tiempo la información biológica que 
+           restringe ese universo de posibilidades.
+           
+           ¡Es momento de llevar entonces estos conceptos a lo concreto!
+           
+           Te proponemos pensar los pasos a seguir en un alineamiento de dos secuencias cortas, teniendo 
+           en cuenta una matriz genérica de scoring (puntuación) que contemple las complejidades que 
+           estuvimos viendo, es decir que penalice de distinto modo una inserción o deleción, una 
+           discordancia (mismatch) o una coincidencia (match). Escribilos o esquematizalos en un diagrama 
+           de flujo.
+
+            L1
+            L2
+
+            a <- head(L1)
+            b <- head(L2)
+
+            PAM = match(a, b)
+
+            PAM < -4  => b
+                      => GAPS
+
+
+👇 RETO VI: Utilizando la herramienta interactiva desarrollada por el Grupo de Bioinformática de Freiburg 
+            probá distintos ​ Gap penalties para el ejemplo propuesto y observá lo que ocurre.
+
+            Interpretando la recursión, explicá con tus palabras de dónde salen los valores de la matriz 
+            que se construye. ¡Esquematiza tus conclusiones!
+
+    Los valores de la matríz se construyen utilizando los valores de el algoritmo de Needleman-Wunsh.
+    Al variar el valor del GAP observamos:
+     
+        a) GAP > 0, hay varios alineamientos posibles utilizando gran cantidad de gaps
+        b) -3 < GAP < 1 , el mejor alineamiento es único utilizando gaps
+        c) GAP < -2, se obtiene un único alineamiento considerando únicamente mismatch como mejor opción
+
+
+👇RETO VII: calculá el E-value y porcentaje de identidad utilizando el programa BLAST de la siguiente 
+            secuencia input usando 20000 hits, un e-value de 100 y tomando aquellos hits con un mínimo 
+            de 70% cobertura. Observe y discuta el comportamiento de : E-value vs. % id, Score vs % id, 
+            Score vs E-value
+
+            QUERY COVERAGE: % de inclusión de la proteína dato con la de la DB
+            % IDENTIDAD: % de la proteína de la DB con la proteína dato
+            Score: la suma de las puntaciones de todos las coincidencias en la base de datos.
+            Max Score: la puntuación de alineación de la mejor coincidencia entre el Query y la Referencia.
+            
+
+                VVGGLGGYMLGSAMSRPIIHFGSDYEDRYYRENMHRYPNQVYYRPMDEYSNQNNFVHDCVNITIKQHTV
+                TTTTKGENFTETDVKMMERVVEQMCITQYERESQAYYQRGSSMVLFSSPPVILLISFLIFLIVG
+
+
+        Utilizamos la bd "pdb" con un word-size de 6
+
+        - E-value vs. % id: Cuánto menor es el porcentaje de E-value (menor error), mayor es el porcentage de matcheos, 
+                            por ende más certera la coincidencia con la proteína de la bd con la dato.
+
+        - Score vs % id: El mayor score no garantiza el mayor id de la consulta
+
+        - Score vs E-value: A menor score, mayor E-Value, es de cir, mayor error
+
+👇RETO VIII: Realizá nuevas búsquedas usando la mitad de la secuencia problema y para un cuarto de la 
+             secuencia original. Compará los gráficos obtenidos. ¿Qué conclusiones puede sacas?
+
+        Conclusiones:
+            1-) A menor longitud de la proteína, menor es el score y mayor el E-value porque al tener menor cantidad de 
+                aminos en la proteína, mas proteínas de la bd pueden tener match
+            2-) Al comparar dos proteínas donde una es la mitad de la longitud de la otra, el escore menos relevante para la 
+                de mayor longitud, puede tener menor relevancia para la de menor
+
+👇RETO IX: Utilizando ​BLAST utilice búsquedas de similitud secuencial para identificar a la siguiente 
+           proteína:
+           
+            MIDKSAFVHPTAIVEEGASIGANAHIGPFCIVGPHVEIGEGTVLKSHVVVNGHTKIGRDNEIYQFASIGEVNQ
+            DLKYAGEPTRVEIGDRNRIRESVTIHRGTVQGGGLTKVGSDNLLMINAHIAHDCTVGNRCILANNATLAGH
+            VSVDDFAIIGGMTAVHQFCIIGAHVMVGGCSGVAQDVPPYVIAQGNHATPFGVNIEGLKRRGFSREAITAIR
+            NAYKLIYRSGKTLDEVKPEIAELAETYPEVKAFTDFFARSTRGLIR
+
+            La proteína es Acil- [proteína transportadora de acilo] - UDP-N-acetilglucosamina
+
+
+👇RETO X: Realizá una nueva corrida del BLASTp, utilizando la misma secuencia , pero ahora contra la base 
+          de datos PDB. ¿Se obtienen los mismo resultados? ¿Qué tipo de resultados(hits) se recuperan?
+                        ¿Cuándo nos podría ser útil este modo de corrida?
+        
+        Utilizando la misma secuencia en BLAST pero utilizando diferentes bd, cuánto mayor sea la cantidad de proteínas 
+        almacenadas en la bd, mayór cantidad de resultados se obtiene. Pero por qué en pdb hay menor cantidad de registros 
+        que con otra bd como np, esto se debe a que en pdb tiene proteínas que fueron bombardeadas por rayos X para conocer
+        su estructura.
+        
