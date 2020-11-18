@@ -12,12 +12,18 @@ export default new Vuex.Store({
   strict: debug,
   plugins: debug ? [createLogger()] : [],
   state:{
-
+    result:null,
   },
   getters:{
+    result: (state) => state.result,
   },
   mutations: {
+    setResult: (state, result) => state.result = result,
   },
-  actions: {
+  actions:{
+    async search({commit}){
+      let response = await Vue.axios.get( `${apiUrl}+/pdb/?id=${state.result}`);
+      commit('setResult', response.data.result)
+    }
   },
 })
