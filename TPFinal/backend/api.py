@@ -1,12 +1,17 @@
 import flask
 import json
+import os
 from flask import request, jsonify
 from flask_cors import CORS
 from Bio.Seq import Seq
 from Bio import SeqIO
 from Bio.SeqRecord import SeqRecord
 from Bio.PDB import *
-from biopandas.pdb import PandasPdb
+#from biopandas.pdb import PandasPdb
+from Bio.Align.Applications import ClustalOmegaCommandline
+from Bio import AlignIO
+from Bio.Align.Applications import ClustalwCommandline
+from Bio.Blast.Applications import NcbiblastpCommandline
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
@@ -42,9 +47,94 @@ def getPDB():
         res =str(record.seq)
         result["seq"] = res
 
-	
+	# convert to fasta
+    owd = os.getcwd()
+    if not os.path.exists("./fasta"):
+        os.mkdir("./fasta")
+
+    base_fasta_file = "./fasta/"+id+".fasta"
+    out_blast_file = "./fasta"+id+".blast"
+    file = open(base_fasta_file, "w")
+    #file.writelines("> "+id)
+    #file.writelines("> 1THJ")
+    #file.writelines("\n")
+    #file.writelines(str(record.seq))
+    #file.writelines("\n")
+
+    #HOMOLOGAS
+
+    #cline = ""
+    #cline = NcbiblastpCommandline(query=str(record.seq), db="nr", evalue=0.001, remote=True, ungapped=True, out=out_blast_file)
+    cline = NcbiblastpCommandline(cmd='blastp', query=str(record.seq),
+        db='nr', evalue=0.001, remote=True, ungapped=True, num_alignments = 10, out=out_blast_file)
+    cline()
+    print(cline)
+
+    """ ESTO ES HARDCODING GROSO PARA USAR HOMOLOGAS
+    file.writelines(">NP_001183974.1 cytochrome c [Canis lupus familiaris]")
+    file.writelines("\n")
+    file.writelines("MGDVEKGKKIFVQKCAQCHTVEKGGKHKTGPNLHGLFGRKTGQAPGFSYTDANKNKGITWGEETLMEYLE")
+    file.writelines("\n")
+    file.writelines("NPKKYIPGTKMIFAGIKKTGERADLIAYLKKATKE")
+    file.writelines("\n")
+
+    file.writelines(">NP_477164.1 cytochrome c distal, isoform A [Drosophila melanogaster]")
+    file.writelines("\n")
+    file.writelines("MGSGDAENGKKIFVQKCAQCHTYEVGGKHKVGPNLGGVVGRKCGTAAGYKYTDANIKKGVTWTEGNLDEY")
+    file.writelines("\n")
+    file.writelines("LKDPKKYIPGTKMVFAGLKKAEERADLIAFLKSNK")
+    file.writelines("\n")
+
+    file.writelines(">NP_001157486.1 cytochrome c [Equus caballus]")
+    file.writelines("\n")
+    file.writelines("MGDVEKGKKIFVQKCAQCHTVEKGGKHKTGPNLHGLFGRKTGQAPGFSYTDANKNKGITWKEETLMEYLE")
+    file.writelines("\n")
+    file.writelines("NPKKYIPGTKMIFAGIKKKTEREDLIAYLKKATNE")
+    file.writelines("\n")
+
+    file.writelines(">NP_001072946.1 cytochrome c [Gallus gallus]")
+    file.writelines("\n")
+    file.writelines("MGDIEKGKKIFVQKCSQCHTVEKGGKHKTGPNLHGLFGRKTGQAEGFSYTDANKNKGITWGEDTLMEYLE")
+    file.writelines("\n")
+    file.writelines("NPKKYIPGTKMIFAGIKKKSERVDLIAYLKDATSK")
+    file.writelines("\n")
+
+    file.writelines(">AEP27192.1 cytochrome c [Gorilla gorilla]")
+    file.writelines("\n")
+    file.writelines("MGDVEKGKKIFIMKCSQCHTVEKGGKHKTGPNLHGLFGRKTGQAPGYSYTAANKNKGIIWGEDTLMEYLE")
+    file.writelines("\n")
+    file.writelines("NPKKYIPGTKMIFVGIKKKEERADLIAYLKKATNE")
+    file.writelines("\n")
+     
+    file.writelines(">NP_061820.1 cytochrome c [Homo sapiens]")
+    file.writelines("\n")
+    file.writelines("MGDVEKGKKIFIMKCSQCHTVEKGGKHKTGPNLHGLFGRKTGQAPGYSYTAANKNKGIIWGEDTLMEYLE")
+    file.writelines("\n")
+    file.writelines("NPKKYIPGTKMIFVGIKKKEERADLIAYLKKATNE")
+    file.writelines("\n")"""
+
+    file.close()
+
+
+    #pasado a clustal, genera dos archivos uno .aln donde está alineado y un .dnd que es el arbol
+    #clustalw_exe = r"C:\Program Files (x86)\ClustalW2\clustalw2.exe"
+    #clustalw_cline = ClustalwCommandline(clustalw_exe, infile=base_fasta_file)
+    #clustalw_cline()
+
+    #PROBAR QUE HACE
+    #print(clustalw_cline)
+    #align = AlignIO.read(str(cline), "clustal")
+    #result.append(align)
+
+
+
 	# pasarlo a blast y clustal
-	#...
+    #in_file = "./fasta/"+id+"alineado.fasta"
+    #out_file = "./fasta/clustal"+id+".fasta"
+    #clustalomega_cline = ClustalOmegaCommandline(infile=in_file, outfile=out_file, verbose=True, auto=True, force=True)
+    #clustalomega_cLine()
+    #print(str(clustalomega_cline))
+    #result.append(str(clustalomega_cline))
 	
 	
 	# crear el objeto con todo,
