@@ -26,12 +26,12 @@ var JMEInfo = {
   options: 'autoez;nocanonize',
 };
 export default {
-  name: "JsMolViewer",
-  components: {},
-     data(){return null},
-     computed: {},
-     methods: {},
-     mounted() {
+  "name": "JsMolViewer",
+  "components": {},
+     "data"(){return null},
+     "computed": {},
+     "methods": {},
+     "mounted"() {
         this.$loadScript('/js/jsmol/JSmol.min.nojq.js').then(() => {
              this.$loadScript('/js/jsmol/js/JSmolJME.js').then(() => {
                  this.$loadScript('/js/JSME_2017-02-26/jsme/jsme.nocache.js').then(() => {
@@ -44,7 +44,7 @@ export default {
  }
 
 
-}
+
 
 
 
