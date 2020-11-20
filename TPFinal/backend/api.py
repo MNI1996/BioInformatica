@@ -35,8 +35,7 @@ def getPDB():
 	# esto me devuelve tooooda la lista de los atomos de al cadena, no es posible hacerlo con SEQRES, pero se ve interesante para trabajar, lo dejo por las dudas
     #result2.append(PandasPdb().fetch_pdb(id).df['ATOM'])
 	
-	# convierto a la secuencia primaria
-    
+	# convierto a la secuencia primaria  
     for record in SeqIO.parse("PDB/pdb"+id+".ent", "pdb-seqres"):
         #print(record.seq)
         result.append(str(record.seq))
@@ -49,20 +48,29 @@ def getPDB():
     base_fasta_file = "./fasta/"+id+".fasta"
     out_blast_file = "./fasta"+id+".blast"
     file = open(base_fasta_file, "w") 
-    #file.writelines("> "+id)
-    #file.writelines("> 1THJ")
-    #file.writelines("\n")
-    #file.writelines(str(record.seq)) 
-    #file.writelines("\n")
-    
+    file.writelines("> "+id)
+    file.writelines("\n")
+    file.writelines(str(record.seq)) 
+    file.writelines("\n")
+    file.close()
+
     #HOMOLOGAS
     
     #cline = ""
-    #cline = NcbiblastpCommandline(query=str(record.seq), db="nr", evalue=0.001, remote=True, ungapped=True, out=out_blast_file)
-    cline = NcbiblastpCommandline(cmd='blastp', query=str(record.seq), 
-        db='nr', evalue=0.001, remote=True, ungapped=True, num_alignments = 10, out=out_blast_file)
+    
+    """try:
+        #cline = NcbiblastpCommandline(query=str(record.seq), db="nr", evalue=0.001, remote=True, ungapped=True, out=out_blast_file)
+        cline = NcbiblastpCommandline(cmd='blastp', query=str(record.seq),
+            db='nr', evalue=0.001, remote=True, ungapped=True, num_alignments = 10, out=out_blast_file)
+        cline()
+        #print(cline)
+    except: 
+        print("Ups...")"""
+    blastp_path = r"C:\Program Files\NCBI\blast-2.11.0+\bin\blastp.exe"
+    cline = NcbiblastpCommandline(cmd=blastp_path, query=base_fasta_file,
+            db='pdb', evalue=0.001, remote=True,num_alignments = 3, out=out_blast_file)
     cline()
-    print(cline)
+    print(cline())
 
     """ ESTO ES HARDCODING GROSO PARA USAR HOMOLOGAS
     file.writelines(">NP_001183974.1 cytochrome c [Canis lupus familiaris]")
@@ -105,28 +113,28 @@ def getPDB():
     file.writelines("MGDVEKGKKIFIMKCSQCHTVEKGGKHKTGPNLHGLFGRKTGQAPGYSYTAANKNKGIIWGEDTLMEYLE")
     file.writelines("\n")
     file.writelines("NPKKYIPGTKMIFVGIKKKEERADLIAYLKKATNE")
-    file.writelines("\n")"""
+    file.writelines("\n")
 
     file.close()
     
+    for record in SeqIO.parse("./fasta/1UBQ.fasta", "fasta"):
+        print(record)
 
     #pasado a clustal, genera dos archivos uno .aln donde está alineado y un .dnd que es el arbol
     #clustalw_exe = r"C:\Program Files (x86)\ClustalW2\clustalw2.exe"
-    #clustalw_cline = ClustalwCommandline(clustalw_exe, infile=base_fasta_file)
-    #clustalw_cline()
+    clustalw_cline = ClustalwCommandline(infile=base_fasta_file)
+    """
 
     #PROBAR QUE HACE
     #print(clustalw_cline)
     #align = AlignIO.read(str(cline), "clustal")
     #result.append(align)
 
-
-
 	# pasarlo a blast y clustal
-    #in_file = "./fasta/"+id+"alineado.fasta"
-    #out_file = "./fasta/clustal"+id+".fasta"
-    #clustalomega_cline = ClustalOmegaCommandline(infile=in_file, outfile=out_file, verbose=True, auto=True, force=True)
-    #clustalomega_cLine()
+    in_file = "./fasta/"+id+"alineado.fasta"
+    out_file = "./fasta/clustal"+id+".fasta"
+    #clustalomega_cline = ClustalOmegaCommandline(infile=base_fasta_file, outfile=out_file, verbose=True, auto=True, force=True)
+    #clustalomega_cline()
     #print(str(clustalomega_cline))
     #result.append(str(clustalomega_cline))
 	
