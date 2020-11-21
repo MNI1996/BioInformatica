@@ -57,7 +57,9 @@ def getPDB():
         os.mkdir("./fasta")
 
     base_fasta_file = "./fasta/"+id+".fasta"
-    out_blast_file = "./fasta"+id+".blast"
+    out_blast_file = "./fasta/"+id+".blast"
+
+    #Creo el archivo fasta con contenido
     file = open(base_fasta_file, "w") 
     file.writelines("> "+id)
     file.writelines("\n")
@@ -66,8 +68,6 @@ def getPDB():
     file.close()
 
     #HOMOLOGAS
-
-    #cline = ""
     
     """try:
         #cline = NcbiblastpCommandline(query=str(record.seq), db="nr", evalue=0.001, remote=True, ungapped=True, out=out_blast_file)
@@ -77,14 +77,14 @@ def getPDB():
         #print(cline)
     except: 
         print("Ups...")"""
-    blastp_path = r"C:\Program Files\NCBI\blast-2.11.0+\bin\blastp.exe"
     #cline = NcbiblastpCommandline(query=base_fasta_file, db='pdb', evalue=0.1, remote=True, num_alignments = 3, ungapped = False, out=out_blast_file)
-    cline = NcbiblastpCommandline(query=base_fasta_file, db="pdb", evalue=0.001, remote=True, ungapped=True, out=out_blast_file, comp_based_stats = '0')
+    cline = NcbiblastpCommandline(query=base_fasta_file, db="pdb", evalue=0.001, remote=True, ungapped=True, out=out_blast_file, comp_based_stats = '0', num_alignments = 20)
     cline()
-    print(cline())
+    #print(cline())  # el print da ('', '')
 
     #result_handle = NCBIWWW.qblast("blastp", database="pdb", sequence=result["seq"], word_size=7, descriptions= 10, alignments = 10, format_type ="text", )
     #print(str(result_handle))
+    
     """ ESTO ES HARDCODING GROSO PARA USAR HOMOLOGAS
     file.writelines(">NP_001183974.1 cytochrome c [Canis lupus familiaris]")
     file.writelines("\n")
