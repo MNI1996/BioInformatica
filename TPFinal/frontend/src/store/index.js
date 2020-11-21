@@ -21,9 +21,9 @@ export default new Vuex.Store({
     setResult: (state, result) => state.result = result,
   },
   actions:{
-    async search({commit}){
-      let response = await Vue.axios.get( `${apiUrl}+/pdb/?id=${state.result}`);
-      commit('setResult', response.data.result)
+    async search({commit},id){
+      let response = await Vue.axios.get( `${apiUrl}/pdb?id=${id}`);
+      commit('setResult', response.data)
     }
   },
 })

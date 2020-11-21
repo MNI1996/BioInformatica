@@ -9,16 +9,14 @@
   <div v-else>
     <div class="row">
       <!-- la secuencia-->
+      <h5 style="color: aliceblue">{{result["seq"]}}</h5>
     </div>
     <div class="row">
       <!-- las analogas v-for -->
     </div>
     <div class="row">
       <div class="col">
-        <!--<script>jmolApplet0 = Jmol.getApplet("jmolApplet0", Info);
-
-
-</script>-->
+        <!--<script>jmolApplet0 = Jmol.getApplet("jmolApplet0", Info);</script>-->
       </div>
       <div class="col">
 
@@ -36,7 +34,7 @@
 </template>
 
 <script>
-
+import {mapGetters} from "vuex";
 
 export default {
   name: "Home",
@@ -52,7 +50,7 @@ export default {
 
 
   mounted(){
-    this.changeBackground();
+    //this.changeBackground();
   },
 
   methods:{

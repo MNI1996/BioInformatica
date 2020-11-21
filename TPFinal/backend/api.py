@@ -1,6 +1,10 @@
 import flask
+import json
 import os
+import Bio
+
 from flask import request, jsonify
+from flask_cors import CORS
 from Bio.Seq import Seq
 from Bio import SeqIO
 from Bio.SeqRecord import SeqRecord
@@ -10,10 +14,11 @@ from Bio.Align.Applications import ClustalOmegaCommandline
 from Bio import AlignIO
 from Bio.Align.Applications import ClustalwCommandline
 from Bio.Blast.Applications import NcbiblastpCommandline
+from Bio.Blast import NCBIWWW
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
-
+CORS(app, resources={r'/*': {'origins': '*'}})
 
 @app.route('/', methods=['GET'])
 def home():
@@ -26,24 +31,30 @@ def getPDB():
         id = request.args['id']
     else:
         return "Error: No id field provided. Please specify an id."
-    result = []
+    #result = []#esto tiene  que ser un objeto resutl para poder pasarlo por json
     pdbl = PDBList()
+    result={"fafafa":"","seq":"","id":""}
 
 	# esto descarga el archivo pdb
-    result.append(pdbl.retrieve_pdb_file(id,pdir='./pdb', file_format ='pdb'))
-	
+    #result.append(pdbl.retrieve_pdb_file(id,pdir='./pdb', file_format ='pdb'))
+    result["fafafa"] = pdbl.retrieve_pdb_file(id,pdir='./pdb', file_format ='pdb')
+
+
 	# esto me devuelve tooooda la lista de los atomos de al cadena, no es posible hacerlo con SEQRES, pero se ve interesante para trabajar, lo dejo por las dudas
     #result2.append(PandasPdb().fetch_pdb(id).df['ATOM'])
 	
 	# convierto a la secuencia primaria  
+	# convierto a la secuencia primaria
     for record in SeqIO.parse("PDB/pdb"+id+".ent", "pdb-seqres"):
         #print(record.seq)
-        result.append(str(record.seq))
+        #result.append(str(record.seq))
+        res =str(record.seq)
+        result["seq"] = res
 
 	# convert to fasta
     owd = os.getcwd()
     if not os.path.exists("./fasta"):
-        os.mkdir("./fasta")  
+        os.mkdir("./fasta")
 
     base_fasta_file = "./fasta/"+id+".fasta"
     out_blast_file = "./fasta"+id+".blast"
@@ -55,7 +66,7 @@ def getPDB():
     file.close()
 
     #HOMOLOGAS
-    
+
     #cline = ""
     
     """try:
@@ -67,11 +78,13 @@ def getPDB():
     except: 
         print("Ups...")"""
     blastp_path = r"C:\Program Files\NCBI\blast-2.11.0+\bin\blastp.exe"
-    cline = NcbiblastpCommandline(cmd=blastp_path, query=base_fasta_file,
-            db='pdb', evalue=0.001, remote=True,num_alignments = 3, out=out_blast_file)
+    #cline = NcbiblastpCommandline(query=base_fasta_file, db='pdb', evalue=0.1, remote=True, num_alignments = 3, ungapped = False, out=out_blast_file)
+    cline = NcbiblastpCommandline(query=base_fasta_file, db="pdb", evalue=0.001, remote=True, ungapped=True, out=out_blast_file, comp_based_stats = '0')
     cline()
     print(cline())
 
+    #result_handle = NCBIWWW.qblast("blastp", database="pdb", sequence=result["seq"], word_size=7, descriptions= 10, alignments = 10, format_type ="text", )
+    #print(str(result_handle))
     """ ESTO ES HARDCODING GROSO PARA USAR HOMOLOGAS
     file.writelines(">NP_001183974.1 cytochrome c [Canis lupus familiaris]")
     file.writelines("\n")
@@ -120,6 +133,7 @@ def getPDB():
     for record in SeqIO.parse("./fasta/1UBQ.fasta", "fasta"):
         print(record)
 
+
     #pasado a clustal, genera dos archivos uno .aln donde está alineado y un .dnd que es el arbol
     #clustalw_exe = r"C:\Program Files (x86)\ClustalW2\clustalw2.exe"
     clustalw_cline = ClustalwCommandline(infile=base_fasta_file)
@@ -146,9 +160,9 @@ def getPDB():
 	# arr[3] = seq cuaternaria
 	# arr[4] = secuncias conservadas
 
-    result.append(id)
-	
-	
-    return jsonify(result)
+    result["id"]=id
+    json_object = json.dumps(result, indent = 4)
+    return (json_object)
 
-app.run(port=5001)
+if __name__ == '__main__':
+    app.run()
