@@ -6,10 +6,13 @@
     </label>
     <button @click="search" class="btn btn-lg btn-success">Buscar</button>
   </div>
-  <div v-else>
+  <div v-else style="color: aliceblue">
     <div class="row">
-      <!-- la secuencia-->
-      <h5 style="color: aliceblue">{{result["seq"]}}</h5>
+      <h1>Resultados de {{codigo}}</h1>
+    </div>
+    <div class="row">
+        <h2>Sequencia:</h2>
+      <h5>{{result["seq"]}}</h5>
     </div>
     <div class="row">
       <!-- las analogas v-for -->
