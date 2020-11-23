@@ -19,7 +19,7 @@ from Bio.Blast import NCBIWWW
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 app.config["CORS_HEADERS"] = "Content-Type"
-CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app)
 
 @app.route('/', methods=['GET'])
 @cross_origin()

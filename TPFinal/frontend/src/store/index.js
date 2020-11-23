@@ -13,7 +13,7 @@ export default new Vuex.Store({
   plugins: debug ? [createLogger()] : [],
   state:{
     result:null,
-    codMuestra:"1RVV"
+    codMuestra:"1THJ"
   },
   getters:{
     result: (state) => state.result,
