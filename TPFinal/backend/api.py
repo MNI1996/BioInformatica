@@ -4,7 +4,7 @@ import os
 import Bio
 
 from flask import request, jsonify
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from Bio.Seq import Seq
 from Bio import SeqIO
 from Bio.SeqRecord import SeqRecord
@@ -18,14 +18,17 @@ from Bio.Blast import NCBIWWW
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
-CORS(app, resources={r'/*': {'origins': '*'}})
+app.config["CORS_HEADERS"] = "Content-Type"
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 @app.route('/', methods=['GET'])
+@cross_origin()
 def home():
     return	 "<h1>Prueba.</p>"
 
 # el path debería ser /pdb?id=XXXX donde XXXX representa el código de cuatro letras de la proteina
 @app.route('/pdb', methods=['GET'])
+@cross_origin()
 def getPDB():
     if 'id' in request.args:
         id = request.args['id']

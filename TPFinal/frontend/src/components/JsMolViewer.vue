@@ -1,46 +1,16 @@
 <template>
-  <div id="jsmolDiv" style="width: 600px; height:400px"></div>
+  <div style="height: 400px; width: 400px; position: relative;" class='viewer_3Dmoljs' :data-pdb=codMuestra data-backgroundcolor='0xffffff' data-style='cartoon'></div>
 </template>
 
 <script>
-var jmol = 'jmol';
-var jme = 'jme';
-var JmolInfo = {
-  width: 600,
-  height: 400,
-  debug: false,
-  color: 'black',
-  use: 'HTML5',
-  addSelectionOptions: true,
-  disableJ2SLoadMonitor: true,
-  disableInitialConsole: true,
-  j2sPath: '/js/jsmol/j2s',
-  //defaultModel: ":morphine",
-  script: '',
-};
-
-var JMEInfo = {
-  use: 'HTML5',
-  visible: true,
-  //divId: 'jmediv',
-  options: 'autoez;nocanonize',
-};
+import {mapGetters} from "vuex";
 export default {
-  "name": "JsMolViewer",
-  "components": {},
-     "data"(){return null},
-     "computed": {},
-     "methods": {},
-     "mounted"() {
-        this.$loadScript('/js/jsmol/JSmol.min.nojq.js').then(() => {
-             this.$loadScript('/js/jsmol/js/JSmolJME.js').then(() => {
-                 this.$loadScript('/js/JSME_2017-02-26/jsme/jsme.nocache.js').then(() => {
-                     $('#jsmolDiv').html(Jmol.getAppletHtml('jmol',JmolInfo));
-                          jme = Jmol.getJMEApplet('jme', JMEInfo, jmol);
-                       });
-                });
-          });
-     },
+  props:{
+    cod:""
+  },
+  computed:{
+    ...mapGetters(["codMuestra"])
+  }
  }
 
 

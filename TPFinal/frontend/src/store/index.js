@@ -13,9 +13,11 @@ export default new Vuex.Store({
   plugins: debug ? [createLogger()] : [],
   state:{
     result:null,
+    codMuestra:"1RVV"
   },
   getters:{
     result: (state) => state.result,
+    codMuestra: (state)=>state.codMuestra,
   },
   mutations: {
     setResult: (state, result) => state.result = result,

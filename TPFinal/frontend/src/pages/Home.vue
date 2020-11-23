@@ -1,11 +1,18 @@
 <template>
-  <div class="text-center, row" id="margen" v-if="result === null">
-    <label style="color: aliceblue">
-      Ingrese codigo de proteina
-      <input type="text" v-model="codigo" class="input-group"/>
-    </label>
-    <button @click="search" class="btn btn-lg btn-success">Buscar</button>
+
+  <div class="text-center" id="margen" v-if="result === null">
+    <div class="row">
+      <label style="color: aliceblue">
+        Ingrese codigo de proteina
+        <input type="text" v-model="codigo" class="input-group"/>
+      </label>
+      <button @click="search" class="btn btn-lg btn-success">Buscar</button>
+    </div>
+    <div class="row">
+      <js-mol-viewer :cod="codigo" />
+    </div>
   </div>
+
   <div v-else style="color: aliceblue">
     <div class="row">
       <h1>Resultados de {{codigo}}</h1>
@@ -19,7 +26,7 @@
     </div>
     <div class="row">
       <div class="col">
-        <!--<script>jmolApplet0 = Jmol.getApplet("jmolApplet0", Info);</script>-->
+       <js-mol-viewer/>
       </div>
       <div class="col">
 
@@ -38,9 +45,11 @@
 
 <script>
 import {mapGetters} from "vuex";
+import JsMolViewer from "../components/JsMolViewer.vue";
 
 export default {
   name: "Home",
+  components: {JsMolViewer},
   data(){
     return{
       codigo:"",      
