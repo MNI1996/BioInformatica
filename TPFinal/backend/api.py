@@ -59,6 +59,7 @@ def getPDB():
     if not os.path.exists("./fasta"):
         os.mkdir("./fasta")
 
+    print(owd)
     base_fasta_file = "./fasta/"+id+".fasta"
     out_blast_file = "./fasta/"+id+".blast"
 
