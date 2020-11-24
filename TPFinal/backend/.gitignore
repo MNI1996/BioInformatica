@@ -2,3 +2,5 @@ pdb/
 obsolete/
 fasta/
 *.blast
+
+db/
