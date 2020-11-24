@@ -24,8 +24,10 @@ export default new Vuex.Store({
   },
   actions:{
     async search({commit},id){
-      let response = await Vue.axios.get( `${apiUrl}/pdb?id=${id}`);
-      commit('setResult', response.data)
-    }
+     await Vue.axios.get( `${apiUrl}/pdb?id=${id}`)
+                    .then(response=>{commit('setResult', response.data)})
+                    .catch(()=>{Vue.noty.error("No se encuentra el codigo")});
+    },
+
   },
 })
