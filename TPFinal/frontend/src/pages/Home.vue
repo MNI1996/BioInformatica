@@ -19,6 +19,8 @@
     </div>
     <div class="row">
         <h2>Secuencia:</h2>
+    </div>
+    <div class="row">
       <h5>{{result["seq"]}}</h5>
     </div>
     <div class="row">
@@ -26,7 +28,7 @@
     </div>
     <div class="row">
       <div class="col">
-        <js-mol-viewer :cod=codigo />
+        <js-mol-viewer :cod=this.result["id"] />
       </div>
       <div class="col">
 
