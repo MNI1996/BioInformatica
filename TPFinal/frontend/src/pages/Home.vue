@@ -9,8 +9,8 @@
       <button @click="search" class="btn btn-lg btn-success">Buscar</button>
     </div>
     <div class="row">
-      <js-mol-viewer :cod="codigo" />
-    </div>
+      <js-mol-viewer :cod= codBase />
+    </div>0
   </div>
 
   <div v-else style="color: aliceblue">
@@ -18,7 +18,7 @@
       <h1>Resultados de {{codigo}}</h1>
     </div>
     <div class="row">
-        <h2>Sequencia:</h2>
+        <h2>Secuencia:</h2>
       <h5>{{result["seq"]}}</h5>
     </div>
     <div class="row">
@@ -26,7 +26,7 @@
     </div>
     <div class="row">
       <div class="col">
-       <js-mol-viewer/>
+        <js-mol-viewer :cod=codigo />
       </div>
       <div class="col">
 
@@ -52,7 +52,8 @@ export default {
   components: {JsMolViewer},
   data(){
     return{
-      codigo:"",      
+      codigo:"",
+      codBase:"1UBQ"
     }
   },
   computed:{
