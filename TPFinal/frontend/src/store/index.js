@@ -24,8 +24,10 @@ export default new Vuex.Store({
   },
   actions:{
     async search({commit},id){
+      Vue.noty.success("Su Peticion esta siendo procesada, esto llevara un tiempo")
      await Vue.axios.get( `${apiUrl}/pdb?id=${id}`)
-                    .then(response=>{commit('setResult', response.data)})
+                    .then(response=>{commit('setResult', response.data)
+                                      Vue.noty.info("Ya estan sus resultados")})
                     .catch(()=>{Vue.noty.error("No se encuentra el codigo")});
     },
 
