@@ -57,12 +57,12 @@ def getPDB():
     cline = NcbiblastpCommandline(query=base_fasta_file, db="pdb", evalue=0.001, remote=True, ungapped=True, out=out_blast_file, comp_based_stats = '0', num_alignments = 20)
     cline()"""
 
-    result_handle = NCBIWWW.qblast(program="blastp", database="pdb", sequence=result["seq"]) #, word_size=7, descriptions= 10, alignments = 10, format_type ="text")
+    #result_handle = NCBIWWW.qblast(program="blastp", database="pdb", sequence=result["seq"]) #, word_size=7, descriptions= 10, alignments = 10, format_type ="text")
     blast = "output.xml"
     
-    save_clk = open(blast, "w")
-    save_clk.write(result_handle.read())    
-    save_clk.close()
+    #save_clk = open(blast, "w")
+    #save_clk.write(result_handle.read())    
+    #save_clk.close()
 
     blast_records = NCBIXML.parse(open(blast))
 
@@ -92,7 +92,7 @@ def getPDB():
     
     #pasado a clustal, genera dos archivos uno .aln donde está alineado y un .dnd que es el arbol
     clustalw_exe = r"C:\Program Files (x86)\ClustalW2\clustalw2.exe"
-    clustalw_cline = ClustalwCommandline(clustalw_exe, infile=base_fasta_file)
+    clustalw_cline = ClustalwCommandline(cmd = clustalw_exe, infile=base_fasta_file)
     clustalw_cline() 
 
     #out_file = "./fasta/clustal"+id+".fasta"
