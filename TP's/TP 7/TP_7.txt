@@ -1,22 +1,21 @@
 Actividades
 
 1. ¿Cómo describís la estructura de esta proteína?
-Las estructuras de las proteínas pueden ser muy diversas. Se las puede clasificar por su contenido en
-estructuras secundarias y según su cantidad de dominios. ¿Cómo podrías describir la estructura de esta
-proteína? Realizá la misma descripción pero para la proteína 1THJ, 3OGB,
+Las estructuras de las proteínas pueden ser muy diversas. Se las puede clasificar por su contenido en estructuras secundarias y según su cantidad de dominios. ¿Cómo podrías describir la estructura de esta proteína? Realizá la misma descripción pero para la proteína 1THJ, 3OGB.
 
 	1THJ: Tiene una estructura secundaria con alfa-hélices, beta-plegadas y loops.
 		  Se le ecuentran dos túneles bien definidos y un bolsillo 
 
-	3OGB: 
+	3OGB: Tiene estructura secundaria de alfa hélices y loops. Se observa un HEM. 
+				Se observa algunos bolsillos, y por lo menos un túnel
 
 4. Estudiá la proteína 2CPE. 
 	a-) ¿Qué tipo de proteína es? 
 
+			La proteina 2CPE es una proteina desordenada. Tiene un nucleo concentrado pero con diferentes ramificaciones
 			PDB: Solution structure of the RNA recognition motif of Ewing Sarcoma(EWS) protein 
 
-	b-) ¿Cómo la describirías? Utilizá el comando “setall_states, on” para ver todos los estados conformacionales 
-	    estimados para esa estructura. 
+	b-) ¿Cómo la describirías? Utilizá el comando “setall_states, on” para ver todos los estados conformacionales estimados para esa estructura. 
 
 		 - Consta de 2 alfa-hélices, 4 beta-plegadas y 7 loops.
 		 - No se visualizan túneles
@@ -25,12 +24,13 @@ proteína? Realizá la misma descripción pero para la proteína 1THJ, 3OGB,
 
 	c-) Compará el espacio conformacional de la 2CPE con la de la estructura de la mioglobina (1MYF). 
 
+		[ 2CPE: Estructura de la solución del motivo de reconocimiento de ARN de la proteína del sarcoma de Ewing (EWS) ]
 		La mioglobina tiene un espacio HEM, que la 2CPE no contiene. 
 		Además la mioglobina no tiene estructura beta-plegada, sólo 7 alfa-hélices y 8 loops
 
 	d-) Utilizando el modo secuencia, seleccioná la HIS64. Mostrala en formato stick o lines. ¿Qué función podría llegar a tener?
 
-		???????????????  Se ve que es un alfa-hélice que no se vincula con ningún otro aminoácido
+		Dado que la proteína 2CPE se relaciona con el ARN, y éste es un anión (carga negativa) se debría unir con otro aminoácido catión (carga positiva) que compone a dicha proteína estabilizando el ligando
 
 	e-) ¿Y la HIS93? 
 
@@ -38,40 +38,34 @@ proteína? Realizá la misma descripción pero para la proteína 1THJ, 3OGB,
 
 
 👇 RETO I: Estas estructuras difieren de las estructuras sobre las que venimos trabajando en su determinación. 
-		   Como habrás notado estas fueron obtenidas mediante la técnica de MNR, ¿Pero en qué consiste esta técnica?
+		   Como habrás notado estas fueron obtenidas mediante la técnica de MNR, ¿Pero en qué consiste esta técnica?  
 
-		   La técnica MNR genera un fuerte campo magnético alrededor de una molécula. Este campo produce que el núcleo
-		   de algunos átomos actúe como un imán. Este campo magnético, al ser muy fuerte, permite el estudio más detallado 
-		   de estructuras más complejas ayudando a responder preguntas vitales de hoy.
-		   En realidad le aplica una onda de radiofrecuencia de amplio espectro que logra hacer "vibrar" los átomos, y así,
-		   poder estimar su estructura volumétrica.
+		   La técnica MNR genera un fuerte campo magnético alrededor de una molécula ¿en una solución?. Este campo produce que el núcleo de algunos átomos actúe como un imán. Este campo magnético, al ser muy fuerte, permite el estudio más detallado de estructuras más complejas ayudando a responder preguntas vitales de hoy.
+		   En realidad le aplica una onda de radiofrecuencia de amplio espectro que logra hacer "vibrar" los átomos, y así, poder estimar su estructura volumétrica.
 
 
-👇 RETO II: Investigá en qué consisten las interacciones puentes de hidrógeno, π-π y π-catión y qué aminoácidos podrían 
-	        intervenir en dichas interacciones.
+👇 RETO II: Investigá en qué consisten las interacciones puentes de hidrógeno, π-π y π-catión y qué aminoácidos podrían intervenir en dichas interacciones.
 
 	        Comencemos definiendo qué es un "Puente de Hidrogeno"
 
-				El concepto refiere a una clase de enlace que se produce a partir de la atracción existente en un átomo de hidrógeno y 
-				un átomo de oxígeno, flúor o nitrógeno con carga negativa. Dicha atracción, por su parte, se conoce como interacción 
-				dipolo-dipolo y vincula el polo positivo de una molécula con el polo negativo de otra.
+				El concepto refiere a una clase de enlace que se produce a partir de la atracción existente en un átomo de hidrógeno y un átomo de oxígeno, flúor o nitrógeno con carga negativa. Dicha atracción, por su parte, se conoce como interacción dipolo-dipolo y vincula el polo positivo de una molécula con el polo negativo de otra.
 
 			Interacción π-π
-				En química, los efectos π o las interacciones π son un tipo de interacción no covalente que involucra sistemas π. Al 
-				igual que en una interacción electrostática donde una región de carga negativa interactúa con una carga positiva, el 
-				sistema π rico en electrones puede interactuar con un metal (catiónico o neutro), un anión, otra molécula e incluso 
-				otro sistema π. Las interacciones no covalentes que involucran sistemas π son fundamentales para eventos biológicos 
-				como el reconocimiento proteína-ligando. 
+				En química, los efectos π o las interacciones π son un tipo de interacción no covalente que involucra sistemas π. Al igual que en una interacción electrostática donde una región de carga negativa interactúa con una carga positiva, el sistema π rico en electrones puede interactuar con un metal (catiónico o neutro), un anión, otra molécula e incluso otro sistema π. Las interacciones no covalentes que involucran sistemas π son fundamentales para eventos biológicos como el reconocimiento proteína-ligando. 
 
 
 			Interaccion Cation-π
 
-				Las interacciones catión-π más estudiadas implican la unión entre un sistema π aromático (propiedad de las estructuras 
-				cíclicas) y un catión de metal alcalino o nitrógeno Interacción catión-π
+				Las interacciones catión-π más estudiadas implican la unión entre un sistema π aromático (propiedad de las estructuras cíclicas) y un catión de metal alcalino o nitrógeno Interacción catión-π
 
 
-6. Identificación de interacciones π-π y π-catión Estudiaremos más de cerca estas interacciones, utilizando la proteína miohemeritrina 
-(hacé fetch del PDB 1A7E). Una vez que la proteína se cargó:
+5. Cálculo de la distancia promedio de un puente de hidrógeno
+
+	Para le MET La medición entre el oxígeno y el hidrógeno es de 3.2 (rojo) La medición entre el hidrógeno y el nitrógeno es de 1.0 (azul) Para ILE La medición entre el oxígeno y el hidrógeno es de 2.6 La medición entre el hidrógeno y el nitrógeno es de 0.9 Para PHE La medición entre el oxígeno y el hidrógeno es de 2.6 La medición entre el hidrógeno y el nitrógeno es de 1
+
+	Por promedio sabemos que entre el oxígeno y hidrógeno es de 2.9 y entre el nitrógeno y el hidrógeno varia entre 1.0
+
+6. Identificación de interacciones π-π y π-catión Estudiaremos más de cerca estas interacciones, utilizando la proteína miohemeritrina (hacé fetch del PDB 		1A7E). Una vez que la proteína se cargó:
 	- Ocultá las moléculas de agua ( H → waters ) ,
 	- Seleccioná los residuos aromáticos (PHE/F, TYR/Y, TRP/W) manualmente en la barra de secuencia o mediante el siguiente comando: 
 		select aro, resn PHE+TYR+TRP .
@@ -83,4 +77,142 @@ proteína? Realizá la misma descripción pero para la proteína 1THJ, 3OGB,
 		π-catión. Para ello seleccioná los aminoácidos con carga positiva y mostralos como bolas y palitos. Medí la distancia entre los grupos intervinientes. Chequeá tus resultados utilizando el siguiente servidor: http://capture.caltech.edu/ (Capture program).
 
 
-F, Y y W forman los residuos aromáticos 1A7E
+			F, Y y W forman los residuos aromáticos 1A7E
+ 			pi-cation => anillo aromático con un catión
+
+
+7. Sitio activo de la anhidrasa carbónica. Utilizado la estructura de la anhidrasa carbónica 1THJ y la opción Select en el Menú Edit :
+	a. ¿Cuántas subunidades tiene la estructura nativa?
+
+		Tiene 3 estructuras bien definidas
+
+	b. ¿Tiene heteroátomos esta molécula? ¿Cuáles?
+
+		Tiene heteroátomos que son el zinc y el oxígeno
+
+	c. Identificá los residuos que unen el Zinc. Para ello utilizá los siguientes comandos:
+		- select zincs, metals
+		- select nearzincs, zincs around 6
+
+		También se puede usar el comando: select all within 6 of metals.Cambiá la visualización de la selección a bolas y palillos.
+
+	d. ¿Los residuos que unen el Zinc pertenecen a la misma subunidad?
+
+		El zinc sirve como "ligando" entre las estructuras de la proteína. Se observa una unión doble covalente de O2 con el Zn generando una densidad de carga negativa a su alrededor, y en el otro extremo una amina.
+
+	e. Determiná los contactos proteína-proteína en la estructura cuaternaria de la anhidrasa carbónica. En este punto usaremos distintos 
+		programas para establecer qué aminoácidos participan en contactos proteína-proteína. Para ello accedé al servidor Protein-Protein interaction server InterProSurf ( http://curie.utmb.edu/pdbcomplex.html ) y cargá el código pdb 1THJ. Registrá el número de los residuos que mantiene contactos entre subunidades. Visualizá los mismos en Pymol. Utilizá la barra de secuencia o los siguientes comandos:
+			- select interactingA, chain A & resi x+x+x+x … donde x es el número de los residuos que se desea seleccionar (Obtenidos de InterProSurf). Realizá la misma operación para las cadenas B y C.
+
+				Cadena A: 55 residuos
+				Cadena B: 54 residuos
+				Cadena C: 53 residuos
+				Nos interesan aquellos que tienen contacto con las subunidades
+
+
+8. Uso de superficies y slab mode en Pymol
+	Cargá la estructura 1RVV biological assembly 2 a partir del archivo 1RVV_full.pdb, o utilizando el comando:
+	fetch 1RVV, type=pdb2, multiplex=1
+	Esta proteína es la lumazina sintasa y está formada por 62 monómeros formando una esfera. Utilizando S → Surface determiná la superficie de la proteína. Ahora usando la rueda del mouse utilizá el slab mode para recorrer en profundidad la esfera que forma la proteína.
+
+
+9. Utilizando el programa Pymol estudiá la estructura terciaria y cuaternaria de la proteína 4AUI.
+	Determiná la superficie, localizá ligandos e identifícalos. Si querés obtener más información visitá el sitio https://www.rcsb.org/ y buscá por el ID: 4AUI.
+		Para seleccionar los ligandos podés usar el comando: select ligandos, organic
+		Para seleccionar grupos inorgánicos podés usar el comando: select inorganicos, inorganic
+
+		Estructura terciaria: La estructura tiene 31 átomos con ligandos inorgánicos (PO4 y MG) y 93 átomos con ligandos orgánicos (ATP)
+
+		Estructura cuaternaria: La proteína está compuesta por 3 subestructuras; sólo una de ellas tiene el ligando MG y 2 grupos fosfatos
+
+
+10. Estudio de túneles
+	Utilizando el programa (o servidor https://mole.upol.cz/) MOLE estudiá los túneles asociados al sitio activo de las estructuras 1THJ y 1F90. Este programa te pedirá que indiques a partir de qué regiones de la proteína debe comenzar la exploración en búsqueda de túneles. El punto de inicio puede ser a partir de cavidades, átomos o residuos seleccionados manualmente, o a partir de la base de datos CSA ( Catalytic site atlas ).
+
+		1THJ: tiene 8 cavidades y 20 túneles en total
+		1F90: tiene 6 cavidades y 10 túneles en total 
+
+11. Estudio de pockets en EGFR
+	El EGFR es uno de los principales marcadores de cáncer de pulmón. Utilizando la sesión de Pymol estudiá los pockets. 1M14 es un confórmero activo y 3W32 uno inactivo. Compará el sitio activo de ambos confórmeros así como también los tamaños de los pockets.
+	La determinación de las cavidades se puede realizar mediante el servidor fpocket: https://mobyle.rpbs.univ-paris-diderot.fr/cgi-bin/portal.py#forms::fpocket
+
+	Desactivar la opción de demo: “ Test the service with server sample data (input parameters will be discarded” .
+	Una vez que termina podés bajarte el Pymol visualization script [TGZ] para ver los resultados. Descomprimir (con 7zip u otro) y abrir el archivo .pml con Pymol…. Lo que vas a ver es para cada cavidad un conjunto de esferas. Primero para la molécula H → cartoon, H → spheres, S → Surface. Luego para cada ‘pocket’ S → dots !!
+
+		Notamos que los pockets de la proteina 1M14 (activo) ocupan mucho más espacio de la superficie mientras que los pockets de la proteina 3W32 (inactivo) se encuentran con mayor superficie por dentro de la proteina.
+
+		La proteína 1M14 tiene 25 pockets
+
+		La proteína 3W32 tiene 22 pockets
+
+		Por problemas de SO (se "cuelga" Pymol), no se pudieron observar los pockets en las proteínas 
+
+
+12. Tomando como base la estructura PDB 3GPC, estudiá sus túneles utilizando el Fpocket 
+	a) ¿Encontrás algún/os túnel/es en la proteína donde pueda unirse algún fármaco? 
+		23 túneles
+
+	b) ¿Qué residuos se encuentran en dicha cavidad?
+
+		Pymol los llama STP y son 22
+
+	Analizando la proteina 3GPC post procesada con FPocket encontramos que el pocket 61 es un buen candidato para la unión con un fármaco. En dicho pocket intervienen los aminoácidos del 75 al 81 en la cadena.
+
+
+	Ahora analicemos los resultados de los investigadores de la UBA y UNQ (https://doi.org/10.1007/s00018-020-03679-5 ), que mediante una técnica de acoplamiento molecular (docking) diseñaron un inhibidor para esta proteína, capaz de unirse a la misma y reducir entonces la proliferación de células tumorales.
+
+
+		RETO III: Investigá en qué consiste el docking, en qué ideas basa su funcionamiento.
+
+			Docking: es una técnica de mecánica molecular utilizada para predecir energías y modos de enlace entre proteínas y ligandos. El docking o acoplamiento
+				molecular es usado para predecir la orientación del enlace de una molécula pequeña, que serán candidatos a fármacos, con la proteína que será donde ejercerán su acción, con lo que se podrá predecir la afinidad y la actividad de la molécula pequeña. Y es por eso que este método tiene un rol muy importante en el diseño racional de fármacos. Para tal fin entran en juego una serie de procesos químicos gobernados por leyes físicas, entre ellas las que tienen que ver con la energía que se consume o libera en tal proceso.
+				En la actualidad contamos con sofisticadas técnicas experimentales de cuyos resultados se extrae información tridimensional tanto de las proteínas como de los ligandos
+			
+				Por ejemplo en la Unidad de Bioinformática del Centro de Biología Molecular "Severo Ochoa" (CBMSO, CSIC-UAM) llevan varios años trabajando en la construcción de una plataforma informática que les permita, de manera automática, encontrar nuevos ligandos con perfiles farmacológicos adecuados con el fin de mejorar los actuales tratamientos de algunas de las enfermedades de mayor repercusión social, principalmente el cáncer. Utilizan bibliotecas de millones de compuestos químicos (quimiotecas) donde buscan con sus algoritmos de docking aquellos que mejor puedan encajar dentro del centro activo del receptor elegido. A este proceso se le denomina "cribado virtual de quimiotecas". De esta búsqueda se pueden obtener miles de posibles candidatos que se deben clasificar para finalmente llegar a un número manejable experimentalmente, entre 20 y 30. Esta clasificación se hace con las denominadas "funciones de puntuación" que asignan a cada molécula una puntuación determinada basada en cómo de bien interacciona con el centro activo. 
+	
+	Descargá la estructura de la proteína y la del inhibidor y visualizalas en Pymol (abrí ambos archivos en la misma sesión) 
+		a)¿Dónde se une el inhibidor? 
+
+			Se encuentra en un túnel
+
+		b) ¿Coincide con el túnel que propusiste anteriormente?
+
+			Si
+
+		c ) ¿Dada esta inspección ocular cómo creés que actúa el inhibidor? Usando el play de la botonera, observá las distintas conformaciones del ligando o inhibidor.
+
+			Al hacer play en la botonera del Pymol, el ligando "rota" dentro del tunel sin salirse de él
+
+13. Asignación de estructura secundaria basado DSSP
+	Para inferir estructura secundaria utilizaremos el servidor 2StrucCompare con la Endolisina de bacteriófago en dos variantes (3F8V y 4LMZ).
+	1) Primero determiná la estructura secundaria de ambas conformaciones por separado usando el sevidor https://2struccompare.cryst.bbk.ac.uk/index.php
+		a) Corré el análisis por separado de cada estructura (recuadro derecho), cargando su código PDB y haciendo click en submit
+		
+		b) Observá las distintas regiones de estructura secundaria, 
+
+			b-1)¿todas son de igual cantidad de residuos? 
+
+				3F8V:   Name	Method		H		E		O		X
+						3F8V 	DSSP		0.62	0.07	0.30	0.00
+				
+				4LMZ: 	Name	Method		H		E		O		X
+						4LMZ 	DSSP		0.27	0.29	0.43	0.00
+
+				Observando ambos resultados, no tienen igual cantidad: 3F8V tiene más residuo helicoidal que 4LMZ, qwue tiene mayor cantidad de otros
+												
+
+			b-2) ¿Se requieren más o menos residuos para formar una alfa hélice que un loop? ¿Por qué?
+
+				Una estructura secundaria de alfa hélice necesita 3.6 residuos de AA por vuelta.
+				En la estructura de loop los podemos encontrar de tres residuos: el primer residuo ocupa la región puente del gráfico de Ramachandran, el segundo adopta la conformación helicoidal a la izquierda y el último residuo se presenta una conformación de estructura extendida o beta.
+				Y los "loops" de cuatro residuos adoptan una de dos posibles conformaciones. Una de ellas es similar al "loop" de tres residuos con la excepción que hay un residuo adicional, en la cuarta posición, en conformación extendida. La otra conformación implica los residuos con ángulos en la zona puente, beta, puente, y beta , respectivamente.
+
+
+
+
+
+	2) Luego podemos comparar ambas conformaciones utilizando el mismo sevidor https://2struccompare.cryst.bbk.ac.uk/index.php. Esta vez cargaremos las  	estructuras a la par (recuadro izquierdo) y el servidor nos mostrará las diferencias
+		a) Utilizando el botón Colour Scheme específicá las zonas de mayor movimiento de la proteína
+
+					"https://2struccompare.cryst.bbk.ac.uk/index.php" No nos toma la extensión *.pdbqt
+
