@@ -4,3 +4,4 @@ fasta/
 *.blast
 
 db/
+blast/
