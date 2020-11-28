@@ -78,12 +78,12 @@ def getPDB():
 
     blast_path = os.path.join(owd, "backend")
     blast_path = os.path.join(blast_path, "blast")
-    blast_path = os.path.join(blast_path, "out_blast_file.xml")
     if not os.path.exists(blast_path):
         os.mkdir(blast_path)
+    blast_path = os.path.join(blast_path, "out_blast_file.fa")
 
     #blast_path = os.path.join(blast_path, 'out_blast_file.xml') #"pdb"+id+".ent")
-    s = "blastp -query ./backend/db/1.fasta -out ./backend/blast/out_blast_file.xml -db ./backend/db/pdbaa -evalue 0.001 -outfmt 5"
+    s = "blastp -query ./backend/db/1.fasta -out ./backend/blast/out_blast_file.fa -db ./backend/db/pdbaa -evalue 0.001 -outfmt 5"
     #s = "blastp -query ./backend/db/1.fasta -out "+ blast_path + "-db ./backend/db/pdbaa -evalue 0.001 -outfmt 5"
     os.system(s)
 
@@ -93,16 +93,44 @@ def getPDB():
 
     file = open(base_fasta_file, "w") 
     for blast_record in blast_records:
-        id= 0 #ver de poner id real
+        sorted_aligntments = []
         for alignment in blast_record.alignments:
-            file.writelines("> " + str(id)) 
-            file.writelines("\n")
-            file.writelines(str(alignment.hsps[0].query)) 
-            file.writelines("\n")
-            id = id + 1
+            identities = alignment.hsps[0].identities
+            align_length = alignment.hsps[0].align_length
+            porcent =  identities / align_length * 100
 
-    file.close() 
+            if (porcent > 39.9):
+                sorted_aligntments.append((alignment.hsps[0].query, porcent))
+                #file.writelines("> " + str(id)) 
+                #file.writelines("\n")
+                #file.writelines(str(alignment.hsps[0].query)) 
+                #file.writelines("\n")
+                #id = id + 1  
+                #print(str(porcent))
+        sorted_aligntments.sort(key=lambda x: x[1])
+        reversed_alignments = sorted_aligntments[::-1]
+
+    id = 0
+    while id < 5:
+        file.writelines("> " + str(id)) 
+        file.writelines("\n")
+        file.writelines(str(reversed_alignments[id][0])) 
+        file.writelines("\n")
+        id = id + 1  
+
+    file.close()  
     
+    #pasado a clustal, genera dos archivos uno .aln donde está alineado y un .dnd que es el arbol
+    clustalw_exe = r"C:\Program Files (x86)\ClustalW2\clustalw2.exe"
+    clustal_output_path = os.path.join(owd, "backend")
+    clustal_output_path = os.path.join(clustal_output_path, "clustal")
+    if not os.path.exists(clustal_output_path):
+        os.mkdir(clustal_output_path)
+    clustal_output_path = os.path.join(clustal_output_path, "out_clustal_file.fa")
+
+    clustalw_cline = ClustalwCommandline(cmd = clustalw_exe, infile=base_fasta_file, outfile= clustal_output_path, output="fasta")
+    clustalw_cline() 
+
 
     result["id"]=id
     json_object = json.dumps(result, indent = 4)

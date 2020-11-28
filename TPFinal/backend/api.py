@@ -92,7 +92,7 @@ def getPDB():
     
     #pasado a clustal, genera dos archivos uno .aln donde está alineado y un .dnd que es el arbol
     clustalw_exe = r"C:\Program Files (x86)\ClustalW2\clustalw2.exe"
-    clustalw_cline = ClustalwCommandline(cmd = clustalw_exe, infile=base_fasta_file)
+    clustalw_cline = ClustalwCommandline(cmd = clustalw_exe, infile=base_fasta_file, output=fasta)
     clustalw_cline() 
 
     #out_file = "./fasta/clustal"+id+".fasta"
@@ -103,11 +103,10 @@ def getPDB():
 	
 	
 	# crear el objeto con todo,
-	# arr[0] = seq primaria
-	# arr[1] = seq sec
-	# arr[2] = seq terc
-	# arr[3] = seq cuaternaria
-	# arr[4] = secuncias conservadas
+    # result["id"]=id
+	# result["seq"] = seq primaria
+	# result["blast"] = 
+	# result["clustal"] = 
 
     result["id"]=id
     json_object = json.dumps(result, indent = 4)
