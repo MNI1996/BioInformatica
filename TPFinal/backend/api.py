@@ -3,7 +3,7 @@ import json
 import os
 import Bio
 
-from flask import request, jsonify
+from flask import request, jsonify, Response
 from flask_cors import CORS, cross_origin
 from Bio.Seq import Seq
 from Bio import SeqIO
@@ -16,10 +16,15 @@ from Bio.Align.Applications import ClustalwCommandline
 from Bio.Blast.Applications import NcbiblastpCommandline
 from Bio.Blast import NCBIWWW
 from Bio.Blast import NCBIXML
+from flask_restful import abort
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 app.config["CORS_HEADERS"] = "Content-Type"
+def createRoute(app) :
+    app.add_resources("/pdbSearch")
+
+
 CORS(app)
 
 @app.route('/', methods=['GET'])
@@ -28,14 +33,17 @@ def home():
     return	 "<h1>Prueba.</p>"
 
 # el path debería ser /pdb?id=XXXX donde XXXX representa el código de cuatro letras de la proteina
-@app.route('/pdb', methods=['GET'])
+@app.route('/pdbSearch')
 @cross_origin()
-def getPDB():
-    if 'id' in request.args:
-        id = request.args['id']
-    else:
-        return "Error: No id field provided. Please specify an id."
+def post()-> Response:
     result={"fafafa":"","seq":"","id":""}
+    data=request.get_json()
+    if data != None:
+        id = data['id']
+        rutaC=data['rutaC']
+    else:
+        abort(400, message="Error: No id field provided. Please specify an id.")
+
 
     pdbl = PDBList()
 	# esto descarga el archivo pdb
@@ -91,7 +99,7 @@ def getPDB():
     
     
     #pasado a clustal, genera dos archivos uno .aln donde está alineado y un .dnd que es el arbol
-    clustalw_exe = r"C:\Program Files (x86)\ClustalW2\clustalw2.exe"
+    clustalw_exe = rutaC# r"C:\Program Files (x86)\ClustalW2\clustalw2.exe"
     clustalw_cline = ClustalwCommandline(cmd = clustalw_exe, infile=base_fasta_file)
     clustalw_cline() 
 

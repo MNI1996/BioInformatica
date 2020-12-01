@@ -23,12 +23,12 @@ export default new Vuex.Store({
     setResult: (state, result) => state.result = result,
   },
   actions:{
-    async search({commit},id){
+    async search({commit},data){
       Vue.noty.success("Su Peticion esta siendo procesada, esto llevara un tiempo")
-     await Vue.axios.get( `${apiUrl}/pdb?id=${id}`)
-                    .then(response=>{commit('setResult', response.data)
+     await Vue.axios.post( `${apiUrl}/pdbSearch`,data)
+                    .then(response=>{commit('setResult', response.data.result)
                                       Vue.noty.info("Ya estan sus resultados")})
-                    .catch(()=>{Vue.noty.error("No se encuentra el codigo")});
+                    .catch((error)=>{Vue.noty.error(error.message)});
     },
 
   },

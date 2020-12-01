@@ -55,7 +55,8 @@ export default {
   data(){
     return{
       codigo:"",
-      codBase:"1UBQ"
+      codBase:"1UBQ",
+      rutaC:""
     }
   },
   computed:{
@@ -70,6 +71,10 @@ export default {
 
   methods:{
     search(){
+      let data={
+        id:this.codigo,
+        rutaC:this.rutaC
+      }
       this.$store.dispatch("search", this.codigo)
     },
 
