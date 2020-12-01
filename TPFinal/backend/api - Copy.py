@@ -62,7 +62,6 @@ def getInfo():
     #identity = float(data["identity"]) if str(data["identity"]).strip()!="" or not data["identity"]  else 39.9
     identity = float(validateField(data, "identity", 39.9))
     identity = identity if identity > 0 else 39.9
-    print(identity)
     num_align = int(validateField(data, "num_align", 5)) 
     num_align = num_align if num_align > 0 else 5
     chain = validateField(data, "chain", "A")
@@ -101,16 +100,15 @@ def getInfo():
     if not os.path.exists(blast_path):
         os.mkdir(blast_path)
     blast_path = os.path.join(blast_path, "out_blast_file.fa")
+    
+    #blast_path = "./backend/blast/out_blast_file.fa"
+    if db == "pdb":
+        db_path = "./backend/db/pdbaa"
 
-    #blast_path = os.path.join(blast_path, 'out_blast_file.xml') #"pdb"+id+".ent")
-    s = "blastp -query ./backend/db/1.fasta -out ./backend/blast/out_blast_file.fa -db ./backend/db/pdbaa -evalue 0.001 -outfmt 5"
-    #s = "blastp -query ./backend/db/1.fasta -out "+ blast_path + "-db ./backend/db/pdbaa -evalue 0.001 -outfmt 5"
+    s = "blastp -query ./backend/db/1.fasta -out " + blast_path + " -db " + db_path + " -evalue " + str(e_value) + " -outfmt 5"
     os.system(s)
 
-    #print(blast_path)
-
     blast_records = NCBIXML.parse(open(blast_path))
-
     file = open(base_fasta_file, "w") 
     for blast_record in blast_records:
         sorted_aligntments = []
@@ -125,16 +123,15 @@ def getInfo():
         reversed_alignments = sorted_aligntments[::-1]
 
     id = 0
-    while id < 5:
+    while id < num_align:
         file.writelines("> " + str(id)) 
         file.writelines("\n")
         file.writelines(str(reversed_alignments[id][0])) 
         file.writelines("\n")
         id = id + 1  
 
-    file.close()  
-    
-    #pasado a clustal, genera dos archivos uno .aln donde está alineado y un .dnd que es el arbol 
+    file.close() 
+
     clustal_output_path = os.path.join(owd, "backend")
     clustal_output_path = os.path.join(clustal_output_path, "clustal")
     if not os.path.exists(clustal_output_path):
