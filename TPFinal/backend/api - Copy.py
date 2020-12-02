@@ -16,6 +16,7 @@ from Bio.Align.Applications import ClustalwCommandline
 from Bio.Blast.Applications import NcbiblastpCommandline
 from Bio.Blast import NCBIWWW
 from Bio.Blast import NCBIXML
+import logomaker
 import subprocess
 
 app = flask.Flask(__name__)
@@ -50,11 +51,12 @@ def validateField(dataJson, fieldJson, value):
 @cross_origin()
 def getInfo():
     data = request.get_json()
-    result={"fafafa":"","seq":"","id":""}
+    result={"clustal":"","seq":"","id":""}
     # si no tiene id el request directamente retorna error
     id = data["id"]
     if not id:
         return "Error: No id field provided. Please specify an id."
+    result["id"] = id
     clustalw_exe = data["clustal_path"]
     if not clustalw_exe:
         return "Error: No clustal field provided. Please specify a clustal path."
@@ -105,25 +107,25 @@ def getInfo():
     db_path = os.path.join(owd, "backend")
     db_path = os.path.join(db_path, "db")
     if db == "pdb":
-        db_path = os.path.join(db_path, "pdbaa")
+        db_path = "./backend/db/pdbaa"
 
     #creo primero el archivo fasta con las ecuencia de la proteina pasada en el json correspondiente al argumento id
     with open(base_fasta_file, "w") as file:
-        file.writelines("> " + str(id)) 
+        file.writelines("> " + str(id))
         file.writelines("\n")
-        file.writelines(str(result["seq"])) 
+        file.writelines(str(result["seq"]))
         file.writelines("\n")
-        file.close() 
+        file.close()
 
     s = "blastp -query " + base_fasta_file + " -out " + blast_path + " -db " + db_path + " -evalue " + str(e_value) + " -outfmt 5"
     os.system(s)
 
     blast_records = NCBIXML.parse(open(blast_path))
     #abro el archivo donde voy a guardar el fasta post blast con las secuencias homólogas
-    file = open(base_fasta_file, "w") 
+    file = open(base_fasta_file, "w")
 
     #recorre el archivo devuelto y obtengo las homólogas que cumplen la identidad pasada por argumento correspondiente al campo identity
-    for blast_record in blast_records:          
+    for blast_record in blast_records:
         sorted_aligntments = []
         for alignment in blast_record.alignments:
             title = str(alignment.title)
@@ -134,7 +136,7 @@ def getInfo():
             if (porcent > identity):
                 sorted_aligntments.append((title, alignment.hsps[0].query, porcent))
         sorted_aligntments.sort(key=lambda x: x[1])
-        reversed_alignments = sorted_aligntments[::-1]  
+        reversed_alignments = sorted_aligntments[::-1]
 
     #abro el archivo donde voy a guardar las n secuencias correspondiente al argumento pasado en el json del campo num_align
     # en el fasta para luego ser tomado por clustal
@@ -144,13 +146,14 @@ def getInfo():
         por eso el [0] me devuelve el id, el [1] la seq y el [2] no lo uso, no es necesario para el fasta
     """
     while id < num_align:
-        file.writelines("> " + str(reversed_alignments[id][0]) ) 
+        file.writelines("> " + str(reversed_alignments[id][0]) )
         file.writelines("\n")
-        file.writelines(str(reversed_alignments[id][1])) 
+        file.writelines(str(reversed_alignments[id][1]))
         file.writelines("\n")
         id = id + 1  
+
     file.close() 
-    
+
     clustal_output_path = os.path.join(owd, "backend")
     clustal_output_path = os.path.join(clustal_output_path, "clustal")
     if not os.path.exists(clustal_output_path):
@@ -167,7 +170,7 @@ def getInfo():
         seqs.append(seq)
     print(str(seqs))
 
-    result["id"]=id
+
     json_object = json.dumps(result, indent = 4)
     return (json_object)
 

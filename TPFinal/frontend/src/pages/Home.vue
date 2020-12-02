@@ -1,88 +1,58 @@
 <template>
 
-  <div class="text-center" id="margen" v-if="result === null">
-    <div class="row">
-      <label style="color: aliceblue">
-        Ingrese codigo de proteina
-        <input type="text" v-model="codigo" class="input-group"/>
-      </label>
-      <button @click="search" class="btn btn-lg btn-success">Buscar</button>
-    </div>
-    <div class="row">
-      <js-mol-viewer :cod= codBase />
-    </div>0
-  </div>
+    <div class="row" v-if="result === null" >
+      <clustal-viewer/>
+      <div style="height: 400px; width: 400px; position: relative;" class='viewer_3Dmoljs' data-pdb='1UBQ' data-backgroundcolor='0xffffff' data-style='cartoon' data-surface="opacity:0.8"></div>
 
-  <div v-else style="color: aliceblue">
+    </div>
+
+
+  <div v-else class="welcome" >
     <div class="row">
-      <h1>Resultados de {{codigo}}</h1>
+      <h5>Resultados de {{result["id"]}}</h5>
     </div>
     <div class="row">
         <h2>Secuencia:</h2>
     </div>
     <div class="row">
-      <h5>{{result["seq"]}}</h5>
-    </div>
-    <div class="row">
-      <!-- las analogas v-for -->
+      <h5 v-if="result!==null">{{result["seq"]}}</h5>
     </div>
     <div class="row">
       <div class="col">
-        <js-mol-viewer :cod=this.result["id"] />
+        <js-mol-viewer :cod=codigo />
       </div>
       <div class="col">
-
+        <blast-viewer/>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
 
-      </div>
-      <div class="col">
-
-      </div>
-    </div>
   </div>
 </template>
 
 <script>
 import {mapGetters} from "vuex";
 import JsMolViewer from "../components/JsMolViewer.vue";
+import BlastViewer from "../components/BlastViewer.vue";
+import ClustalViewer from "../components/ClustalPanel.vue";
 
 export default {
   name: "Home",
-  components: {JsMolViewer},
-  data(){
-    return{
-      codigo:"",
-      codBase:"1UBQ",
-      rutaC:""
+  components: {ClustalViewer, BlastViewer, JsMolViewer},
+  data() {
+    return {
+      codigo: "",
+      codBase: "1UBQ",
+      clustal_path: ""
     }
   },
-  computed:{
+  computed: {
     ...mapGetters(["result"])
 
   },
-
-
-  mounted(){
+  mounted() {
     //this.changeBackground();
   },
 
-  methods:{
-    search(){
-      let data={
-        id:this.codigo,
-        rutaC:this.rutaC
-      }
-      this.$store.dispatch("search", this.codigo)
-    },
-
-    changeBackground(){
-      var index=document.getElementById('body')
-      index.style.cssText="background-color:#1aa6b7;background-image: url('Images/background tapestry.png');"
-    }
-  }
 }
 </script>
 

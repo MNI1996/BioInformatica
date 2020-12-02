@@ -25,8 +25,8 @@ export default new Vuex.Store({
   actions:{
     async search({commit},data){
       Vue.noty.success("Su Peticion esta siendo procesada, esto llevara un tiempo")
-     await Vue.axios.post( `${apiUrl}/pdbSearch`,data)
-                    .then(response=>{commit('setResult', response.data.result)
+     await Vue.axios.post( `${apiUrl}/pdb`,data)
+                    .then(response=>{commit('setResult', response.data)
                                       Vue.noty.info("Ya estan sus resultados")})
                     .catch((error)=>{Vue.noty.error(error.message)});
     },
