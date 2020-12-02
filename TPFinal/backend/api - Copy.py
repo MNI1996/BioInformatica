@@ -102,15 +102,29 @@ def getInfo():
     blast_path = os.path.join(blast_path, "out_blast_file.fa")
     
     #blast_path = "./backend/blast/out_blast_file.fa"
+    db_path = os.path.join(owd, "backend")
+    db_path = os.path.join(db_path, "db")
     if db == "pdb":
-        db_path = "./backend/db/pdbaa"
+        db_path = os.path.join(db_path, "pdbaa")
+
+    #creo primero el archivo fasta con las ecuencia de la proteina pasada en el json correspondiente al argumento id
+    with open(base_fasta_file, "w") as file:
+        file.writelines("> " + str(id)) 
+        file.writelines("\n")
+        file.writelines(str(result["seq"])) 
+        file.writelines("\n")
+        file.close() 
 
     #s = "blastp -query ./backend/db/1.fasta -out " + blast_path + " -db " + db_path + " -evalue " + str(e_value) + " -outfmt 5"
     s = "blastp -query " + base_fasta_file + " -out " + blast_path + " -db " + db_path + " -evalue " + str(e_value) + " -outfmt 5"
     os.system(s)
 
     blast_records = NCBIXML.parse(open(blast_path))
+
+    #abro el archivo donde voy a guardar el fasta post blast con las secuencias homólogas
     file = open(base_fasta_file, "w") 
+
+    #recorre el archivo devuelto y obtengo las homólogas que cumplen la identidad pasada por argumento correspondiente al campo identity
     for blast_record in blast_records:
         sorted_aligntments = []
         for alignment in blast_record.alignments:
@@ -123,6 +137,8 @@ def getInfo():
         sorted_aligntments.sort(key=lambda x: x[1])
         reversed_alignments = sorted_aligntments[::-1]
 
+    #abro el archivo donde voy a guardar las n secuencias correspondiente al argumento pasado en el json del campo num_align
+    # en el fasta para luego ser tomado por clustal
     id = 0
     while id < num_align:
         file.writelines("> " + str(id)) 
@@ -133,6 +149,7 @@ def getInfo():
 
     file.close() 
 
+    
     clustal_output_path = os.path.join(owd, "backend")
     clustal_output_path = os.path.join(clustal_output_path, "clustal")
     if not os.path.exists(clustal_output_path):
@@ -151,8 +168,7 @@ def getInfo():
             else:
                 seq = line.rstrip('\n') + seq
             print(seq)
-                  
-
+          
     result["id"]=id
     json_object = json.dumps(result, indent = 4)
     return (json_object)
