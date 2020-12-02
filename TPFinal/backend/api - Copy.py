@@ -105,7 +105,8 @@ def getInfo():
     if db == "pdb":
         db_path = "./backend/db/pdbaa"
 
-    s = "blastp -query ./backend/db/1.fasta -out " + blast_path + " -db " + db_path + " -evalue " + str(e_value) + " -outfmt 5"
+    #s = "blastp -query ./backend/db/1.fasta -out " + blast_path + " -db " + db_path + " -evalue " + str(e_value) + " -outfmt 5"
+    s = "blastp -query " + base_fasta_file + " -out " + blast_path + " -db " + db_path + " -evalue " + str(e_value) + " -outfmt 5"
     os.system(s)
 
     blast_records = NCBIXML.parse(open(blast_path))
@@ -137,9 +138,20 @@ def getInfo():
     if not os.path.exists(clustal_output_path):
         os.mkdir(clustal_output_path)
     clustal_output_path = os.path.join(clustal_output_path, "out_clustal_file.fa")
-
+    
     clustalw_cline = ClustalwCommandline(cmd = clustalw_exe, infile=base_fasta_file, outfile= clustal_output_path, output="fasta")
     clustalw_cline() 
+
+    with open(clustal_output_path, "r") as a_file:
+        seq = ""
+        lines = list(a_file)[::-1]
+        for line in lines:
+            if ">" in line:
+                seq = ""            
+            else:
+                seq = line.rstrip('\n') + seq
+            print(seq)
+                  
 
     result["id"]=id
     json_object = json.dumps(result, indent = 4)
