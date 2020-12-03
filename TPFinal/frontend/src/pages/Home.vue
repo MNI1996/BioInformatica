@@ -24,6 +24,7 @@
       </div>
       <div class="col-md-5 offset-1  data">
         <h2>Alineamientos con Homologas</h2>
+        <clustal-result :data="result['blast']" />
       </div>
 
     </div>
@@ -36,10 +37,11 @@ import {mapGetters} from "vuex";
 import JsMolViewer from "../components/JsMolViewer.vue";
 import BlastViewer from "../components/BlastViewer.vue";
 import ClustalViewer from "../components/ClustalPanel.vue";
+import ClustalResult from "../components/ClustalResult.vue";
 
 export default {
   name: "Home",
-  components: {ClustalViewer, BlastViewer, JsMolViewer},
+  components: {ClustalResult, ClustalViewer, BlastViewer, JsMolViewer},
   data() {
     return {
       codigo: "",

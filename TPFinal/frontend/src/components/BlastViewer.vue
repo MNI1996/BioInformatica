@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-for="p in blast">
-      <list-clustal-result  :data=p />
+      <blast-result  :data= p />
     </div>
   </div>
 
@@ -9,12 +9,19 @@
 </template>
 
 <script>
-import ListClustalResult from "./ListClustalResult.vue";
+import BlastResult from "./BlastResult.vue";
 export default {
   name: "BlastViewer",
-  components: {ListClustalResult},
+  components: {BlastResult},
   props:{
     blast:null
+  },
+  methods:{
+    sinGaps(i){
+      var p2 = i[1].replaceAll("-"," ").trim()
+      var par=(i[0],p2)
+      return par
+    }
   }
 }
 </script>
