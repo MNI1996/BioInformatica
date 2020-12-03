@@ -107,7 +107,7 @@ def getInfo():
     db_path = os.path.join(owd, "backend")
     db_path = os.path.join(db_path, "db")
     if db == "pdb":
-        db_path = "./backend/db/pdbaa"
+        db_path = os.path.join(db_path, "pdbaa")
 
     #creo primero el archivo fasta con las ecuencia de la proteina pasada en el json correspondiente al argumento id
     with open(base_fasta_file, "w") as file:
