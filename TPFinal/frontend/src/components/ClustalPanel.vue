@@ -16,7 +16,7 @@
       <div class="col col-md-4">
         <p> Defina word size</p>
           <select name="word_size" v-model="word_size">
-            <option selected value="3">default</option>
+            <option selected value="3">3</option>
             <option value="6">6</option>
             <option value="12">12</option>
           </select>
@@ -24,7 +24,7 @@
       <div class="col col-md-4">
         <p>Defina nro de muestras</p>
         <select name="num_align" v-model="num_align">
-          <option selected value="5">default</option>
+          <option selected value="5">5</option>
           <option value="10">10</option>
           <option value="15">15</option>
         </select>
