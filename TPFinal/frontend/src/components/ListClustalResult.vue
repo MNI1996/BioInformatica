@@ -1,10 +1,10 @@
 <template>
-  <div class="row">
+  <div class="row info">
     <div class="col">
-      <H2> {{data[0]}}</H2>
+      <h3> {{data[0]}}</h3>
     </div>
     <div class="col">
-      <h2> {{data[1]}}</h2>
+      <p> {{data[1]}}</p>
     </div>
   </div>
 

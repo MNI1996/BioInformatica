@@ -169,6 +169,7 @@ def getInfo():
         seq = (str(record.description), str(record.seq))
         seqs.append(seq)
     print(str(seqs))
+    result["blast"] = seqs
 
 
     json_object = json.dumps(result, indent = 4)

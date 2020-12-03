@@ -2,28 +2,30 @@
 
     <div class="row" v-if="result === null" >
       <clustal-viewer/>
-      <div style="height: 400px; width: 400px; position: relative;" class='viewer_3Dmoljs' data-pdb='1UBQ' data-backgroundcolor='0xffffff' data-style='cartoon' data-surface="opacity:0.8"></div>
-
     </div>
 
 
-  <div v-else class="welcome" >
-    <div class="row">
+  <div v-else  >
+    <div class="row welcome" >
       <h5>Resultados de {{result["id"]}}</h5>
     </div>
-    <div class="row">
-        <h2>Secuencia:</h2>
-    </div>
-    <div class="row">
+    <div class="row welcome">
+     <h2>Secuencia:</h2>
       <h5 v-if="result!==null">{{result["seq"]}}</h5>
     </div>
-    <div class="row">
-      <div class="col">
-        <js-mol-viewer :cod=codigo />
+    <div class="row welcome">
+        <iframe :src=generateURL() width="1200" height="600" ></iframe>
+    </div>
+
+    <div class="row welcome">
+      <div class="col-md-5 data">
+      <h2>Homologas</h2>
+        <blast-viewer :blast="result['blast']"/>
       </div>
-      <div class="col">
-        <blast-viewer/>
+      <div class="col-md-5 offset-1  data">
+        <h2>Alineamientos con Homologas</h2>
       </div>
+
     </div>
 
   </div>
@@ -52,6 +54,11 @@ export default {
   mounted() {
     //this.changeBackground();
   },
+  methods:{
+    generateURL(){
+      return "https://www.ncbi.nlm.nih.gov/Structure/icn3d/full.html?pdbid="+this.result["id"]
+    }
+  }
 
 }
 </script>
