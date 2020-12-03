@@ -132,7 +132,7 @@ def getInfo():
             title = title[4]+title[5]+title[6]+title[7]
             identities = alignment.hsps[0].identities
             align_length = alignment.hsps[0].align_length
-            porcent =  identities / align_length * 100
+            porcent = identities / align_length * 100
             if (porcent > identity):
                 sorted_aligntments.append((title, alignment.hsps[0].query, porcent))
         sorted_aligntments.sort(key=lambda x: x[1])

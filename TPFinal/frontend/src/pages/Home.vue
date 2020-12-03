@@ -11,7 +11,7 @@
     </div>
     <div class="row welcome">
      <h2>Secuencia:</h2>
-      <h5 v-if="result!==null">{{result["seq"]}}</h5>
+      <p v-if="result!==null" >{{parseSeq(result["seq"])}}</p>
     </div>
     <div class="row welcome">
         <iframe :src=generateURL() width="1200" height="600" ></iframe>
@@ -23,7 +23,7 @@
         <blast-viewer :blast="result['blast']"/>
       </div>
       <div class="col-md-5 offset-1  data">
-        <h2>Alineamientos con Homologas</h2>
+        <h3>Alineamientos con Homologas</h3>
         <clustal-result :data="result['blast']" />
       </div>
 
@@ -59,7 +59,19 @@ export default {
   methods:{
     generateURL(){
       return "https://www.ncbi.nlm.nih.gov/Structure/icn3d/full.html?pdbid="+this.result["id"]
+    },
+    parseSeq(seq){
+      var charperline=(seq.length/47)+1
+      var cutvalue= seq.length/parseInt(charperline)
+      var rsf=[]
+      for (var i = 0; i < charperline; i++)
+      {
+        var res = seq.substring(parseInt(cutvalue)*i,parseInt(cutvalue)*(i+1));
+        rsf+=res+"\n"
+      }
+      return rsf
     }
+
   }
 
 }
