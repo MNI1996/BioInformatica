@@ -1,13 +1,13 @@
 import os
-
 from Bio.Blast import NCBIXML
 
 
 class BlastService:
     def __init__(self):
-        base_fasta_file=""
-        fasta_path=""
-        owd = os.getcwd()
+
+        self.base_fasta_file=""
+        self.fasta_path=""
+        self.owd=os.getcwd()
 
     def getBaseFasta(self):
         return self.base_fasta_file
@@ -36,19 +36,19 @@ class BlastService:
             db_path = os.path.join(db_path, "pdbaa")
 
         #creo primero el archivo fasta con las ecuencia de la proteina pasada en el json correspondiente al argumento id
-        with open(base_fasta_file, "w") as file:
+        with open(self.base_fasta_file, "w") as file:
             file.writelines("> " + str(id))
             file.writelines("\n")
             file.writelines(str(seq))
             file.writelines("\n")
             file.close()
 
-        s = "blastp -query " + base_fasta_file + " -out " + blast_path + " -db " + db_path + " -evalue " + str(e_value) + " -outfmt 5"
+        s = "blastp -query " + self.base_fasta_file + " -out " + blast_path + " -db " + db_path + " -evalue " + str(e_value) + " -outfmt 5"
         os.system(s)
 
         blast_records = NCBIXML.parse(open(blast_path))
         #abro el archivo donde voy a guardar el fasta post blast con las secuencias homólogas
-        file = open(base_fasta_file, "w")
+        file = open(self.base_fasta_file, "w")
 
         #recorre el archivo devuelto y obtengo las homólogas que cumplen la identidad pasada por argumento correspondiente al campo identity
         for blast_record in blast_records:

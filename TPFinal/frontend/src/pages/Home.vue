@@ -11,22 +11,17 @@
     </div>
     <div class="row welcome">
      <h2>Secuencia:</h2>
-      <p v-if="result!==null" >{{parseSeq(result["seq"])}}</p>
+      <h6 v-if="result!==null" >{{parseSeq(result["seq"])}}</h6>
     </div>
     <div class="row welcome">
         <iframe :src=generateURL() width="1200" height="600" ></iframe>
     </div>
-
-    <div class="row welcome">
-      <div class="col-md-5 data">
-      <h2>Homologas</h2>
-        <blast-viewer :blast="result['blast']"/>
-      </div>
-      <div class="col-md-5 offset-1  data">
+    <div class="row">
+      <d-s-s-p-viewer/>
+    </div>
+    <div class=" welcome ">
         <h3>Alineamientos con Homologas</h3>
-        <clustal-result :data="result['blast']" />
-      </div>
-
+        <clustal-result :data="result['clustal']" />
     </div>
 
   </div>
@@ -38,10 +33,11 @@ import JsMolViewer from "../components/JsMolViewer.vue";
 import BlastViewer from "../components/BlastViewer.vue";
 import ClustalViewer from "../components/ClustalPanel.vue";
 import ClustalResult from "../components/ClustalResult.vue";
+import DSSPViewer from "../components/DSSPViewer.vue";
 
 export default {
   name: "Home",
-  components: {ClustalResult, ClustalViewer, BlastViewer, JsMolViewer},
+  components: {DSSPViewer, ClustalResult, ClustalViewer, BlastViewer, JsMolViewer},
   data() {
     return {
       codigo: "",

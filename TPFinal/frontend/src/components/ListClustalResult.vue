@@ -1,9 +1,9 @@
 <template>
   <div class="row info">
-    <div class="col" >
+    <div class="col-2" >
       <h2> {{data[0]}}</h2>
     </div>
-    <div class="col">
+    <div class="col-10">
       <p> {{parseSeq(data[1])}}</p>
     </div>
   </div>

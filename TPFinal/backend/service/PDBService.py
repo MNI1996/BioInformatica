@@ -7,7 +7,7 @@ from Bio.PDB import PDBList
 class PDBService:
 
     def __init__(self):
-        output_pdb=""
+        self.output_pdb=""
         owd = os.getcwd()
         self.output_pdb = os.path.join(owd, "backend")
         self.output_pdb = os.path.join(self.output_pdb, "pdb")

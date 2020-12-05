@@ -1,38 +1,20 @@
 <template>
   <div>
-    <img src="Images/res.png" alt="">
+    <img :src=urlImage() alt="">
   </div>
 </template>
 
 <script>
-import {SvgMsa} from 'vue-svg-msa'
-import 'vue-svg-msa/dist/vue-svg-msa.css'
-/*var opts = {
-  el: document.getElementById("result"),
-  vis: {
-    conserv: false,
-    overviewbox: false
-  },
-// smaller menu for JSBin
-  menu: "small",
-  bootstrapMenu: true
-};
-
-var m = new msa.msa(opts);
-m.u.file.importURL("file:///C:/Users/pc/Desktop/Facu/Bioinformatica/BioInformatica/TPFinal/backend/clustal/out_clustal_file.fa", function(){
-  m.render();
-});*/
+import {mapGetters} from "vuex";
 export default {
 name: "DSSPViewer",
-  date(){
-    return{
-      seqs:[{
-        seq: 'ATCATCATCATCATCATACTCATTTTTACAT---CATCATACTACATCATCATATACTCATTTTTACATCATC-TCTT',
-        id: 'seqid1',
-        name: 'sequence1',
-        color: 'red'
-      }]
-    }
+  computed:{
+    ...mapGetters(["result"])
+  },
+  methods:{
+  urlImage(){
+    return "Images/dssp/"+this.result["id"]+".png"
+  }
   }
 }
 
