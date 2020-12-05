@@ -1,7 +1,11 @@
 <template>
   <div class="row info">
     <div class="col-2" >
-      <h2> {{data[0]}}</h2>
+      <a :href=url() >
+        <h2>
+          {{data[0]}}
+        </h2>
+        </a>
     </div>
     <div class="col-10">
       <p> {{parseSeq(data[1])}}</p>
@@ -26,6 +30,9 @@ name: "ListClustalResult",
         rsf+=res+"\n"
       }
       return rsf
+    },
+    url(){
+      return "https://www.rcsb.org/structure/"+this.data[0]
     }
   }
 }

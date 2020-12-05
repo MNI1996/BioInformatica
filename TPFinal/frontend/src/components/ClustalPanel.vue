@@ -9,8 +9,8 @@
     <div class="row">
       <div class="col col-md-4">
         <label>
-          <h5>Ingrese la ruta de su clustal</h5>
-          <input type="text" v-model="clustal_path" class="input-group" :value=defaultClustal />
+          <h5>Ingrese la ruta de su clustal*</h5>
+          <input type="text" v-model="clustal_path" class="input-group"  />
         </label>
       </div>
       <div class="col col-md-4">
@@ -56,6 +56,9 @@
 
         <button @click="search" class="btn btn-lg btn-success btn-block">Buscar</button>
       </div>
+    </div>
+    <div class="row">
+      <h5>*La ruta estandar suele ser C:\\Program Files (x86)\\ClustalW2\\clustalw2</h5>
     </div>
   </div>
 
