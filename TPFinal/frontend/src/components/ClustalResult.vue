@@ -1,11 +1,7 @@
 <template>
   <div>
-    <div class="row " v-for="i in data">
-      <list-clustal-result :data=i />
-    </div>
-
+      <list-clustal-result v-for="i in data" :data=i />
   </div>
-
 </template>
 
 <script>

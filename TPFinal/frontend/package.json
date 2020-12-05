@@ -20,6 +20,7 @@
     "vue": "^2.6.12",
     "vue-axios": "^2.1.5",
     "vue-router": "^3.4.3",
+    "vue-svg-msa": "^3.1.20",
     "vuejs-noty": "^0.1.3",
     "vuex": "^3.5.1"
   },

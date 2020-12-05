@@ -1,16 +1,20 @@
 import logomaker as lm
 import matplotlib.pyplot as plt
+import pandas as pd
+
 plt.ion()
+
 
 class LogoService:
 
-    def logoMaker(id):
-        with lm.open_example_datafile('crp_sites.fa', print_description=False) as f:
-            raw_seqs = f.readlines()
-        seqs = [seq.strip() for seq in raw_seqs if ('#' not in seq) and ('>') not in seq]
-        # preview s equences
-        print('There are %d sequences, all of length %d'%(len(seqs), len(seqs[0])))
-        counts_mat = lm.alignment_to_matrix(seqs)
-        counts_mat.head()
-        lm.Logo(counts_mat)
+
+    def logoMaker(self,pseqs,id):
+        seqs=[]
+        for i in pseqs:
+            seqs.append(i[1])
+        crp_counts_df = lm.alignment_to_matrix(sequences=seqs, to_type='counts', characters_to_ignore='.-X')
+        crp_counts_m=lm.transform_matrix(crp_counts_df, from_type='counts',to_type='probability')
+        lm.Logo(crp_counts_m)
         plt.savefig("frontend/Images/dssp/"+id+".png")
+
+#prob_mat = lm.transform_matrix(crp_df, from_type='counts', to_type='probability') characters_to_ignore='.-X'
