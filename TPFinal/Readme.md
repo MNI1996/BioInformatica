@@ -1,6 +1,8 @@
-# A N A L I Z E
+# ***A N A L I Z E***
 
+#### (La aplicación fue programada en Windows 10)
 ### PRECONDICIONES
+
 #### 1-) Instalar BLASTP (verificar las variables de entorno) con su correspondiente DB elegida
 	1-1) Si ud cuenta con windows 10 o powerShwell 3.0, puede ejecutar el bach de nombre "instal_db"
 	1-2) Al descargarse manualmente la DB debe descomprimir la carpeta en otra ubicada en backend\db
@@ -8,14 +10,14 @@
 #### 3-) Conocer la ruta dónde se instaló Clustal, es necesaria para poder correr la aplicación ya que se le va a solicitar
 ##
 ### BACKEND
-#### 4-) Tener instalado python 3.6
-#### 5-) Instalar biopython
+#### 4-) Tener instalado python 3.6 (*https://www.python.org/downloads/windows/* y seleccionar la opción correspondiente)
+#### 5-) Instalar biopython (*https://biopython.org/wiki/Download/*)
 #### 6-) Instalar logomaker
-#### 7-) Instalar flask
-#### 8-) Instalar flaskCors 
+#### 7-) Instalar flask (*https://flask.palletsprojects.com/en/1.1.x/installation/*)
+#### 8-) Instalar flaskCors (*https://pypi.org/project/Flask-Cors/*)
 ##
 ### FRONTEND
-#### 9-) Instalar NodeJS 
+#### 9-) Instalar NodeJS (*https://nodejs.org/es/download/*)
 ##
 ### CÓMO SE USA LA APLICACIÓN
 #### 10-) Para el correcto funcionamiento de la aplicación se deben correr los comandos desde las siguientesrutas:
