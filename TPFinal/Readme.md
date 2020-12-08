@@ -1,10 +1,10 @@
 # ***A N A L I Z E***
 
-##### Analize es un visualizador de prroteínas con sus estructuras y conservación. Con sólo ingresar el código PDB de la proteína, la dirección local dónde se instaló CLUSTAL y setear algunos parámetros, permite visualizar las estructuras primaria, secunaria, terciaria y cuaternaria (si la tiene) de la proteína ingresada, además de las cadenas homólogas alineadas.
+##### Analize es un visualizador de proteínas con sus estructuras y conservación, tomando como parámetro de ordenamiento de conservación, el porcentaje de identidad. Con sólo ingresar el código PDB de la proteína, la dirección local dónde se instaló CLUSTAL y setear algunos parámetros, permite visualizar las estructuras primaria, secunaria, terciaria y cuaternaria (si la tiene) de la proteína ingresada, además de las cadenas homólogas alineadas.
 
 ##### Por medio de un visalizador es que se puede observar las estructuras terciarias y cuaternarias de diferentes maneras
 
-#### La aplicación fue programada para ser usada en Windows 10
+##### La aplicación fue programada para ser usada en Windows 10
 ### PRECONDICIONES
 ##
 #### 1-) Instalar BLASTP (verificar las variables de entorno) con su correspondiente DB elegida (para instalar BLASTP: *https://www.ncbi.nlm.nih.gov/books/NBK52637/*)
