@@ -1,4 +1,4 @@
-# ***A N A L I Z E***
+# ***A N A L I Z E R***
 
 ##### Analize es un visualizador de proteínas con sus estructuras y conservación, tomando como parámetro de ordenamiento de conservación, el porcentaje de identidad. Con sólo ingresar el código PDB de la proteína, la dirección local dónde se instaló CLUSTAL y setear algunos parámetros, permite visualizar las estructuras primaria, secunaria, terciaria y cuaternaria (si la tiene) de la proteína ingresada, además de las cadenas homólogas alineadas.
 
