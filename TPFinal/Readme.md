@@ -1,6 +1,10 @@
 # ***A N A L I Z E***
 
-#### (La aplicación fue programada en Windows 10)
+##### Analize es un visualizador de prroteínas con sus estructuras y conservación. Con sólo ingresar el código PDB de la proteína, la dirección local dónde se instaló CLUSTAL y setear algunos parámetros, permite visualizar las estructuras primaria, secunaria, terciaria y cuaternaria (si la tiene) de la proteína ingresada, además de las cadenas homólogas alineadas.
+
+##### Por medio de un visalizador es que se puede observar las estructuras terciarias y cuaternarias de diferentes maneras
+
+#### La aplicación fue programada para ser usada en Windows 10
 ### PRECONDICIONES
 ##
 #### 1-) Instalar BLASTP (verificar las variables de entorno) con su correspondiente DB elegida (para instalar BLASTP: *https://www.ncbi.nlm.nih.gov/books/NBK52637/*)
@@ -12,27 +16,25 @@
 ##
 ### BACKEND
 #
-#### 4-) Tener instalado python 3.6 (*https://www.python.org/downloads/windows/* y seleccionar la opción correspondiente)
-#### 5-) Instalar biopython (*https://biopython.org/wiki/Download/*)
-#### 6-) Instalar logomaker (*https://academic.oup.com/bioinformatics/article/36/7/2272/5671693*)
-#### 7-) Instalar flask (*https://flask.palletsprojects.com/en/1.1.x/installation/*)
-#### 8-) Instalar flaskCors (*https://pypi.org/project/Flask-Cors/*)
+#### - Tener instalado python 3.6 (*https://www.python.org/downloads/windows/* y seleccionar la opción correspondiente)
+#### - Instalar biopython (*https://biopython.org/wiki/Download/*)
+#### - Instalar logomaker (*https://academic.oup.com/bioinformatics/article/36/7/2272/5671693*)
+#### - Instalar flask (*https://flask.palletsprojects.com/en/1.1.x/installation/*)
+#### - Instalar flaskCors (*https://pypi.org/project/Flask-Cors/*)
 ##
 ##
 ### FRONTEND
 #
-#### 9-) Instalar NodeJS (*https://nodejs.org/es/download/*)
+#### - Instalar NodeJS (*https://nodejs.org/es/download/*)
 ##
 ##
 ### CÓMO SE USA LA APLICACIÓN
 ##
 #### Para el correcto funcionamiento de la aplicación se deben correr los comandos desde las siguientes rutas:
-#### 10) Para el **backend**: desde la carpeta TPFinal, escribir *python backend\apy.py*
-#### 11) Para correr el **frontend**: desde la carpeta TPFinal, *escribir frontend\npm run dev*
-##
-#### 12-) Para visualizar las estructuras terciaria y cuaternaria se debe seleccionar de la pestaña *STYLE, protein, sphere*
-##
-#### 13-) Para visualizar la estructura secundaria desde la terciaria, se debe seleccioanr la pestaña, *STYLE, protein, ribbon*
+#### * Para el **backend**: desde la carpeta TPFinal, escribir *python backend\apy.py*
+#### * Para correr el **frontend**: desde la carpeta TPFinal, *escribir frontend\npm run dev*
+#### * Para visualizar las estructuras terciaria y cuaternaria se debe seleccionar de la pestaña *STYLE, protein, sphere*
+#### * Para visualizar la estructura secundaria desde la terciaria, se debe seleccioanr la pestaña, *STYLE, protein, ribbon*
 
 
 
