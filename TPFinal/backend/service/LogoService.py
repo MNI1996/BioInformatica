@@ -61,5 +61,5 @@ class LogoService:
         img_path = os.path.join(img_path, "dssp")
         img_path = os.path.join(img_path, idP)
         if not os.path.exists(img_path):
-            os.mkdir(img_path)
+            os.makedirs(img_path)
         plt.savefig(img_path+"/"+str(n)+".png")

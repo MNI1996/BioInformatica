@@ -73,7 +73,7 @@ name: "ClustalPanel",
   },
   data(){
     return{
-      clustal_path: "",
+      clustal_path: "C:\\Program Files (x86)\\ClustalW2\\clustalw2",
       id: "",
       chain: "A",
       identity: 39.9,
