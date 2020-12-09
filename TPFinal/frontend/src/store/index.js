@@ -8,6 +8,15 @@ Vue.use(Vuex)
 const debug = process.env.NODE_ENV !== 'production'
 const apiUrl = "http://localhost:5000"
 
+function showErrorWithNoty(error) {
+  if (error.response) {
+    Vue.noty.error(error.response.data.message, {killer: true})
+  } else if (error.message) {
+    Vue.noty.error(error.message, {killer: true})
+  } else {
+    Vue.noty.error("Error desconocido", {killer: true})
+  }
+}
 
 export default new Vuex.Store({
   strict: debug,
@@ -29,7 +38,7 @@ export default new Vuex.Store({
      await Vue.axios.post( `${apiUrl}/pdb`,data)
                     .then(response=>{commit('setResult', response.data)
                                       Vue.noty.info("Ya estan sus resultados")})
-                    .catch((error)=>{Vue.noty.error(error.message)});
+                    .catch((error)=>{showErrorWithNoty(error)});
     },
 
   },
