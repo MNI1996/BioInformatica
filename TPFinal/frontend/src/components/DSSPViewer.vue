@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-for="i in numberOfGraphs">
-      <img :src=urlImage(i) alt="">
+      <img style="margin-top:130px; width: 100%" :src=urlImage(i) alt="">
     </div>
   </div>
 </template>

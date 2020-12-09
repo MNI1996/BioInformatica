@@ -22,7 +22,7 @@
         <clustal-result :data="result['clustal']" />
       </div>
       <div class=" col col-md-6">
-        <h6>Grafico de conservacion</h6>
+        <h3>Gráfico de conservacion</h3>
         <d-s-s-p-viewer :id="result['id']" :number-of-graphs="result['numGraph']"/>
       </div>
 
