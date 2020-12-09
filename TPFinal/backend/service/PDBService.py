@@ -15,6 +15,7 @@ class PDBService:
 
     def getPDB(self,id):
         pdbl = PDBList()
+
         return pdbl.retrieve_pdb_file(id,pdir= self.output_pdb, file_format ='pdb')
 
     def converToSequence(self,id):

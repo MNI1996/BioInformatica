@@ -69,7 +69,7 @@ def getInfo():
     result["seq"] = pdbService.converToSequence(id)
     blastService.getBlast(id,result["seq"],db,num_align,e_value,identity)
     result["clustal"] = clustalService.getClustal(clustalw_exe,blastService.getBaseFasta(),id)
-    logoService.logoMaker(result["clustal"],id)
+    #logoService.logoMaker(result["clustal"],id)
 
 
     json_object = json.dumps(result, indent = 4)
