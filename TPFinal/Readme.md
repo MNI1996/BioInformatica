@@ -20,6 +20,7 @@
 #### - Instalar logomaker (*https://academic.oup.com/bioinformatics/article/36/7/2272/5671693*)
 #### - Instalar flask (*https://flask.palletsprojects.com/en/1.1.x/installation/*)
 #### - Instalar flaskCors (*https://pypi.org/project/Flask-Cors/*)
+#### - Instalar flaskRestful (*https://flask-restful.readthedocs.io/en/latest/installation.html*)
 ##
 ##
 ### FRONTEND
