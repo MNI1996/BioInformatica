@@ -16,12 +16,16 @@
     <div class="row welcome">
         <iframe :src=generateURL() width="1200" height="600" ></iframe>
     </div>
-    <div class="row">
-      <d-s-s-p-viewer/>
-    </div>
-    <div class=" welcome ">
+    <div class="row welcome ">
+      <div class=" col col-md-6">
         <h3>Alineamientos con Homologas</h3>
         <clustal-result :data="result['clustal']" />
+      </div>
+      <div class=" col col-md-6">
+        <h6>Grafico de conservacion</h6>
+        <d-s-s-p-viewer :id="result['id']"/>
+      </div>
+
     </div>
 
   </div>
