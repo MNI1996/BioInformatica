@@ -7,7 +7,7 @@
 ##### La aplicación fue programada para ser usada en Windows 10
 ### PRECONDICIONES
 ##
-#### 1-) Instalar BLASTP (verificar las variables de entorno) con su correspondiente DB elegida (para instalar BLASTP: *https://www.ncbi.nlm.nih.gov/books/NBK52637/*)
+#### 1-) Instalar BLASTP (verificar las variables de entorno) con su correspondiente DB elegida (para instalar BLASTP: *https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download*)
 	1-1) Si ud cuenta con windows 10 o powerShwell 3.0, puede ejecutar el bach de nombre "instal_db"
 	1-2) Al descargarse manualmente la DB debe descomprimir la carpeta en otra ubicada en backend\db
 #### 2-) Instalar Clustal (verificar las variables de entorno) (*http://www.clustal.org/omega/#Download*)
@@ -50,7 +50,8 @@
 		-) Ingrese % de identidad minimo deseado que por default está seteado 39.9
 #### + Luego de mostrar la estructura primaria de la proteína ingresada, se presenta un visualizador con la representación de la estructura terciaria.
 #### + La visualización de las estructuras terciaria y cuaternaria, por default es *Ribbon*. Para cambiarla, se debe seleccionar de la pestaña *STYLE, protein, sphere*, por ejemplo. 
-#### + Para visualizar estructura secundaria se debe seleccioanr la pestaña, *STYLE, protein, ribbon*
+#### + Para visualizar estructura secundaria conseervada se debe seleccioanr la pestaña, *ANALYSIS,View Sequences & Annotation*, luego seleccionar la solapa *Details* y no se debe tildar ninguna opción.
+#### + Para visualizar la conservación de las estrucutras secundarias con sus homólogas, se debe tildar *Conserved Domains* y agregar las ptras proteínas homólogas 
 
 
 
