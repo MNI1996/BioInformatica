@@ -2,8 +2,8 @@ import os
 import time
 from Bio.Blast import NCBIXML
 
-from TPFinal.backend.service.PDBService import PDBService
-#from backend.service.PDBService import PDBService
+from TPFinal.backend.service.PDBService import PDBService   #Funca para Marcos
+#from backend.service.PDBService import PDBService          #Funca para Pablo y Gra
 
 pdbService = PDBService()
 

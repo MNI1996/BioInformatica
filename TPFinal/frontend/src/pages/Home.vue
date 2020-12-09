@@ -23,7 +23,7 @@
       </div>
       <div class=" col col-md-6">
         <h6>Grafico de conservacion</h6>
-        <d-s-s-p-viewer :id="result['id']"/>
+        <d-s-s-p-viewer :id="result['id']" :number-of-graphs="result['numGraph']"/>
       </div>
 
     </div>

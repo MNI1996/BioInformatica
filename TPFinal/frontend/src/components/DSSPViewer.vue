@@ -1,6 +1,8 @@
 <template>
-  <div v-for="i in numberOfGraphs">
-    <img :src=urlImage(i) alt="">
+  <div>
+    <div v-for="i in numberOfGraphs">
+      <img :src=urlImage(i) alt="">
+    </div>
   </div>
 </template>
 

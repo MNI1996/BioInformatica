@@ -47,7 +47,6 @@
                         var par ={id:id, res:res[j]};
                         listReturn.push(par);
                     }
-
                     listFinal.push(listReturn)
                 }
                 var al_return=this.transposedMatrix(listFinal)
