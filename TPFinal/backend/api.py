@@ -1,66 +1,65 @@
 import flask
 import json
-import os
-import Bio
 
-from flask import request, jsonify, Response
+from flask import request
 from flask_cors import CORS, cross_origin
-from Bio.Seq import Seq
-from Bio import SeqIO
-from Bio.SeqRecord import SeqRecord
-from Bio.PDB import *
-#from biopandas.pdb import PandasPdb
-from Bio.Align.Applications import ClustalOmegaCommandline
-from Bio import AlignIO
-from Bio.Align.Applications import ClustalwCommandline
-from Bio.Blast.Applications import NcbiblastpCommandline
-from Bio.Blast import NCBIWWW
-from Bio.Blast import NCBIXML
 from flask_restful import abort
+
+from service.PDBService import PDBService
+from service.ClustalService import ClustalService
+from service.BlastService import BlastService
+from service.LogoService import LogoService
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 app.config["CORS_HEADERS"] = "Content-Type"
 CORS(app)
-cors = CORS(app, resources={r"/*": {"origins": "http://localhost:8080"}})
-
-def validateField(dataJson, fieldJson, value):
-    value_return = ""
-    value_return = dataJson[fieldJson] if str(dataJson[fieldJson]).strip()!="" and not dataJson[fieldJson] else value
-    return value_return
-
+pdbService=PDBService()
+blastService=BlastService()
+clustalService=ClustalService()
+logoService=LogoService()
 
 @app.route('/', methods=['GET'])
 @cross_origin()
 def home():
     return	 "<h1>Prueba.</p>"
 
-# el path debería ser /pdb?id=XXXX donde XXXX representa el código de cuatro letras de la proteina
+""" el path debería ser /pdb y el json recibido tiene esta estructura
+json = { 
+   "clustal_path": "C:\\Program Files (x86)\\ClustalW2\\clustalw2.exe",
+   "id": "1UBQ",
+   "chain": "A",
+   "identity": 39.9,
+   "num_align": 5,
+   "e_value": 0.001,
+   "db": "pdb",
+   "word_size": 3,
+   "gapopen": 11
+}
+"""
+def validateField(dataJson, fieldJson, value):
+    value_return = ""
+    value_return = dataJson[fieldJson] if str(dataJson[fieldJson]).strip()!="" and not dataJson[fieldJson] else value
+    return value_return
+
 @app.route('/pdb', methods=['POST'])
 @cross_origin()
-def post()-> Response:
-
-    result={"fafafa":"","seq":"","id":""}
-    data= request.get_json()
-    id=data["id"]
+def getInfo():
+    data = request.get_json()
+    result={"clustal":"","seq":"","id":""}
+    # si no tiene id el request directamente retorna error
+    id = data["id"]#.upper() para que no sea key sensitive
     if not id:
-        result={"error":"Error: No id field provided. Please specify an id."}
-        res=json.dumps(result, indent = 4)
-        return res
+        abort(404, message="Error: No real id provided. Please rewrite id field.")
+
+    result["id"] = id
     clustalw_exe = data["clustal_path"]
     if not clustalw_exe:
-        result={"error":"Error: No clustal field provided. Please specify a clustal path."}
-        res=json.dumps(result, indent = 4)
-        return res
-    #pdbl = PDBList()
-	# esto descarga el archivo pdb
-    #result.append(pdbl.retrieve_pdb_file(id,pdir='./pdb', file_format ='pdb'))
-    #result["fafafa"] = pdbl.retrieve_pdb_file(data["id"], pdir='./pdb', file_format ='pdb')
-
+        abort(404, message="Error: No clustal field provided. Please specify a clustal path.")
 
     identity = float(validateField(data, "identity", 39.9))
     identity = identity if identity > 0 else 39.9
-    num_align = int(validateField(data, "num_align", 5))
+    num_align = int(validateField(data, "num_align", 5)) 
     num_align = num_align if num_align > 0 else 5
     chain = validateField(data, "chain", "A")
     e_value = float(data["e_value"])
@@ -68,78 +67,14 @@ def post()-> Response:
     word_size = int(data["word_size"])
     gapopen = int(data["gapopen"])
 
-    # esto descarga el archivo pdb
-    #result.append(pdbl.retrieve_pdb_file(id,pdir='./pdb', file_format ='pdb'))
-    owd = os.getcwd()
-    output_pdb = os.path.join(owd, "backend")
-    output_pdb = os.path.join(output_pdb, "pdb")
-    pdbl = PDBList()
-    result["fafafa"] = pdbl.retrieve_pdb_file(id,pdir= output_pdb, file_format ='pdb')
 
-    # convierto a la secuencia primaria
-    pdb_dw = os.path.join(output_pdb, "pdb"+id+".ent")
+    result["pdbPath"] =pdbService.getPDB(id)
+    result["seq"] = pdbService.converToSequence(id)
+    blastService.getBlast(id,result["seq"],db,num_align,e_value,identity)
+    result["clustal"] = clustalService.getClustal(clustalw_exe,blastService.getBaseFasta(),id)
+    result["numGraph"]=logoService.multiLogo(result["clustal"],id)
 
-    for record in SeqIO.parse(pdb_dw, "pdb-seqres"):
-        res =str(record.seq)
-        result["seq"] = res
 
-    #HOMOLOGAS con blast
-    # convert to fasta section
-    fasta_path = os.path.join(owd, "backend")
-    fasta_path = os.path.join(fasta_path, "fasta")
-    if not os.path.exists(fasta_path):
-        os.mkdir(fasta_path)
-
-    base_fasta_file = os.path.join(fasta_path, id+".fasta")
-    out_blast_file = os.path.join(fasta_path, id+".blast") #fasta_path+'\'+id+".blast"
-
-    blast_path = os.path.join(owd, "backend")
-    blast_path = os.path.join(blast_path, "blast")
-    if not os.path.exists(blast_path):
-        os.mkdir(blast_path)
-    blast_path = os.path.join(blast_path, "out_blast_file.fa")
-
-    #blast_path = "./backend/blast/out_blast_file.fa"
-    if db == "pdb":
-        db_path = "./backend/db/pdbaa"
-
-    s = "blastp -query ./backend/db/1.fasta -out " + blast_path + " -db " + db_path + " -evalue " + str(e_value) + " -outfmt 5"
-    os.system(s)
-
-    blast_records = NCBIXML.parse(open(blast_path))
-    file = open(base_fasta_file, "w")
-    for blast_record in blast_records:
-        sorted_aligntments = []
-        for alignment in blast_record.alignments:
-            identities = alignment.hsps[0].identities
-            align_length = alignment.hsps[0].align_length
-            porcent =  identities / align_length * 100
-
-            if (porcent > identity):
-                sorted_aligntments.append((alignment.hsps[0].query, porcent))
-        sorted_aligntments.sort(key=lambda x: x[1])
-        reversed_alignments = sorted_aligntments[::-1]
-
-    id = 0
-    while id < num_align:
-        file.writelines("> " + str(id))
-        file.writelines("\n")
-        file.writelines(str(reversed_alignments[id][0]))
-        file.writelines("\n")
-        id = id + 1
-
-    file.close()
-
-    clustal_output_path = os.path.join(owd, "backend")
-    clustal_output_path = os.path.join(clustal_output_path, "clustal")
-    if not os.path.exists(clustal_output_path):
-        os.mkdir(clustal_output_path)
-    clustal_output_path = os.path.join(clustal_output_path, "out_clustal_file.fa")
-
-    clustalw_cline = ClustalwCommandline(cmd = clustalw_exe, infile=base_fasta_file, outfile= clustal_output_path, output="fasta")
-    clustalw_cline()
-
-    result["id"]=id
     json_object = json.dumps(result, indent = 4)
     return (json_object)
 

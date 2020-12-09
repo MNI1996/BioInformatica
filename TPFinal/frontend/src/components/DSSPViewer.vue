@@ -1,6 +1,8 @@
 <template>
   <div>
-    <img :src=urlImage() alt="">
+    <div v-for="i in numberOfGraphs">
+      <img style="margin-top:130px; width: 100%" :src=urlImage(i) alt="">
+    </div>
   </div>
 </template>
 
@@ -8,12 +10,16 @@
 import {mapGetters} from "vuex";
 export default {
 name: "DSSPViewer",
+  props:{
+    id:"",
+    numberOfGraphs:0
+  },
   computed:{
     ...mapGetters(["result"])
   },
   methods:{
-  urlImage(){
-    return "Images/dssp/"+this.result["id"]+".png"
+  urlImage(n){
+    return "Images/dssp/"+this.result["id"]+"/"+n+".png"
   }
   }
 }
