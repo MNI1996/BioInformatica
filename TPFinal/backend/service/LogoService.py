@@ -7,8 +7,48 @@ plt.ion()
 
 class LogoService:
 
+    def parseSeq( self,seq) :
+        charperline = (len(seq) / 30) + 1
+        cutvalue = int(len(seq) /int(charperline))
+        rsf = []
+        for i in range(0,int(charperline)):
+            res = seq[(int(charperline) * i): (cutvalue * (i + 1))]
+            rsf.append(res)
+        return rsf
 
-    def logoMaker(self,pseqs,id):
+    def listHomologas(self,tuplas) :
+        listFinal = []
+        for i in range(0, len(tuplas)) :
+            listReturn = []
+            id = tuplas[i][0]
+            res = self.parseSeq(tuplas[i][1])
+            for j in range (0,len(res)):
+                par =res[j]
+                listReturn.append(par)
+
+            listFinal.append(listReturn)
+
+            al_return=self.transposedMatrix(listFinal)
+            return(al_return)
+
+    def transposedMatrix(self,lists):
+        resList = []
+        for i in range(0, len(lists[0])) :
+            auxList = []
+            for j in range(0, len(lists)):
+                elem = lists[j][i]
+                auxList.append(elem)
+            resList.append(auxList)
+        return resList
+
+    def multiLogo(self,pseqs,id):
+        n=0
+        lsSubseq= self.listHomologas(pseqs)
+        for i in lsSubseq:
+            self.logoMaker(i,id,n)
+            n += 1
+
+    def logoMaker(self, pseqs, idP, n):
         seqs=[]
         for i in pseqs:
             seqs.append(i[1])
@@ -20,8 +60,9 @@ class LogoService:
         os.chdir(img_path)
         img_path = os.path.join(img_path, "Images")
         img_path = os.path.join(img_path, "dssp")
+        img_path = os.path.join(img_path, idP)
         if not os.path.exists(img_path):
             os.mkdir(img_path)
-        plt.savefig(img_path+"/"+id+".png")
+        plt.savefig(img_path+"/"+str(n)+".png")
 
 #prob_mat = lm.transform_matrix(crp_df, from_type='counts', to_type='probability') characters_to_ignore='.-X'

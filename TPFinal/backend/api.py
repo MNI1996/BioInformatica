@@ -3,6 +3,7 @@ import json
 
 from flask import request
 from flask_cors import CORS, cross_origin
+from flask_restful import abort
 
 from service.PDBService import PDBService
 from service.ClustalService import ClustalService
@@ -47,13 +48,15 @@ def getInfo():
     data = request.get_json()
     result={"clustal":"","seq":"","id":""}
     # si no tiene id el request directamente retorna error
-    id = data["id"]
+    id = data["id"]#.upper() para que no sea key sensitive
     if not id:
-        return "Error: No id field provided. Please specify an id."
+        abort(404, message="Error: No real id provided. Please rewrite id field.")
+
     result["id"] = id
     clustalw_exe = data["clustal_path"]
     if not clustalw_exe:
-        return "Error: No clustal field provided. Please specify a clustal path."
+        abort(404, message="Error: No clustal field provided. Please specify a clustal path.")
+
     identity = float(validateField(data, "identity", 39.9))
     identity = identity if identity > 0 else 39.9
     num_align = int(validateField(data, "num_align", 5)) 
@@ -69,7 +72,7 @@ def getInfo():
     result["seq"] = pdbService.converToSequence(id)
     blastService.getBlast(id,result["seq"],db,num_align,e_value,identity)
     result["clustal"] = clustalService.getClustal(clustalw_exe,blastService.getBaseFasta(),id)
-    logoService.logoMaker(result["clustal"],id)
+    result["numGraph"]=logoService.multiLogo(result["clustal"],id)
 
 
     json_object = json.dumps(result, indent = 4)
