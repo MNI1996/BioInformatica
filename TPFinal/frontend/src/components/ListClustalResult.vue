@@ -1,15 +1,6 @@
 <template>
-  <div class="row info">
-    <div class="col-2" >
-      <a :href=url() >
-        <h6>
-          {{data[0]}}
-        </h6>
-        </a>
-    </div>
-    <div class="col-10">
-      <h6> {{parseSeq(data[1], data[0])}}</h6>
-    </div>
+  <div class="row info alineamientos" >
+    <p class="alineamientos" v-for="i in data "> {{parseBlock(i)}}<br> </p>
   </div>
 </template>
 
@@ -20,20 +11,12 @@ name: "ListClustalResult",
     data:null
   },
   methods:{
-  /*  parseSeq(seq, id){
-      var charperline=(seq.length/60)+1
-      var cutvalue= seq.length/parseInt(charperline)
-      var rsf=[]
-      var tuplas = []
-      for (var i = 0; i < charperline; i++)
-      {
-        var res = seq.substring(parseInt(cutvalue)*i,parseInt(cutvalue)*(i+1));
-        rsf+=res+"\n"
-      }
-      //return rsf
-      tuplas.append(id,rsf)
+  parseBlock(block){
 
-    },*/
+    return block["id"]+": "+block["res"]+"\n" ;
+
+
+  },
     url(){
       return "https://www.rcsb.org/structure/"+this.data[0]
     },

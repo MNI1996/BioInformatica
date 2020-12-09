@@ -17,19 +17,21 @@ li {
 div{
 	justify-content:center;
 }
-p{
-	font-size: 10px;
 
-}
-
-p,h3,h5,h2,h6,a{
+p,a,h1,h2 ,h3 ,h4 ,h5 ,h6 {
 	font-family: cursive;
 	color: antiquewhite;
 }
-h1{
-	font-family: cursive;
-	color: antiquewhite;
+.alineamientos{
+	justify-content: normal;
+
 }
+.alineamientos p{
+	font-size: 30px;
+	font-family: monospace;
+	letter-spacing: 2px;
+}
+
 
 .welcome {
 	background-color: darkslateblue;

@@ -1,9 +1,11 @@
 <template>
   <div>
-      <!--<list-clustal-result v-for="i in data" :data=i /> -->
-      <p>{{listHomologas(data)}}</p>
-
+   <!--<list-clustal-result v-for="i in data" :data=i /> -->
+    <div v-for= "ls in listHomologas(data)">
+      <list-clustal-result :data="ls" />
+    </div>
   </div>
+
 </template>
 
 <script>
@@ -51,26 +53,27 @@
                     var id = tuplas[i][0];
                     var res = this.parseSeq(tuplas[i][1]);
 
+
                     for (var j = 0; j < res.length; j++) {
-                        var par = (id, res[j]);
+                        var par ={id:id, res:res[j]};
                         listReturn.push(par);
                     }
+
                     listFinal.push(listReturn)
                 }
-                return(this.transposedMatrix(listFinal))
+                var al_return=this.transposedMatrix(listFinal)
+                return(al_return)
 
-                //Falta transponer listFinal y retornarla
+
 
 
             },
-
-
-            transposedMatrix(lists){
-                resList = [];
-                for(var i = 0; i < lists.length; i++){
-                    auxList = [];
-                    for(list in lists){
-                        elem = list[i];
+            transposedMatrix(lists){//lists=[[],[]]
+                var resList = [];
+                for(var i = 0; i < lists[0].length; i++){
+                    var auxList = [];
+                    for(var j=0;j< lists.length;j++){
+                        var elem = lists[j][i];
                         auxList.push(elem);
                     }
                     resList.push(auxList);
