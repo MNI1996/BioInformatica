@@ -6,7 +6,7 @@
 
 <script>
 import {mapGetters} from "vuex";
-/* source code :https://github.com/ncbi/icn3d*/
+
 export default {
   props:{cod:""},
   computed:{

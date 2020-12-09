@@ -3,7 +3,7 @@ import time
 from Bio.Blast import NCBIXML
 
 #from TPFinal.backend.service.PDBService import PDBService   #Funca para Marcos
-from backend.service.PDBService import PDBService          #Funca para Pablo y Gra
+from backend.service.PDBService import PDBService
 
 pdbService = PDBService()
 
@@ -20,22 +20,18 @@ class BlastService:
     def getBlast(self,id,seq,db,num_align,e_value,identity):
         #HOMOLOGAS con blast
         # convert to fasta section
-        #self.fasta_path = os.path.join(self.owd, "backend")
+
         self.fasta_path = os.path.join(self.owd, "fasta")
         if not os.path.exists(self.fasta_path):
             os.mkdir(self.fasta_path)
 
         self.base_fasta_file = os.path.join(self.fasta_path, id+".fasta")
-        out_blast_file = os.path.join(self.fasta_path, id+".blast")
 
-        #blast_path = os.path.join(self.owd, "backend")
         blast_path = os.path.join(self.owd, "blast")
         if not os.path.exists(blast_path):
             os.mkdir(blast_path)
         blast_path = os.path.join(blast_path, "out_blast_file.fa")
 
-        #blast_path = "./backend/blast/out_blast_file.fa"
-        #db_path = os.path.join(self.owd, "backend")
         db_path = os.path.join(self.owd, "db")
         if db == "pdb":
             db_path = os.path.join(db_path, "pdbaa")
@@ -74,10 +70,7 @@ class BlastService:
         #abro el archivo donde voy a guardar las n secuencias correspondiente al argumento pasado en el json del campo num_align
         # en el fasta para luego ser tomado por clustal
 
-        """cada elemento de la lista reversed_alignments son tripletas 
-            cada uno compuesto por la sig estructura (id, seq, porcentaje_identidad)
-            por eso el [0] me devuelve el id, el [1] la seq y el [2] no lo uso, no es necesario para el fasta
-        """
+
         #primero guardo la secuencia buscada por el usuario
         file.writelines("> " + str(id) )
         file.writelines("\n")

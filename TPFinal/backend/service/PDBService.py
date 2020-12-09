@@ -9,7 +9,6 @@ class PDBService:
     def __init__(self):
         self.output_pdb=""
         owd = os.getcwd()
-        #self.output_pdb = os.path.join(owd, "backend")
         self.output_pdb = os.path.join(owd, "pdb")
 
 
