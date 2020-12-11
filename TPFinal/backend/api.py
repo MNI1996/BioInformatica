@@ -53,7 +53,7 @@ def getInfo():
 
     result["pdbPath"] =pdbService.getPDB(id)
     result["seq"] = pdbService.converToSequence(id)
-    blastService.getBlast(id,result["seq"],db,int(num_align),e_value,identity)#id,seq,db,num_align,e_value,identity
+    blastService.getBlast(id,result["seq"],db,int(num_align),e_value,identity)
     result["clustal"] = clustalService.getClustal(clustalw_exe,blastService.getBaseFasta(),id)
     result["numGraph"]=logoService.multiLogo(result["clustal"],id)
 
