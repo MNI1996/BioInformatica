@@ -8,8 +8,8 @@ plt.ion()
 class LogoService:
 
     def parseSeq( self,seq) :
-        charperline = (len(seq) / 30) + 1 # para la primera da 18
-        cutvalue = int(len(seq) /int(charperline)) # para la primera da 29
+        charperline = (len(seq) / 30) + 1
+        cutvalue = int(len(seq) /int(charperline))
         rsf = []
         for i in range(0,int(charperline)):
             start = (int(charperline) * i)
@@ -52,8 +52,6 @@ class LogoService:
 
     def logoMaker(self, pseqs, idP, n):
         crp_counts_df = lm.alignment_to_matrix(sequences=pseqs, to_type='counts', characters_to_ignore='.-X')
-        #crp_counts_m=lm.transform_matrix(crp_counts_df, from_type='counts',to_type='probability')
-        #lm.Logo(crp_counts_m)
         lm.Logo(crp_counts_df)
         img_path = os.getcwd().replace("backend", "frontend")
         os.chdir(img_path)
@@ -61,5 +59,5 @@ class LogoService:
         img_path = os.path.join(img_path, "dssp")
         img_path = os.path.join(img_path, idP)
         if not os.path.exists(img_path):
-            os.mkdir(img_path)
+            os.makedirs(img_path)
         plt.savefig(img_path+"/"+str(n)+".png")

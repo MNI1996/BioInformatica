@@ -1,6 +1,5 @@
 <template>
   <div>
-   <!--<list-clustal-result v-for="i in data" :data=i /> -->
     <div v-for= "ls in listHomologas(data)">
       <list-clustal-result :data="ls" />
     </div>
@@ -76,7 +75,7 @@
 
 
 
-    }
+
 
 <style scoped>
 
