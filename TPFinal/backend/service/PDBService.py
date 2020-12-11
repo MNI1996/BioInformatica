@@ -3,6 +3,8 @@ import os
 from Bio import SeqIO
 from Bio.PDB import PDBList
 
+from backend.exceptions.PDBDoesNotExistException import PDBDoesNotExistException
+
 
 class PDBService:
 
@@ -14,8 +16,10 @@ class PDBService:
 
     def getPDB(self,id):
         pdbl = PDBList()
-
-        return pdbl.retrieve_pdb_file(id,pdir= self.output_pdb, file_format ='pdb')
+        retStr = pdbl.retrieve_pdb_file(id,pdir= self.output_pdb, file_format ='pdb')
+        if ( not os.path.exists(retStr)):
+            raise PDBDoesNotExistException();
+        return retStr
 
     def converToSequence(self,id):
         pdb_dw = os.path.join(self.output_pdb, "pdb"+id+".ent")

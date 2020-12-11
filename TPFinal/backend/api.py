@@ -5,6 +5,7 @@ from flask import request
 from flask_cors import CORS, cross_origin
 from flask_restful import abort
 
+from backend.exceptions import PDBDoesNotExistException
 from service.PDBService import PDBService
 from service.ClustalService import ClustalService
 from service.BlastService import BlastService
@@ -51,11 +52,16 @@ def getInfo():
     db = validateField(data, "db", "pdb")
 
 
-    result["pdbPath"] =pdbService.getPDB(id)
-    result["seq"] = pdbService.converToSequence(id)
-    blastService.getBlast(id,result["seq"],db,int(num_align),e_value,identity)
-    result["clustal"] = clustalService.getClustal(clustalw_exe,blastService.getBaseFasta(),id)
-    result["numGraph"]=logoService.multiLogo(result["clustal"],id)
+    try:
+        result["pdbPath"] =pdbService.getPDB(id)
+        #result["seq"] = pdbService.converToSequence(id)
+        #blastService.getBlast(id,result["seq"],db,int(num_align),e_value,identity)
+        #result["clustal"] = clustalService.getClustal(clustalw_exe,blastService.getBaseFasta(),id)
+        #result["numGraph"]=logoService.multiLogo(result["clustal"],id)
+    except PDBDoesNotExistException:
+        abort(404, message="Error: The id provided does not exist. Please check it and try again.")
+    finally:
+        abort(404, message="Impossible to handle error.")
 
 
     json_object = json.dumps(result, indent = 4)
