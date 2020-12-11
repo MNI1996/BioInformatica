@@ -1,6 +1,6 @@
 <template>
 <div class="col">
-  <a  style="font-size: 30px" :href=url(idP)> {{idP}}</a>
+  <a  style="font-size: 30px" :href=url(idP) target="_blank"> {{idP}}</a>
 </div>
 </template>
 

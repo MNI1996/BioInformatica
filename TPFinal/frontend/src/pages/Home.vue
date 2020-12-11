@@ -17,18 +17,18 @@
         <iframe :src=generateURL() width="1200" height="600" ></iframe>
     </div>
     <div class ="row welcome ">
-      <h3>Proteinas Homologas: </h3>
+      <h3>Proteínas Homólogas: </h3>
         <div class="col" v-for="i in result['clustal']">
           <link-homologas :idP="i[0]" />
         </div>
     </div>
     <div class="row welcome ">
       <div class=" col col-md-6">
-        <h3>Alineamientos con Homologas</h3>
+        <h3>Alineamientos con Homólogas</h3>
         <clustal-result :data="result['clustal']" />
       </div>
       <div class=" col col-md-6">
-        <h3>Gráfico de conservacion</h3>
+        <h3>Gráfico de conservación</h3>
         <d-s-s-p-viewer :id="result['id']" :number-of-graphs="result['numGraph']"/>
       </div>
 
