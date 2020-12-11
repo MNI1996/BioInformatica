@@ -2,8 +2,8 @@ import os
 import time
 from Bio.Blast import NCBIXML
 
-#from TPFinal.backend.service.PDBService import PDBService   #Funca para Marcos
-from backend.service.PDBService import PDBService          #Funca para Pablo y Gra
+from TPFinal.backend.service.PDBService import PDBService   #Funca para Marcos
+#from backend.service.PDBService import PDBService          #Funca para Pablo y Gra
 
 pdbService = PDBService()
 
@@ -85,6 +85,7 @@ class BlastService:
         file.writelines("\n")
 
         id = 0
+#        print(num_align)
         while id < num_align:
             file.writelines("> " + str(reversed_alignments[id][0]) )
             file.writelines("\n")

@@ -56,11 +56,12 @@ def getInfo():
     clustalw_exe = data["clustal_path"]
     if not clustalw_exe:
         abort(404, message="Error: No clustal field provided. Please specify a clustal path.")
-
+    print(data["num_align"])
     identity = float(validateField(data, "identity", 39.9))
     identity = identity if identity > 0 else 39.9
-    num_align = int(validateField(data, "num_align", 5)) 
-    num_align = num_align if num_align > 0 else 5
+#    num_align = int(validateField(data, "num_align", 5))
+    num_align = data["num_align"]
+    print(num_align)
     chain = validateField(data, "chain", "A")
     e_value = float(data["e_value"])
     db = validateField(data, "db", "pdb")
@@ -70,7 +71,7 @@ def getInfo():
 
     result["pdbPath"] =pdbService.getPDB(id)
     result["seq"] = pdbService.converToSequence(id)
-    blastService.getBlast(id,result["seq"],db,num_align,e_value,identity)
+    blastService.getBlast(id,result["seq"],db,int(num_align),e_value,identity)#id,seq,db,num_align,e_value,identity
     result["clustal"] = clustalService.getClustal(clustalw_exe,blastService.getBaseFasta(),id)
     result["numGraph"]=logoService.multiLogo(result["clustal"],id)
 

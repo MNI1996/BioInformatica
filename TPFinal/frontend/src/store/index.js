@@ -12,7 +12,7 @@ function showErrorWithNoty(error) {
   if (error.response) {
     Vue.noty.error(error.response.data.message, {killer: true})
   } else if (error.message) {
-    Vue.noty.error(error.message, {killer: true})
+    Vue.noty.error("Error interno")
   } else {
     Vue.noty.error("Error desconocido", {killer: true})
   }

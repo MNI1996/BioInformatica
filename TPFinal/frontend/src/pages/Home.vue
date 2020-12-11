@@ -16,6 +16,12 @@
     <div class="row welcome">
         <iframe :src=generateURL() width="1200" height="600" ></iframe>
     </div>
+    <div class ="row welcome ">
+      <h3>Proteinas Homologas: </h3>
+        <div class="col" v-for="i in result['clustal']">
+          <link-homologas :idP="i[0]" />
+        </div>
+    </div>
     <div class="row welcome ">
       <div class=" col col-md-6">
         <h3>Alineamientos con Homologas</h3>
@@ -38,10 +44,11 @@ import BlastViewer from "../components/BlastViewer.vue";
 import ClustalViewer from "../components/ClustalPanel.vue";
 import ClustalResult from "../components/ClustalResult.vue";
 import DSSPViewer from "../components/DSSPViewer.vue";
+import LinkHomologas from "../components/LinkHomologas.vue";
 
 export default {
   name: "Home",
-  components: {DSSPViewer, ClustalResult, ClustalViewer, BlastViewer, JsMolViewer},
+  components: {LinkHomologas, DSSPViewer, ClustalResult, ClustalViewer, BlastViewer, JsMolViewer},
   data() {
     return {
       codigo: "",
