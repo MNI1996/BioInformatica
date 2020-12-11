@@ -2,8 +2,9 @@ import os
 import time
 from Bio.Blast import NCBIXML
 
-#from TPFinal.backend.service.PDBService import PDBService   #Funca para Marcos
+#from TPFinal.backend.service.PDBService import PDBService
 from backend.service.PDBService import PDBService
+
 
 pdbService = PDBService()
 
@@ -61,7 +62,6 @@ class BlastService:
                 align_length = alignment.hsps[0].align_length
                 porcent = identities / align_length * 100
                 if (porcent > identity):
-                    #sorted_aligntments.append((title, alignment.hsps[0].query, porcent))
                     sorted_aligntments.append((title, "", porcent))
             sorted_aligntments.sort(key=lambda x: x[2])
             print(str(sorted_aligntments))
@@ -69,7 +69,6 @@ class BlastService:
 
         #abro el archivo donde voy a guardar las n secuencias correspondiente al argumento pasado en el json del campo num_align
         # en el fasta para luego ser tomado por clustal
-
 
         #primero guardo la secuencia buscada por el usuario
         file.writelines("> " + str(id) )

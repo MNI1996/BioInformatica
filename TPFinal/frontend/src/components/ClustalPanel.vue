@@ -23,11 +23,13 @@
       </div>
       <div class="col col-md-4">
         <h5>Defina nro de muestras</h5>
-        <select name="num_align" v-model="num_align">
-          <option selected value="5">5</option>
-          <option value="10">10</option>
-          <option value="15">15</option>
-        </select>
+        <label>
+          <select name="num_align" v-model="num_align">
+            <option selected value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+          </select>
+        </label>
       </div>
     </div>
     <div class="row">
@@ -77,7 +79,7 @@ name: "ClustalPanel",
       id: "",
       chain: "A",
       identity: 39.9,
-      num_align: 5,
+      num_align: "5",
       e_value: 0.001,
       db: "pdb",
       word_size: 3,
@@ -91,7 +93,7 @@ name: "ClustalPanel",
         id: this.id,
         chain: this.chain,
         identity: this.identity,
-        num_align: this.identity,
+        num_align: this.num_align,
         e_value: this.e_value,
         db: this.db,
         word_size: this.word_size,

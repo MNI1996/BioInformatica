@@ -14,9 +14,7 @@ name: "ListClustalResult",
   parseBlock(block){
     return block["id"]+": "+block["res"]+"\n" ;
   },
-    url(){
-      return "https://www.rcsb.org/structure/"+this.data[0]
-    },
+
 
 
   }
