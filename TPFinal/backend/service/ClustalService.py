@@ -10,7 +10,6 @@ class ClustalService:
         self.owd = os.getcwd()
 
     def getClustal(self,clustalw_exe,base_fasta_file,id):
-        #clustal_output_path = os.path.join(self.owd, "backend")
         clustal_output_path = os.path.join(self.owd, "clustal")
         if not os.path.exists(clustal_output_path):
             os.mkdir(clustal_output_path)
