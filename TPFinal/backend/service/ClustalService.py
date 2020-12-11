@@ -23,5 +23,4 @@ class ClustalService:
         for record in records:
             seq = (str(record.description), str(record.seq))
             seqs.append(seq)
-        print(str(seqs))
         return seqs
