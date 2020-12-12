@@ -76,18 +76,14 @@ def getInfo():
         blastService.getBlast(id,result["seq"],db,int(num_align),e_value,identity, log_path, chain)
         result["clustal"] = clustalService.getClustal(clustalw_exe,blastService.getBaseFasta(),id, log_path)
         result["dssp"] = dsspService.conservate(result["clustal"])
-        #result["numGraph"]=logoService.multiLogo(result["clustal"],id)
+        result["numGraph"]=logoService.multiLogo(result["clustal"],id)
     except PDBDoesNotExistException:
-        print("PDBDoesNotExistException")
         abort(404, message="Error: The id provided does not exist. Please check it and try again.")
     except ChainPDBDoesNotExistException:
-        print("ChainPDBDoesNotExistException")
         abort(404, message="Error: The chain provided does not exist. Please check it and try again.")
     except FileNotFoundError:
-        print("FileNotFoundError")
         abort(404, message="Error: Blast can not find homologous.")
     except ApplicationError:
-        print("ApplicationError")
         abort(404, message="Error: Clustal doest not exist on the system.")
 
     json_object = json.dumps(result, indent=4)
