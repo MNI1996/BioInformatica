@@ -18,7 +18,7 @@ class BlastService:
     def getBaseFasta(self):
         return self.base_fasta_file
 
-    def getBlast(self,id,seq,db,num_align,e_value,identity):
+    def getBlast(self,id,seq,db,num_align,e_value,identity, log_path):
         #HOMOLOGAS con blast
         # convert to fasta section
 
@@ -47,6 +47,9 @@ class BlastService:
 
         s = "blastp -query " + self.base_fasta_file + " -out " + blast_path + " -db " + db_path + " -evalue " + str(e_value) + " -outfmt 5"
         os.system(s)
+
+        self._log(log_path, s)
+
 
         try:
             blast_records = NCBIXML.parse(open(blast_path))
@@ -90,3 +93,13 @@ class BlastService:
             file.close()
         except:
             raise FileNotFoundError
+
+    def _log(self, log_path, query):
+        with open(log_path, "w") as out_file:
+            out_file.writelines("Blast command:")
+            out_file.writelines("\n")
+            out_file.writelines(query)
+            out_file.writelines("\n")
+            out_file.writelines(
+                "Para ver los parámetros por defecto consultar con https://www.ncbi.nlm.nih.gov/books/NBK279684/")
+            out_file.close()

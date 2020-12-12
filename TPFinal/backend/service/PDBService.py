@@ -32,6 +32,7 @@ class PDBService:
         for seq in seqs:
             if seq[1] in chain.upper():
                 ret = seq[0]  # me quedo con la posición 0 que es la secuencia de esa cadena
+                break
 
         if ret == "":
             raise ChainPDBDoesNotExistException()
