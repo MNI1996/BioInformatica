@@ -58,13 +58,15 @@ def getInfo():
         result["pdbPath"] = pdbService.getPDB(id)
         result["id"] = result["id"] + "_" + chain
         result["seq"] = pdbService.converToSequence(id, chain)
-        # blastService.getBlast(id,result["seq"],db,int(num_align),e_value,identity)
+        blastService.getBlast(id,result["seq"],db,int(num_align),e_value,identity)
         # result["clustal"] = clustalService.getClustal(clustalw_exe,blastService.getBaseFasta(),id)
         # result["numGraph"]=logoService.multiLogo(result["clustal"],id)
     except PDBDoesNotExistException:
         abort(404, message="Error: The id provided does not exist. Please check it and try again.")
     except ChainPDBDoesNotExistException:
         abort(404, message="Error: The chain provided does not exist. Please check it and try again.")
+    except FileNotFoundError:
+        abort(404, message="Error: Blast cant find homologous.")
 
     json_object = json.dumps(result, indent=4)
     return (json_object)

@@ -48,43 +48,45 @@ class BlastService:
         s = "blastp -query " + self.base_fasta_file + " -out " + blast_path + " -db " + db_path + " -evalue " + str(e_value) + " -outfmt 5"
         os.system(s)
 
-        blast_records = NCBIXML.parse(open(blast_path))
-        #abro el archivo donde voy a guardar el fasta post blast con las secuencias homólogas
-        file = open(self.base_fasta_file, "w")
+        try:
+            blast_records = NCBIXML.parse(open(blast_path))
+            #abro el archivo donde voy a guardar el fasta post blast con las secuencias homólogas
+            file = open(self.base_fasta_file, "w")
 
-        #recorre el archivo devuelto y obtengo las homólogas que cumplen la identidad pasada por argumento correspondiente al campo identity
-        for blast_record in blast_records:
-            sorted_aligntments = []
-            for alignment in blast_record.alignments:
-                title = str(alignment.title)
-                title = title[4]+title[5]+title[6]+title[7]
-                identities = alignment.hsps[0].identities
-                align_length = alignment.hsps[0].align_length
-                porcent = identities / align_length * 100
-                if (porcent > identity):
-                    sorted_aligntments.append((title, "", porcent))
-            sorted_aligntments.sort(key=lambda x: x[2])
-            print(str(sorted_aligntments))
-            reversed_alignments = sorted_aligntments[::-1]
+            #recorre el archivo devuelto y obtengo las homólogas que cumplen la identidad pasada por argumento correspondiente al campo identity
+            for blast_record in blast_records:
+                sorted_aligntments = []
+                for alignment in blast_record.alignments:
+                    title = str(alignment.title)
+                    title = title[4]+title[5]+title[6]+title[7]
+                    identities = alignment.hsps[0].identities
+                    align_length = alignment.hsps[0].align_length
+                    porcent = identities / align_length * 100
+                    if (porcent > identity):
+                        sorted_aligntments.append((title, "", porcent))
+                sorted_aligntments.sort(key=lambda x: x[2])
+                reversed_alignments = sorted_aligntments[::-1]
 
-        #abro el archivo donde voy a guardar las n secuencias correspondiente al argumento pasado en el json del campo num_align
-        # en el fasta para luego ser tomado por clustal
+            #abro el archivo donde voy a guardar las n secuencias correspondiente al argumento pasado en el json del campo num_align
+            # en el fasta para luego ser tomado por clustal
 
-        #primero guardo la secuencia buscada por el usuario
-        file.writelines("> " + str(id) )
-        file.writelines("\n")
-        file.writelines(seq)
-        file.writelines("\n")
-
-        id = 0
-        while id < num_align:
-            file.writelines("> " + str(reversed_alignments[id][0]) )
+            #primero guardo la secuencia buscada por el usuario
+            file.writelines("> " + str(id) )
             file.writelines("\n")
-            seq = pdbService.getSequence(reversed_alignments[id][0])
-            time.sleep(2)
             file.writelines(seq)
             file.writelines("\n")
-            id = id + 1
+
+            id = 0
+            while id < num_align:
+                file.writelines("> " + str(reversed_alignments[id][0]))
+                file.writelines("\n")
+                seq = pdbService.getSequence(reversed_alignments[id][0])
+                time.sleep(2)
+                file.writelines(seq)
+                file.writelines("\n")
+                id = id + 1
 
 
-        file.close()
+            file.close()
+        except:
+            raise FileNotFoundError
