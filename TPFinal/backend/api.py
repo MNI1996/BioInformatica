@@ -5,7 +5,8 @@ from flask import request
 from flask_cors import CORS, cross_origin
 from flask_restful import abort
 
-from backend.exceptions import PDBDoesNotExistException
+from backend.exceptions.ChainPDBDoesNotExistException import ChainPDBDoesNotExistException
+from backend.exceptions.PDBDoesNotExistException import PDBDoesNotExistException
 from service.PDBService import PDBService
 from service.ClustalService import ClustalService
 from service.BlastService import BlastService
@@ -15,26 +16,28 @@ app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 app.config["CORS_HEADERS"] = "Content-Type"
 CORS(app)
-pdbService=PDBService()
-blastService=BlastService()
-clustalService=ClustalService()
-logoService=LogoService()
+pdbService = PDBService()
+blastService = BlastService()
+clustalService = ClustalService()
+logoService = LogoService()
+
 
 @app.route('/', methods=['GET'])
 @cross_origin()
 def home():
-    return	 "<h1>Prueba.</p>"
+    return "<h1>Prueba.</p>"
 
 
 def validateField(dataJson, fieldJson, value):
-    value_return = dataJson[fieldJson] if str(dataJson[fieldJson]).strip()!="" and not dataJson[fieldJson] else value
+    value_return = dataJson[fieldJson] if str(dataJson[fieldJson]).strip() != "" and not dataJson[fieldJson] else value
     return value_return
+
 
 @app.route('/pdb', methods=['POST'])
 @cross_origin()
 def getInfo():
     data = request.get_json()
-    result={"clustal":"","seq":"","id":""}
+    result = {"clustal": "", "seq": "", "id": ""}
     # si no tiene id el request directamente retorna error
     id = data["id"]
     if not id:
@@ -51,21 +54,20 @@ def getInfo():
     e_value = float(data["e_value"])
     db = validateField(data, "db", "pdb")
 
-
     try:
-        result["pdbPath"] =pdbService.getPDB(id)
-        #result["seq"] = pdbService.converToSequence(id)
-        #blastService.getBlast(id,result["seq"],db,int(num_align),e_value,identity)
-        #result["clustal"] = clustalService.getClustal(clustalw_exe,blastService.getBaseFasta(),id)
-        #result["numGraph"]=logoService.multiLogo(result["clustal"],id)
+        result["pdbPath"] = pdbService.getPDB(id)
+        result["seq"] = pdbService.converToSequence(id, chain)
+        # blastService.getBlast(id,result["seq"],db,int(num_align),e_value,identity)
+        # result["clustal"] = clustalService.getClustal(clustalw_exe,blastService.getBaseFasta(),id)
+        # result["numGraph"]=logoService.multiLogo(result["clustal"],id)
     except PDBDoesNotExistException:
         abort(404, message="Error: The id provided does not exist. Please check it and try again.")
-    finally:
-        abort(404, message="Impossible to handle error.")
+    except ChainPDBDoesNotExistException:
+        abort(404, message="Error: The chain provided does not exist. Please check it and try again.")
 
-
-    json_object = json.dumps(result, indent = 4)
+    json_object = json.dumps(result, indent=4)
     return (json_object)
+
 
 if __name__ == '__main__':
     app.run()

@@ -1,0 +1,2 @@
+class ChainPDBDoesNotExistException(Exception):
+    pass
