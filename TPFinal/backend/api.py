@@ -50,7 +50,7 @@ def getInfo():
     identity = float(validateField(data, "identity", 39.9))
     identity = identity if identity > 0 else 39.9
     num_align = data["num_align"]
-    chain = validateField(data, "chain", "A")
+    chain = data["chain"]
     e_value = float(data["e_value"])
     db = validateField(data, "db", "pdb")
 
