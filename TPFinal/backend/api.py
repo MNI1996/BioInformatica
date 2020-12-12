@@ -1,6 +1,7 @@
 import flask
 import json
 
+from Bio.Application import ApplicationError
 from flask import request
 from flask_cors import CORS, cross_origin
 from flask_restful import abort
@@ -59,7 +60,7 @@ def getInfo():
         result["id"] = result["id"] + "_" + chain
         result["seq"] = pdbService.converToSequence(id, chain)
         blastService.getBlast(id,result["seq"],db,int(num_align),e_value,identity)
-        # result["clustal"] = clustalService.getClustal(clustalw_exe,blastService.getBaseFasta(),id)
+        result["clustal"] = clustalService.getClustal(clustalw_exe,blastService.getBaseFasta(),id)
         # result["numGraph"]=logoService.multiLogo(result["clustal"],id)
     except PDBDoesNotExistException:
         abort(404, message="Error: The id provided does not exist. Please check it and try again.")
@@ -67,6 +68,8 @@ def getInfo():
         abort(404, message="Error: The chain provided does not exist. Please check it and try again.")
     except FileNotFoundError:
         abort(404, message="Error: Blast cant find homologous.")
+    except ApplicationError:
+        abort(404, message="Error: Clustal doest not exist on the system.")
 
     json_object = json.dumps(result, indent=4)
     return (json_object)
