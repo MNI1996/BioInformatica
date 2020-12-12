@@ -6,3 +6,4 @@ blast/
 clustal/
 
 __pycache__/
+log
