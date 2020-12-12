@@ -1,5 +1,7 @@
 import flask
 import json
+import os
+from datetime import datetime
 
 from Bio.Application import ApplicationError
 from flask import request
@@ -55,19 +57,30 @@ def getInfo():
     e_value = float(data["e_value"])
     db = validateField(data, "db", "pdb")
 
+    # datetime object containing current date and time
+    now = datetime.now()
+    # dd/mm/YY H:M:S
+    log_file = now.strftime("%d-%m-%Y_%Hh%Mm%Ss")+".txt"
+
+    # create file to log services
+    log_path = os.path.join(os.getcwd(), "log")
+    if not os.path.exists(log_path):
+        os.mkdir(log_path)
+    log_path = os.path.join(log_path, log_file)
+
     try:
         result["pdbPath"] = pdbService.getPDB(id)
         result["id"] = result["id"] + "_" + chain
         result["seq"] = pdbService.converToSequence(id, chain)
-        blastService.getBlast(id,result["seq"],db,int(num_align),e_value,identity)
-        result["clustal"] = clustalService.getClustal(clustalw_exe,blastService.getBaseFasta(),id)
-        # result["numGraph"]=logoService.multiLogo(result["clustal"],id)
+        blastService.getBlast(id,result["seq"],db,int(num_align),e_value,identity, log_path)
+        result["clustal"] = clustalService.getClustal(clustalw_exe,blastService.getBaseFasta(),id, log_path)
+        result["numGraph"]=logoService.multiLogo(result["clustal"],id)
     except PDBDoesNotExistException:
         abort(404, message="Error: The id provided does not exist. Please check it and try again.")
     except ChainPDBDoesNotExistException:
         abort(404, message="Error: The chain provided does not exist. Please check it and try again.")
     except FileNotFoundError:
-        abort(404, message="Error: Blast cant find homologous.")
+        abort(404, message="Error: Blast can not find homologous.")
     except ApplicationError:
         abort(404, message="Error: Clustal doest not exist on the system.")
 
