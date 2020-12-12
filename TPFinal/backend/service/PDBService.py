@@ -40,6 +40,8 @@ class PDBService:
 
     def getSequence(self, id):
         pdbl = PDBList()
-        pdbl.retrieve_pdb_file(id, pdir=self.output_pdb, file_format='pdb')
+        id_protein= id[0: 4]
+        chain = id[5]
+        pdbl.retrieve_pdb_file(id_protein, pdir=self.output_pdb, file_format='pdb')
 
-        return self.converToSequence(id)
+        return self.converToSequence(id_protein, chain)

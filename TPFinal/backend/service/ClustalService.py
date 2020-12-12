@@ -15,7 +15,7 @@ class ClustalService:
             os.mkdir(clustal_output_path)
         clustal_output_path = os.path.join(clustal_output_path, id+".fa")
 
-        self._log(log_path, clustalw_exe, clustal_output_path)
+        #self._log(log_path, clustalw_exe, clustal_output_path)
 
         clustalw_cline = ClustalwCommandline(cmd = clustalw_exe, infile=base_fasta_file, outfile= clustal_output_path, output="fasta")
         clustalw_cline()

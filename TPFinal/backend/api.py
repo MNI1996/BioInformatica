@@ -10,6 +10,7 @@ from flask_restful import abort
 
 from backend.exceptions.ChainPDBDoesNotExistException import ChainPDBDoesNotExistException
 from backend.exceptions.PDBDoesNotExistException import PDBDoesNotExistException
+from backend.service.DSSPService import DSSPService
 from service.PDBService import PDBService
 from service.ClustalService import ClustalService
 from service.BlastService import BlastService
@@ -23,7 +24,7 @@ pdbService = PDBService()
 blastService = BlastService()
 clustalService = ClustalService()
 logoService = LogoService()
-
+dsspService = DSSPService()
 
 @app.route('/', methods=['GET'])
 @cross_origin()
@@ -72,16 +73,21 @@ def getInfo():
         result["pdbPath"] = pdbService.getPDB(id)
         result["id"] = result["id"] + "_" + chain
         result["seq"] = pdbService.converToSequence(id, chain)
-        blastService.getBlast(id,result["seq"],db,int(num_align),e_value,identity, log_path)
+        blastService.getBlast(id,result["seq"],db,int(num_align),e_value,identity, log_path, chain)
         result["clustal"] = clustalService.getClustal(clustalw_exe,blastService.getBaseFasta(),id, log_path)
-        result["numGraph"]=logoService.multiLogo(result["clustal"],id)
+        result["dssp"] = dsspService.conservate(result["clustal"])
+        #result["numGraph"]=logoService.multiLogo(result["clustal"],id)
     except PDBDoesNotExistException:
+        print("PDBDoesNotExistException")
         abort(404, message="Error: The id provided does not exist. Please check it and try again.")
     except ChainPDBDoesNotExistException:
+        print("ChainPDBDoesNotExistException")
         abort(404, message="Error: The chain provided does not exist. Please check it and try again.")
     except FileNotFoundError:
+        print("FileNotFoundError")
         abort(404, message="Error: Blast can not find homologous.")
     except ApplicationError:
+        print("ApplicationError")
         abort(404, message="Error: Clustal doest not exist on the system.")
 
     json_object = json.dumps(result, indent=4)

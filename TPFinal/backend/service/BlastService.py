@@ -18,7 +18,7 @@ class BlastService:
     def getBaseFasta(self):
         return self.base_fasta_file
 
-    def getBlast(self,id,seq,db,num_align,e_value,identity, log_path):
+    def getBlast(self,id,seq,db,num_align,e_value,identity, log_path, chain):
         #HOMOLOGAS con blast
         # convert to fasta section
 
@@ -39,7 +39,7 @@ class BlastService:
 
         #creo primero el archivo fasta con las ecuencia de la proteina pasada en el json correspondiente al argumento id
         with open(self.base_fasta_file, "w") as file:
-            file.writelines("> " + str(id))
+            file.writelines("> " + str(id)+"_"+chain)
             file.writelines("\n")
             file.writelines(str(seq))
             file.writelines("\n")
@@ -48,8 +48,7 @@ class BlastService:
         s = "blastp -query " + self.base_fasta_file + " -out " + blast_path + " -db " + db_path + " -evalue " + str(e_value) + " -outfmt 5"
         os.system(s)
 
-        self._log(log_path, s)
-
+        #self._log(log_path, s)
 
         try:
             blast_records = NCBIXML.parse(open(blast_path))
@@ -61,7 +60,7 @@ class BlastService:
                 sorted_aligntments = []
                 for alignment in blast_record.alignments:
                     title = str(alignment.title)
-                    title = title[4]+title[5]+title[6]+title[7]
+                    title = title[4]+title[5]+title[6]+title[7]+"_"+title[9]
                     identities = alignment.hsps[0].identities
                     align_length = alignment.hsps[0].align_length
                     porcent = identities / align_length * 100
@@ -74,7 +73,7 @@ class BlastService:
             # en el fasta para luego ser tomado por clustal
 
             #primero guardo la secuencia buscada por el usuario
-            file.writelines("> " + str(id) )
+            file.writelines("> " + str(id)+"_"+chain )
             file.writelines("\n")
             file.writelines(seq)
             file.writelines("\n")
