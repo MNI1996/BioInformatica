@@ -56,6 +56,7 @@ def getInfo():
 
     try:
         result["pdbPath"] = pdbService.getPDB(id)
+        result["id"] = result["id"] + "_" + chain
         result["seq"] = pdbService.converToSequence(id, chain)
         # blastService.getBlast(id,result["seq"],db,int(num_align),e_value,identity)
         # result["clustal"] = clustalService.getClustal(clustalw_exe,blastService.getBaseFasta(),id)
