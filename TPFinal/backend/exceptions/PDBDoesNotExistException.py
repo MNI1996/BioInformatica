@@ -1,0 +1,2 @@
+class PDBDoesNotExistException(Exception):
+    pass

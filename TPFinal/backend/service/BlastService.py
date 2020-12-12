@@ -18,7 +18,7 @@ class BlastService:
     def getBaseFasta(self):
         return self.base_fasta_file
 
-    def getBlast(self,id,seq,db,num_align,e_value,identity):
+    def getBlast(self,id,seq,db,num_align,e_value,identity, log_path):
         #HOMOLOGAS con blast
         # convert to fasta section
 
@@ -48,43 +48,58 @@ class BlastService:
         s = "blastp -query " + self.base_fasta_file + " -out " + blast_path + " -db " + db_path + " -evalue " + str(e_value) + " -outfmt 5"
         os.system(s)
 
-        blast_records = NCBIXML.parse(open(blast_path))
-        #abro el archivo donde voy a guardar el fasta post blast con las secuencias homólogas
-        file = open(self.base_fasta_file, "w")
+        self._log(log_path, s)
 
-        #recorre el archivo devuelto y obtengo las homólogas que cumplen la identidad pasada por argumento correspondiente al campo identity
-        for blast_record in blast_records:
-            sorted_aligntments = []
-            for alignment in blast_record.alignments:
-                title = str(alignment.title)
-                title = title[4]+title[5]+title[6]+title[7]
-                identities = alignment.hsps[0].identities
-                align_length = alignment.hsps[0].align_length
-                porcent = identities / align_length * 100
-                if (porcent > identity):
-                    sorted_aligntments.append((title, "", porcent))
-            sorted_aligntments.sort(key=lambda x: x[2])
-            print(str(sorted_aligntments))
-            reversed_alignments = sorted_aligntments[::-1]
 
-        #abro el archivo donde voy a guardar las n secuencias correspondiente al argumento pasado en el json del campo num_align
-        # en el fasta para luego ser tomado por clustal
+        try:
+            blast_records = NCBIXML.parse(open(blast_path))
+            #abro el archivo donde voy a guardar el fasta post blast con las secuencias homólogas
+            file = open(self.base_fasta_file, "w")
 
-        #primero guardo la secuencia buscada por el usuario
-        file.writelines("> " + str(id) )
-        file.writelines("\n")
-        file.writelines(seq)
-        file.writelines("\n")
+            #recorre el archivo devuelto y obtengo las homólogas que cumplen la identidad pasada por argumento correspondiente al campo identity
+            for blast_record in blast_records:
+                sorted_aligntments = []
+                for alignment in blast_record.alignments:
+                    title = str(alignment.title)
+                    title = title[4]+title[5]+title[6]+title[7]
+                    identities = alignment.hsps[0].identities
+                    align_length = alignment.hsps[0].align_length
+                    porcent = identities / align_length * 100
+                    if (porcent > identity):
+                        sorted_aligntments.append((title, "", porcent))
+                sorted_aligntments.sort(key=lambda x: x[2])
+                reversed_alignments = sorted_aligntments[::-1]
 
-        id = 0
-        while id < num_align:
-            file.writelines("> " + str(reversed_alignments[id][0]) )
+            #abro el archivo donde voy a guardar las n secuencias correspondiente al argumento pasado en el json del campo num_align
+            # en el fasta para luego ser tomado por clustal
+
+            #primero guardo la secuencia buscada por el usuario
+            file.writelines("> " + str(id) )
             file.writelines("\n")
-            seq = pdbService.getSequence(reversed_alignments[id][0])
-            time.sleep(2)
             file.writelines(seq)
             file.writelines("\n")
-            id = id + 1
+
+            id = 0
+            while id < num_align:
+                file.writelines("> " + str(reversed_alignments[id][0]))
+                file.writelines("\n")
+                seq = pdbService.getSequence(reversed_alignments[id][0])
+                time.sleep(2)
+                file.writelines(seq)
+                file.writelines("\n")
+                id = id + 1
 
 
-        file.close()
+            file.close()
+        except:
+            raise FileNotFoundError
+
+    def _log(self, log_path, query):
+        with open(log_path, "w") as out_file:
+            out_file.writelines("Blast command:")
+            out_file.writelines("\n")
+            out_file.writelines(query)
+            out_file.writelines("\n")
+            out_file.writelines(
+                "Para ver los parámetros por defecto consultar con https://www.ncbi.nlm.nih.gov/books/NBK279684/")
+            out_file.close()

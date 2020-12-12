@@ -1,10 +1,15 @@
 import flask
 import json
+import os
+from datetime import datetime
 
+from Bio.Application import ApplicationError
 from flask import request
 from flask_cors import CORS, cross_origin
 from flask_restful import abort
 
+from backend.exceptions.ChainPDBDoesNotExistException import ChainPDBDoesNotExistException
+from backend.exceptions.PDBDoesNotExistException import PDBDoesNotExistException
 from service.PDBService import PDBService
 from service.ClustalService import ClustalService
 from service.BlastService import BlastService
@@ -14,26 +19,28 @@ app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 app.config["CORS_HEADERS"] = "Content-Type"
 CORS(app)
-pdbService=PDBService()
-blastService=BlastService()
-clustalService=ClustalService()
-logoService=LogoService()
+pdbService = PDBService()
+blastService = BlastService()
+clustalService = ClustalService()
+logoService = LogoService()
+
 
 @app.route('/', methods=['GET'])
 @cross_origin()
 def home():
-    return	 "<h1>Prueba.</p>"
+    return "<h1>Prueba.</p>"
 
 
 def validateField(dataJson, fieldJson, value):
-    value_return = dataJson[fieldJson] if str(dataJson[fieldJson]).strip()!="" and not dataJson[fieldJson] else value
+    value_return = dataJson[fieldJson] if str(dataJson[fieldJson]).strip() != "" and not dataJson[fieldJson] else value
     return value_return
+
 
 @app.route('/pdb', methods=['POST'])
 @cross_origin()
 def getInfo():
     data = request.get_json()
-    result={"clustal":"","seq":"","id":""}
+    result = {"clustal": "", "seq": "", "id": ""}
     # si no tiene id el request directamente retorna error
     id = data["id"]
     if not id:
@@ -46,20 +53,40 @@ def getInfo():
     identity = float(validateField(data, "identity", 39.9))
     identity = identity if identity > 0 else 39.9
     num_align = data["num_align"]
-    chain = validateField(data, "chain", "A")
+    chain = data["chain"]
     e_value = float(data["e_value"])
     db = validateField(data, "db", "pdb")
 
+    # datetime object containing current date and time
+    now = datetime.now()
+    # dd/mm/YY H:M:S
+    log_file = now.strftime("%d-%m-%Y_%Hh%Mm%Ss")+".txt"
 
-    result["pdbPath"] =pdbService.getPDB(id)
-    result["seq"] = pdbService.converToSequence(id)
-    blastService.getBlast(id,result["seq"],db,int(num_align),e_value,identity)
-    result["clustal"] = clustalService.getClustal(clustalw_exe,blastService.getBaseFasta(),id)
-    result["numGraph"]=logoService.multiLogo(result["clustal"],id)
+    # create file to log services
+    log_path = os.path.join(os.getcwd(), "log")
+    if not os.path.exists(log_path):
+        os.mkdir(log_path)
+    log_path = os.path.join(log_path, log_file)
 
+    try:
+        result["pdbPath"] = pdbService.getPDB(id)
+        result["id"] = result["id"] + "_" + chain
+        result["seq"] = pdbService.converToSequence(id, chain)
+        blastService.getBlast(id,result["seq"],db,int(num_align),e_value,identity, log_path)
+        result["clustal"] = clustalService.getClustal(clustalw_exe,blastService.getBaseFasta(),id, log_path)
+        result["numGraph"]=logoService.multiLogo(result["clustal"],id)
+    except PDBDoesNotExistException:
+        abort(404, message="Error: The id provided does not exist. Please check it and try again.")
+    except ChainPDBDoesNotExistException:
+        abort(404, message="Error: The chain provided does not exist. Please check it and try again.")
+    except FileNotFoundError:
+        abort(404, message="Error: Blast can not find homologous.")
+    except ApplicationError:
+        abort(404, message="Error: Clustal doest not exist on the system.")
 
-    json_object = json.dumps(result, indent = 4)
+    json_object = json.dumps(result, indent=4)
     return (json_object)
+
 
 if __name__ == '__main__':
     app.run()
