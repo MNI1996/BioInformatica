@@ -7,3 +7,4 @@ clustal/
 
 __pycache__/
 log
+dssp
