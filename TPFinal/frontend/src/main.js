@@ -13,6 +13,7 @@ import Home from "./pages/Home.vue";
 require('bootstrap');
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Styles.css';
+import ResultPage from "./pages/ResultPage";
 
 Vue.use(VueAxios, axios)
 Vue.use(VueRouter)
@@ -22,6 +23,7 @@ Vue.config.productionTip = false
 const router = new VueRouter({
   routes: [
     { path: '/', name:"home", component: Home },
+    {path: '/result',name:'result',component: ResultPage}
 
   ]
 })
