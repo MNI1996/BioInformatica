@@ -2,9 +2,12 @@
 <div>
   <div v-if="result!==null">
     <div class="row welcome" >
-      <h5>Resultados de {{result["id"]}}</h5>
+      <h5>Resultados de {{result["id"].slice(0,-2)}}</h5>
     </div>
-    <botonera/>
+    <div class="row welcome">
+
+      <botonera/>
+    </div>
     <div class="row welcome">
       <h2>Secuencia:</h2>
       <h2 v-if="result!==null" >{{parseSeq(result["seq"])}}</h2>
@@ -29,13 +32,23 @@
       </div>
 
     </div>
-    <div class="row welcome" v-if="viewDssp">
-      <clustal-result :data="result['dssp']"/>
+    <div class="row welcome " v-if="viewDssp">
+      <div class="col-md-6 " >
+
+        <clustal-result :data="result['dssp']"/>
+      </div>
     </div>
-    <button class="btn btn-lg btn-success btn-block" @click="goToHome">Volver a Buscar</button>
+    <div class="row">
+      <div class="col col-md-4">
+        <button class="btn btn-lg btn-success btn-block" @click="goToHome">Volver a Buscar</button>
+      </div>
+    </div>
   </div>
   <div v-else>
-    <h2>Procesando...</h2>
+    <div class="col">
+      <h2>Procesando...</h2>
+      <button class="btn btn-lg btn-success btn-block" @click="goToHome">Volver a Buscar</button>
+    </div>
   </div>
 </div>
 </template>
@@ -59,10 +72,21 @@ name: "ResultPage",
   },
   methods:{
     generateURL(){
-      return "https://www.ncbi.nlm.nih.gov/Structure/icn3d/full.html?pdbid="+this.result["id"]
+      return "https://www.ncbi.nlm.nih.gov/Structure/icn3d/full.html?pdbid="+this.result["id"].slice(0,-2)
     },
     goToHome(){
-      this.$router.push({name:"home"})
+      this.$router.push({name:"home"});
+      this.$store.dispatch("resetSearch")
+    }, parseSeq(seq){
+      var charperline=(seq.length/47)+1
+      var cutvalue= seq.length/parseInt(charperline)
+      var rsf=[]
+      for (var i = 0; i < charperline; i++)
+      {
+        var res = seq.substring(parseInt(cutvalue)*i,parseInt(cutvalue)*(i+1));
+        rsf+=res+"\n"
+      }
+      return rsf
     }
   }
 

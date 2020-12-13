@@ -1,5 +1,5 @@
 <template>
-    <div class="row" >
+    <div class="row" v-if="result ===null" >
       <clustal-viewer/>
     </div>
 </template>
@@ -10,7 +10,7 @@ import ClustalViewer from "../components/ClustalPanel.vue";
 
 export default {
   name: "Home",
-  components: {LinkHomologas, DSSPViewer, ClustalResult, ClustalViewer, BlastViewer, JsMolViewer},
+  components: { ClustalViewer},
   data() {
     return {
       codigo: "",

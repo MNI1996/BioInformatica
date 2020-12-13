@@ -9,11 +9,11 @@ import 'es6-promise/auto'
 import VueNoty from 'vuejs-noty'
 import store from './store'
 import Home from "./pages/Home.vue";
-
+import ResultPage from "./pages/ResultPage.vue";
 require('bootstrap');
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Styles.css';
-import ResultPage from "./pages/ResultPage";
+
 
 Vue.use(VueAxios, axios)
 Vue.use(VueRouter)

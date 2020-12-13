@@ -1,7 +1,7 @@
 <template>
   <div class="row ">
     <div class="col">
-      <button class="btn btn-lg btn-success btn-block" @click="setV">Mostrar Visualizacion de estructura</button>
+      <button class="btn btn-lg btn-success btn-block" @click="setV">Mostrar Estructura</button>
     </div>
     <div class="col">
       <button class="btn btn-lg btn-success btn-block" @click="setVA">Mostrar Alineamientos</button>

@@ -107,8 +107,8 @@ def getInfo() ->Response :
         abort(404, message="Error: Clustal doest not exist on the system.")
 
     json_object = json.dumps(result, indent=4)
-    #return (json_object)
-    return jsonify({"result": result})
+    return (json_object)
+    #return jsonify({"result": result})
 
 if __name__ == '__main__':
     app.run()

@@ -19,7 +19,7 @@ name: "DSSPViewer",
   },
   methods:{
   urlImage(n){
-    return "Images/dssp/"+this.result["id"]+"/"+n+".png"
+    return "Images/dssp/"+this.result["id"].slice(0,-2)+"/"+n+".png"
   }
   }
 }
