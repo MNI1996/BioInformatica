@@ -9,10 +9,11 @@ import 'es6-promise/auto'
 import VueNoty from 'vuejs-noty'
 import store from './store'
 import Home from "./pages/Home.vue";
-
+import ResultPage from "./pages/ResultPage.vue";
 require('bootstrap');
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Styles.css';
+
 
 Vue.use(VueAxios, axios)
 Vue.use(VueRouter)
@@ -22,6 +23,7 @@ Vue.config.productionTip = false
 const router = new VueRouter({
   routes: [
     { path: '/', name:"home", component: Home },
+    {path: '/result',name:'result',component: ResultPage}
 
   ]
 })
