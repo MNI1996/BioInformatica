@@ -65,7 +65,7 @@ export default {
   },
   methods:{
     generateURL(){
-      return "https://www.ncbi.nlm.nih.gov/Structure/icn3d/full.html?pdbid="+this.result["id"]
+      return "https://www.ncbi.nlm.nih.gov/Structure/icn3d/full.html?pdbid="+this.result["id"].slice(0,-2)
     },
     parseSeq(seq){
       var charperline=(seq.length/47)+1

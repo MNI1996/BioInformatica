@@ -12,7 +12,7 @@ name: "LinkHomologas",
   },
   methods:{
     url(){
-      return "https://www.rcsb.org/structure/"+this.idP
+      return "https://www.rcsb.org/structure/"+this.idP.slice(0,-2)
     }
   }
 }
