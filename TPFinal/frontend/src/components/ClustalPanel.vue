@@ -100,6 +100,8 @@ name: "ClustalPanel",
         gapopen:this.gapopen
       }
       this.$store.dispatch("search", data)
+      this.$router.push({name: "result"})
+
     },
     defaultClustal(){
       return "C:\\Program Files (x86)\\ClustalW2\\clustalw2"

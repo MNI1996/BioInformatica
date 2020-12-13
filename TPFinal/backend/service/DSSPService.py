@@ -23,8 +23,14 @@ class DSSPService:
             if primary_seq[index] == '-':
                 secondary_seq[0].insert(index, (1, '-', '_'))
 
-        r = ''.join([st[2] if not st[2] == '-' else '0' for st in secondary_seq[0]])
-        return r
+        rst = ''.join([st[2] if not st[2] == '-' else '0' for st in secondary_seq[0]])
+        rstf=self.rLG(rst)
+        return rstf
+
+    def rLG(self,ls):
+        lsf=ls.replace("_","-")
+        print(lsf)
+        return lsf
 
     def obtain_dssp(self, id_protein, chain):
         pdb_path = os.getcwd().replace("service", "pdb")

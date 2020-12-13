@@ -4,17 +4,33 @@ import os
 from datetime import datetime
 
 from Bio.Application import ApplicationError
-from flask import request
+from flask import request, Response, jsonify
 from flask_cors import CORS, cross_origin
 from flask_restful import abort
 
-from backend.exceptions.ChainPDBDoesNotExistException import ChainPDBDoesNotExistException
-from backend.exceptions.PDBDoesNotExistException import PDBDoesNotExistException
-from backend.service.DSSPService import DSSPService
-from service.PDBService import PDBService
-from service.ClustalService import ClustalService
-from service.BlastService import BlastService
-from service.LogoService import LogoService
+#from backend.exceptions.ChainPDBDoesNotExistException import ChainPDBDoesNotExistException
+#from backend.exceptions.PDBDoesNotExistException import PDBDoesNotExistException
+#from backend.service.DSSPService import DSSPService
+#from service.PDBService import PDBService
+#from service.ClustalService import ClustalService
+#from service.BlastService import BlastService
+#from service.LogoService import LogoService
+#
+from TPFinal.backend.exceptions.ChainPDBDoesNotExistException import ChainPDBDoesNotExistException
+#
+from TPFinal.backend.exceptions.PDBDoesNotExistException import PDBDoesNotExistException
+#
+from TPFinal.backend.service.DSSPService import DSSPService
+#
+from TPFinal.backend.service.PDBService import PDBService
+#
+from TPFinal.backend.service.ClustalService import ClustalService
+#
+from TPFinal.backend.service.BlastService import BlastService
+#
+from TPFinal.backend.service.LogoService import LogoService
+
+
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
@@ -39,7 +55,7 @@ def validateField(dataJson, fieldJson, value):
 
 @app.route('/pdb', methods=['POST'])
 @cross_origin()
-def getInfo():
+def getInfo() ->Response :
     data = request.get_json()
     result = {"clustal": "", "seq": "", "id": ""}
     # si no tiene id el request directamente retorna error
@@ -78,17 +94,21 @@ def getInfo():
         result["dssp"] = dsspService.conservate(result["clustal"])
         result["numGraph"]=logoService.multiLogo(result["clustal"],id)
     except PDBDoesNotExistException:
+        print("F pdb")
         abort(404, message="Error: The id provided does not exist. Please check it and try again.")
     except ChainPDBDoesNotExistException:
+        print("f cadena")
         abort(404, message="Error: The chain provided does not exist. Please check it and try again.")
     except FileNotFoundError:
+        print("f blast")
         abort(404, message="Error: Blast can not find homologous.")
     except ApplicationError:
+        print("f clustal")
         abort(404, message="Error: Clustal doest not exist on the system.")
 
     json_object = json.dumps(result, indent=4)
     return (json_object)
-
+    #return jsonify({"result": result})
 
 if __name__ == '__main__':
     app.run()
