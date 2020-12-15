@@ -1,7 +1,6 @@
 <template>
     <div class="row" v-if="result ===null" >
       <clustal-viewer/>
-      <botonera/>
     </div>
 </template>
 

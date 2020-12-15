@@ -7,10 +7,10 @@
       <button class="btn btn-lg btn-success btn-block" @click="setVA">Mostrar Alineamientos</button>
     </div>
     <div class="col">
-      <button class="btn btn-lg btn-success btn-block" @click="setVD">Mostrar Dssp</button>
+      <button class="btn btn-lg btn-success btn-block" @click="setVD">Mostrar DSSP</button>
     </div>
     <div class="col">
-      <a :href="generateDowloadLink('1UBQ_A')" class="btn-success btn btn-lg" :download="generateFileName('1UBQ_A','fa')">Descarga archivo Clustal</a>
+      <a :href="generateDowloadLink('1UBQ_A')" class="btn-info btn btn-lg" :download="generateFileName('1UBQ_A','fa')">Descarga archivo Clustal</a>
     </div>
   </div>
 </template>
