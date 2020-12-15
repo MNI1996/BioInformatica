@@ -12,7 +12,7 @@ name: "ListClustalResult",
   },
   methods:{
   parseBlock(block){
-    return block["id"]+": "+block["res"]+"\n" ;
+    return block['id']+": "+block["res"]+"\n" ;
   },
 
 

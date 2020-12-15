@@ -1,2 +1,5 @@
 class PDBDoesNotExistException(Exception):
-    pass
+
+    @classmethod
+    def message(self):
+        return "Código PDB inexistente"
