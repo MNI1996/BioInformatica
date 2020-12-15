@@ -1,16 +1,18 @@
 <template>
     <div class="row" v-if="result ===null" >
       <clustal-viewer/>
+      <botonera/>
     </div>
 </template>
 
 <script>
 import {mapGetters} from "vuex";
 import ClustalViewer from "../components/ClustalPanel.vue";
+import Botonera from "../components/Botonera.vue";
 
 export default {
   name: "Home",
-  components: { ClustalViewer},
+  components: {Botonera, ClustalViewer},
   data() {
     return {
       codigo: "",

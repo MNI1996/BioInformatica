@@ -56,8 +56,30 @@ class LogoService:
         img_path = os.getcwd().replace("backend", "frontend")
         os.chdir(img_path)
         img_path = os.path.join(img_path, "Images")
-        img_path = os.path.join(img_path, "dssp")
         img_path = os.path.join(img_path, idP)
+        img_path = os.path.join(img_path, "Align")
+        if not os.path.exists(img_path):
+            os.makedirs(img_path)
+        plt.savefig(img_path+"/"+str(n)+".png")
+
+
+    def multiLogoS(self,pseqs,id):
+        n = 0
+        lsSeqs = self.listHomologas(pseqs)
+        for i in lsSeqs:
+            self.logoMakerS(i,id,n)
+            n += 1
+
+        return n
+
+    def logoMakerS(self, pseqs, idP, n):
+        crp_counts_df = lm.alignment_to_matrix(sequences=pseqs, to_type='counts', characters_to_ignore='.-X')
+        lm.Logo(crp_counts_df)
+        img_path = os.getcwd().replace("backend", "frontend")
+        os.chdir(img_path)
+        img_path = os.path.join(img_path, "Images")
+        img_path = os.path.join(img_path, idP)
+        img_path = os.path.join(img_path, "Dssp")
         if not os.path.exists(img_path):
             os.makedirs(img_path)
         plt.savefig(img_path+"/"+str(n)+".png")

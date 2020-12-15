@@ -28,7 +28,7 @@
       </div>
       <div class=" col col-md-6">
         <h3>Gráfico de conservación</h3>
-        <d-s-s-p-viewer :id="result['id']" :number-of-graphs="result['numGraph']"/>
+        <align-viewer :id="result['id']" :number-of-graphs="result['numGraph']"/>
       </div>
 
     </div>
@@ -36,6 +36,9 @@
       <div class="col-md-6 " >
 
         <clustal-result :data="result['dssp']"/>
+      </div>
+      <div class="col-md-6">
+        <!--<d-s-s-p-viewer :id="result['id']" :number-of-graphs="result['numGraphSec']"/>-->
       </div>
     </div>
     <div class="row">
@@ -61,12 +64,13 @@ import ClustalResult from "../components/ClustalResult.vue";
 import DSSPViewer from "../components/DSSPViewer.vue";
 import LinkHomologas from "../components/LinkHomologas.vue";
 import Botonera from "../components/Botonera.vue";
+import AlignViewer from "../components/AlignViewer.vue";
 
 
 
 export default {
 name: "ResultPage",
-  components: { LinkHomologas, DSSPViewer, ClustalResult, BlastViewer, JsMolViewer, Botonera},
+  components: {AlignViewer, LinkHomologas, DSSPViewer, ClustalResult, BlastViewer, JsMolViewer, Botonera},
   computed:{
     ...mapGetters(["result","viewAlign","viewDssp","visualizer"])
   },
