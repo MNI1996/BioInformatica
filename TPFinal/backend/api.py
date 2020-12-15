@@ -3,19 +3,27 @@ import json
 import os
 from datetime import datetime
 
+import werkzeug
 from Bio.Application import ApplicationError
 from flask import request, Response, jsonify
 from flask_cors import CORS, cross_origin
 from flask_restful import abort
 
-#from backend.exceptions.ChainPDBDoesNotExistException import ChainPDBDoesNotExistException
-#from backend.exceptions.PDBDoesNotExistException import PDBDoesNotExistException
-#from backend.service.DSSPService import DSSPService
-#from service.PDBService import PDBService
-#from service.ClustalService import ClustalService
-#from service.BlastService import BlastService
-#from service.LogoService import LogoService
-#
+from backend.exceptions.ChainPDBDoesNotExistException import ChainPDBDoesNotExistException
+from backend.exceptions.NoClustalException import NoClustalException
+from backend.exceptions.NoClustalPathProvidedException import NoClustalPathProvidedException
+from backend.exceptions.NoHomologousException import NoHomologousException
+from backend.exceptions.NoIdProvidedException import NoIdProvidedException
+from backend.exceptions.PDBDoesNotExistException import PDBDoesNotExistException
+from backend.service.DSSPService import DSSPService
+from service.PDBService import PDBService
+from service.ClustalService import ClustalService
+from service.BlastService import BlastService
+from service.LogoService import LogoService
+
+from werkzeug.exceptions import HTTPException
+
+"""
 from TPFinal.backend.exceptions.ChainPDBDoesNotExistException import ChainPDBDoesNotExistException
 #
 from TPFinal.backend.exceptions.PDBDoesNotExistException import PDBDoesNotExistException
@@ -29,7 +37,7 @@ from TPFinal.backend.service.ClustalService import ClustalService
 from TPFinal.backend.service.BlastService import BlastService
 #
 from TPFinal.backend.service.LogoService import LogoService
-
+"""
 
 
 app = flask.Flask(__name__)
@@ -58,15 +66,17 @@ def validateField(dataJson, fieldJson, value):
 def getInfo() ->Response :
     data = request.get_json()
     result = {"clustal": "", "seq": "", "id": ""}
-    # si no tiene id el request directamente retorna error
     id = data["id"]
     if not id:
-        abort(404, message="Error: No real id provided. Please rewrite id field.")
-
+        result = {"error_code": '404', "message": NoIdProvidedException.message()}
+        json_object = json.dumps(result, indent=4)
+        return (json_object)
     result["id"] = id
     clustalw_exe = data["clustal_path"]
     if not clustalw_exe:
-        abort(404, message="Error: No clustal field provided. Please specify a clustal path.")
+        result = {"error_code": '404', "message": NoClustalPathProvidedException.message()}
+        json_object = json.dumps(result, indent=4)
+        return (json_object)
     identity = float(validateField(data, "identity", 39.9))
     identity = identity if identity > 0 else 39.9
     num_align = data["num_align"]
@@ -94,21 +104,24 @@ def getInfo() ->Response :
         result["dssp"] = dsspService.conservate(result["clustal"])
         result["numGraph"]=logoService.multiLogo(result["clustal"],id)
     except PDBDoesNotExistException:
-        print("F pdb")
-        abort(404, message="Error: The id provided does not exist. Please check it and try again.")
+        result = {"error_code": '404', "message": PDBDoesNotExistException.message()}
+
     except ChainPDBDoesNotExistException:
-        print("f cadena")
-        abort(404, message="Error: The chain provided does not exist. Please check it and try again.")
+        result = {"error_code": '404', "message":  ChainPDBDoesNotExistException.message()}
+
     except FileNotFoundError:
-        print("f blast")
-        abort(404, message="Error: Blast can not find homologous.")
+        result = {"error_code": '404', "message": NoHomologousException.message()}
+
     except ApplicationError:
-        print("f clustal")
-        abort(404, message="Error: Clustal doest not exist on the system.")
+        result = {"error_code": '404', "message": NoClustalException.message()}
 
     json_object = json.dumps(result, indent=4)
     return (json_object)
-    #return jsonify({"result": result})
+
+
+
+
+
 
 if __name__ == '__main__':
     app.run()

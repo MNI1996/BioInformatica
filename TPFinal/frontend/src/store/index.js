@@ -12,7 +12,7 @@ function showErrorWithNoty(error) {
   if (error.response) {
     Vue.noty.error(error.response.data.message, {killer: true})
   } else if (error.message) {
-    Vue.noty.error("Error interno")
+    Vue.noty.error(error.message)
 
   } else {
     Vue.noty.error("Error desconocido", {killer: true})
@@ -48,8 +48,15 @@ export default new Vuex.Store({
     async search({commit},data){
       Vue.noty.success("Su Peticion esta siendo procesada, esto llevara un tiempo")
      await Vue.axios.post( `${apiUrl}/pdb`,data)
-                    .then(response=>{commit('setResult', response.data)
-                                      Vue.noty.info("Ya estan sus resultados")})
+                    .then(response=>{
+                      if (response.data.error_code){
+                        showErrorWithNoty(response.data)
+                      }
+                      else{
+                        commit('setResult', response.data),
+                          Vue.noty.info("Ya estan sus resultados")
+                      }
+                    })
                     .catch((error)=>{showErrorWithNoty(error)});
     },
     async setViewA({commit}){ commit("setVA")},
