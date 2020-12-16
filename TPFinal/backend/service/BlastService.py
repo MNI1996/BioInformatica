@@ -2,15 +2,14 @@ import os
 import time
 from Bio.Blast import NCBIXML
 
-from TPFinal.backend.service.PDBService import PDBService
-#from backend.service.PDBService import PDBService
+#from TPFinal.backend.service.PDBService import PDBService
+from backend.service.PDBService import PDBService
 
 
 pdbService = PDBService()
 
 class BlastService:
     def __init__(self):
-
         self.base_fasta_file=""
         self.fasta_path=""
         self.owd=os.getcwd()
@@ -21,7 +20,7 @@ class BlastService:
     def getBlast(self,id,seq,db,num_align,e_value,identity, log_path, chain):
         #HOMOLOGAS con blast
         # convert to fasta section
-
+        self.id = id
         self.fasta_path = os.path.join(self.owd, "fasta")
         if not os.path.exists(self.fasta_path):
             os.mkdir(self.fasta_path)
@@ -87,8 +86,6 @@ class BlastService:
                 file.writelines(seq)
                 file.writelines("\n")
                 id = id + 1
-
-
             file.close()
         except:
             raise FileNotFoundError

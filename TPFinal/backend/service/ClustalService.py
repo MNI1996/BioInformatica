@@ -1,4 +1,5 @@
 import os
+from shutil import copyfile
 
 from Bio import SeqIO
 from Bio.Align.Applications import ClustalwCommandline
@@ -6,10 +7,12 @@ from Bio.Align.Applications import ClustalwCommandline
 
 class ClustalService:
     def __init__(self):
+        self.id = ""
         self.fasta_path=""
         self.owd = os.getcwd()
 
     def getClustal(self,clustalw_exe,base_fasta_file,id, log_path):
+        self.id = id
         clustal_output_path = os.path.join(self.owd, "clustal")
         if not os.path.exists(clustal_output_path):
             os.mkdir(clustal_output_path)
@@ -25,6 +28,15 @@ class ClustalService:
         for record in records:
             seq = (str(record.description), str(record.seq))
             seqs.append(seq)
+
+        path = os.getcwd().replace("backend", "frontend")
+        path = os.path.join(path, "Files")
+        path = os.path.join(path, "Align")
+        if not os.path.exists(path):
+            os.makedirs(path)
+        path = os.path.join(path, self.id + ".txt")
+        copyfile(clustal_output_path, path)
+
         return seqs
 
     def _log(self, log_path, clustalw_exe, clustal_output_path):

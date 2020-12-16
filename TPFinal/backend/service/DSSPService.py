@@ -15,7 +15,31 @@ class DSSPService:
             result = (align[0], conservated)
             dssps.append(result)
 
+        self._writeFile(dssps)
         return dssps
+
+    def _writeFile(self, dssps):
+        path = os.getcwd().replace("backend", "frontend")
+        path= path.replace("service", "")
+        path = os.path.join(path, "Files" )
+        path = os.path.join(path, "Dssp")
+
+        if not os.path.exists(path):
+            os.makedirs(path)
+
+        fst_protein = dssps[0][0][0:4]
+        path = os.path.join(path, fst_protein+".fa")
+        with open(path, "w") as file:
+            for dssp in dssps:
+                id_protein_chain = str(dssp[0])
+                id = id_protein_chain[0:4]
+                chain = id_protein_chain[5]
+                seq = dssp[1]
+                file.writelines("> " + id + "_" + chain)
+                file.writelines("\n")
+                file.writelines(str(seq))
+                file.writelines("\n")
+            file.close()
 
     def align(self, secondary_seq, primary_seq ):
 
@@ -29,7 +53,6 @@ class DSSPService:
 
     def rLG(self,ls):
         lsf=ls.replace("_","-")
-        print(lsf)
         return lsf
 
     def obtain_dssp(self, id_protein, chain):
