@@ -2,13 +2,13 @@ import os
 
 from Bio import SeqIO
 from Bio.PDB import PDBList
-"""
+
 from backend.exceptions.ChainPDBDoesNotExistException import ChainPDBDoesNotExistException
 from backend.exceptions.PDBDoesNotExistException import PDBDoesNotExistException
 """
 from TPFinal.backend.exceptions.ChainPDBDoesNotExistException import ChainPDBDoesNotExistException#
 from TPFinal.backend.exceptions.PDBDoesNotExistException import PDBDoesNotExistException
-
+"""
 
 class PDBService:
 

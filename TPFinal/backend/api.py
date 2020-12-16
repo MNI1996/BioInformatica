@@ -6,7 +6,7 @@ from datetime import datetime
 from Bio.Application import ApplicationError
 from flask import request, Response
 from flask_cors import CORS, cross_origin
-"""
+
 from backend.exceptions.ChainPDBDoesNotExistException import ChainPDBDoesNotExistException
 from backend.exceptions.NoClustalException import NoClustalException
 from backend.exceptions.NoClustalPathProvidedException import NoClustalPathProvidedException
@@ -32,7 +32,7 @@ from TPFinal.backend.service.PDBService import PDBService
 from TPFinal.backend.service.ClustalService import ClustalService
 from TPFinal.backend.service.BlastService import BlastService
 from TPFinal.backend.service.LogoService import LogoService
-
+"""
 
 
 app = flask.Flask(__name__)

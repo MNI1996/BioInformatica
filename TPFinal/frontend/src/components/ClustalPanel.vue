@@ -1,10 +1,18 @@
 <template>
   <div  class=" welcome">
     <div class="row">
-      <label >
-       <h5> Ingrese codigo de proteina</h5>
-        <input type="text" v-model="id" class="input-group"/>
-      </label>
+      <div class="col">
+        <label >
+          <h5> Ingrese codigo de proteina</h5>
+          <input type="text" v-model="id" class="input-group"/>
+        </label>
+      </div>
+      <div class="col">
+        <label >
+          <h5> Ingrese la cadena deseada</h5>
+          <input type="text" v-model="chain" class="input-group"/>
+        </label>
+      </div>
     </div>
     <div class="row">
       <div class="col col-md-4">
