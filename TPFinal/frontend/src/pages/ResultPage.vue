@@ -5,7 +5,6 @@
       <h5>Resultados de {{result["id"].slice(0,-2)}}</h5>
     </div>
     <div class="row welcome">
-
       <botonera/>
     </div>
     <div class="row welcome">
