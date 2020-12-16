@@ -33,7 +33,7 @@
     </div>
     <div class="row welcome " v-if="viewDssp">
       <div class="col-md-6 " >
-
+        <h3>DSSP</h3>
         <clustal-result :data="result['dssp']"/>
       </div>
       <div class="col-md-6">
@@ -48,7 +48,7 @@
   </div>
   <div v-else>
     <div class="col">
-      <h2>Procesando...</h2>
+      <h2>Procesando... (recuerde que puede tardar unos minutos)</h2>
       <button class="btn btn-lg btn-success btn-block" @click="goToHome">Volver a Buscar</button>
     </div>
   </div>
