@@ -9,7 +9,7 @@
 <script>
 import {mapGetters} from "vuex";
 export default {
-name: "DSSPViewer",
+  name: "AlignViewer",
   props:{
     id:"",
     numberOfGraphs:0
@@ -18,9 +18,9 @@ name: "DSSPViewer",
     ...mapGetters(["result"])
   },
   methods:{
-  urlImage(n){
-    return "Images/"+this.result["id"].slice(0,-2)+"/Dssp/"+n+".png"
-  }
+    urlImage(n){
+      return "Images/"+this.result["id"].slice(0,-2)+"/Align/"+n+".png"
+    }
   }
 }
 
