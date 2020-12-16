@@ -3,11 +3,9 @@ import json
 import os
 from datetime import datetime
 
-import werkzeug
 from Bio.Application import ApplicationError
-from flask import request, Response, jsonify
+from flask import request, Response
 from flask_cors import CORS, cross_origin
-from flask_restful import abort
 """
 from backend.exceptions.ChainPDBDoesNotExistException import ChainPDBDoesNotExistException
 from backend.exceptions.NoClustalException import NoClustalException
@@ -20,10 +18,9 @@ from service.PDBService import PDBService
 from service.ClustalService import ClustalService
 from service.BlastService import BlastService
 from service.LogoService import LogoService
+
+
 """
-from werkzeug.exceptions import HTTPException
-
-
 from TPFinal.backend.exceptions.ChainPDBDoesNotExistException import ChainPDBDoesNotExistException
 from TPFinal.backend.exceptions.PDBDoesNotExistException import PDBDoesNotExistException
 from TPFinal.backend.exceptions.NoClustalException import NoClustalException
@@ -58,35 +55,6 @@ def validateField(dataJson, fieldJson, value):
     value_return = dataJson[fieldJson] if str(dataJson[fieldJson]).strip() != "" and not dataJson[fieldJson] else value
     return value_return
 
-def validateRouteInFrontA(id):
-    f_path = os.getcwd().replace("backend", "frontend")
-    os.chdir(f_path)
-    f_path = os.path.join(f_path, "Files")
-    f_path = os.path.join(f_path, "Align")
-    f_path = os.path.join(f_path, id)
-    if not os.path.exists(f_path):
-        os.makedirs(f_path)
-
-def validateRouteInFrontS(id):
-    f_path = os.getcwd().replace("backend", "frontend")
-    os.chdir(f_path)
-    f_path = os.path.join(f_path, "Files")
-    f_path = os.path.join(f_path, "Dssp")
-    f_path = os.path.join(f_path, id)
-    if not os.path.exists(f_path):
-        os.makedirs(f_path)
-
-def writeFiles(path,data,id):
-    validateRouteInFrontA(id)
-    print("se creo ruta")
-    with open(path+id+".fa", "w") as file:
-        for dssp in  data:#result["dssp"]>
-
-            file.writelines ("< " + dssp[0])
-            file. writelines ("\n")
-            file.writelines ( dssp[1] )
-        print("termine de escribir")
-        file.close()
 
 @app.route('/pdb', methods=['POST'])
 @cross_origin()
@@ -128,30 +96,18 @@ def getInfo() ->Response :
         result["seq"] = pdbService.converToSequence(id, chain)
         blastService.getBlast(id,result["seq"],db,int(num_align),e_value,identity, log_path, chain)
         result["clustal"] = clustalService.getClustal(clustalw_exe,blastService.getBaseFasta(),id, log_path)
-
         result["dssp"] = dsspService.conservate(result["clustal"])
-        #writeFiles("../frontend/Files/Dssp/"+id+".fa",result["dssp"])
         result["numGraph"]=logoService.multiLogo(result["clustal"],id)
-        #result["numGraphSec"]=logoService.multiLogoS(result["dssp"],id)
     except PDBDoesNotExistException:
         result = {"error_code": '404', "message": PDBDoesNotExistException.message()}
-
     except ChainPDBDoesNotExistException:
         result = {"error_code": '404', "message":  ChainPDBDoesNotExistException.message()}
-
     except FileNotFoundError:
         result = {"error_code": '404', "message": NoHomologousException.message()}
-
     except ApplicationError:
         result = {"error_code": '404', "message": NoClustalException.message()}
-
-    #writeFiles("../frontend/Files/Align/",result["clustal"],id)
     json_object = json.dumps(result, indent=4)
     return (json_object)
-
-
-
-
 
 
 if __name__ == '__main__':
